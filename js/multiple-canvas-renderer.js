@@ -501,9 +501,9 @@ function buildTree() {
 }
 
 const tpl$1 = `<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="//localhost:1347/css/tweakpane.css" />
-<link rel="stylesheet" href="//localhost:1347/css/prism-one-light.css" />
-<link rel="stylesheet" href="//localhost:1347/css/sidebar.css" />
+<link rel="stylesheet" href="/css/tweakpane.css" />
+<link rel="stylesheet" href="/css/prism-one-light.css" />
+<link rel="stylesheet" href="/css/sidebar.css" />
 
 <nav class="navbar navbar-expand-lg bg-body sticky-top shadow-sm">
     <div class="container-xxl">
