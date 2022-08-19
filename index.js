@@ -31,7 +31,7 @@ const tpl = `<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.2.0
         </figure>
 
         <div class="text-center">
-            <a type="button" class="btn d-inline-block mt-5 btn-primary btn-lg" href="/default.html">View Examples</a>
+            <a type="button" class="btn d-inline-block mt-5 btn-primary btn-lg" href="./basic/view/coordinate-system.html">View Examples</a>
             <br />
             <a href="/" class="d-inline-block mt-3">View API documents</a>
         </div>
