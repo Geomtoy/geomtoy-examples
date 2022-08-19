@@ -20832,6 +20832,8 @@ class View {
     this._eventHandler = {};
 
     this._pointerDownHandler = function (e) {
+      var _this$_eventHandler$V;
+
       const isMouse = e.pointerType === "mouse";
       const isTouch = e.pointerType === "touch";
       const pointerOffset = [e.offsetX, e.offsetY];
@@ -20905,7 +20907,7 @@ class View {
         }
       }
 
-      if (this._eventHandler[ViewEventType.PointerDown].length) {
+      if ((_this$_eventHandler$V = this._eventHandler[ViewEventType.PointerDown]) != null && _this$_eventHandler$V.length) {
         this._nextTick(() => this._eventHandler[ViewEventType.PointerDown].forEach(cb => cb()));
       }
     }.bind(this);
