@@ -1,0 +1,27 @@
+{
+    "comments": false,
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "bugfixes": true,
+                "loose": true
+            }
+        ],
+        [
+            "@babel/preset-typescript",
+            {
+                "optimizeConstEnums": true,
+                "allowDeclareFields": true
+            }
+        ]
+    ],
+    "plugins": [
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ]
+    ]
+}
