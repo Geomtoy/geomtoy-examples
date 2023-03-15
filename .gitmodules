@@ -1,0 +1,4 @@
+[submodule "geomtoy"]
+	path = geomtoy
+	url = https://github.com/Geomtoy/geomtoy.git
+	ignore = dirty
