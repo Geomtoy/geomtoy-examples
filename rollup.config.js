@@ -84,6 +84,16 @@ export default {
                             ${process.env.GENERATE === "true" ? "<base href='/geomtoy-examples/' />" : "<base href='/' />"}
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                             <title>${"Geomtoy examples-" + item.fileSubDir.split(path.sep).join("/") + "/" + item.fileName}</title>
+                            <link rel="canonical" href="https://geomtoy.github.io/" />
+
+                            <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+                            <link rel="icon" sizes="32x32" href="assets/img/favicon-32x32.png" type="image/png">
+                            <link rel="icon" sizes="16x16" href="assets/img/favicon-16x16.png" type="image/png">
+                            <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#333333">
+                            <link rel="icon" href="assets/img/favicon.ico">
+                            <meta name="theme-color" content="#ffffff" /> 
+                            <meta name="author" content="Fish Eleven">
+                            <meta name="description" content="Geomtoy is a 2D geometry responsive computing, visualizing and interacting library.">
                         </head>
                         <body>
                             <script src="${item.fileSubDir.split(path.sep).join("/") + "/" + item.fileName + ".js"}" type="module"></script>
