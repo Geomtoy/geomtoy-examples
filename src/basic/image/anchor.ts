@@ -159,4 +159,4 @@ The anchor position is trustworthy regardless of the coordinate system setting.
 `);
 tpl.addMarkdown(`See more info: [Image explanation](/basic/image/explanation.html)`);
 
-tpl.addNote(markdownHtml(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`));
+tpl.addNote(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`);

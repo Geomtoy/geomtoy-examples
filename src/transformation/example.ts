@@ -1,7 +1,7 @@
-import { Anchor, Arbitrary, Ellipse, EventObject, Image, Path, Point, Rectangle, SealedGeometryArray, Transformation } from "@geomtoy/core";
+import { Arbitrary, Ellipse, Path, Rectangle, Transformation } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, fillOnly, fillTransOnly, lightStrokeFill, lightStrokeFillTrans, markdownHtml, strokeFill } from "../assets/scripts/common";
+import { SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { showTransformInterface } from "./_ui";
 

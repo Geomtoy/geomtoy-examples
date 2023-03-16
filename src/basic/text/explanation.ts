@@ -38,15 +38,14 @@ The width to draw the image. This allows scaling of the drawn image.
 - \`height\`:<br>
 The height to draw the image. This allows scaling of the drawn image.
 `);
-tpl.addNote(
-    markdownHtml(` 
+tpl.addNote(` 
 If \`consistent\` is false, then \`width\` and \`height\` are specific to the view coordinate system, 
 so the image can be correctly aligned to the coordinate tick in the view. **ONLY IN THIS CASE**, the \`width\` and \`height\` of the image are in the same unit with the other shapes in the view coordinate system.
 
 If \`consistent\` is true, then \`width\` and \`height\` are specific to the screen coordinate system (of Canvas or SVG), 
 so the size of the image does not change when you zooming the view(hence the name \`consistent\`) and the image is displayed on the screen with the actual \`width\` and \`height\`.
-`)
-);
+`);
+
 tpl.addMarkdown(`
 - \`sourceX\`:<br>
 The x-axis coordinate of the **left top corner** of the sub-rectangle of the source image to draw.
@@ -61,11 +60,9 @@ The width of the sub-rectangle of the source image to draw.
 The height of the sub-rectangle of the source image to draw.
 `);
 
-tpl.addNote(
-    markdownHtml(` 
+tpl.addNote(` 
 If one of \`sourceX\`, \`sourceY\`, \`sourceWidth\`, \`sourceHeight\` is not assigned, all four parameters are considered as \`NaN\` and no image cropping will be done.
-`)
-);
+`);
 
 tpl.addMarkdown(`
 The above parameters can basically refer to [CanvasRenderingContext2D.drawImage](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage), 
@@ -125,4 +122,4 @@ const image2 = new Image(200, 200, 72, 72, 1440, 540, 360, 360, imageUrl, true, 
     view.add(new ViewElement(image1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
     view.add(new ViewElement(image2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
 }
-tpl.addNote(markdownHtml(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`));
+tpl.addNote(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`);

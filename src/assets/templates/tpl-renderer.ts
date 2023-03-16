@@ -21,15 +21,25 @@ export default {
         tplMainDiv.insertAdjacentHTML("beforeend", `<h3>${sectionTitle}</h3>`);
     },
     addCode(code: string, lang = "js") {
-        tplMainDiv.insertAdjacentHTML("beforeend", `<div class="col-12">${codeHtml(code, lang)}</div>`);
+        tplMainDiv.insertAdjacentHTML("beforeend", `<div class="col-12 rounded">${codeHtml(code, lang)}</div>`);
     },
     addMarkdown(md: string, className = "") {
         const div = newElement(`<div class="md ${className}"></div>`);
         tplMainDiv.appendChild(div);
         div.innerHTML = markdownHtml(md);
     },
-    addNote(text: string) {
-        tplMainDiv.insertAdjacentHTML("beforeend", `<div class="col-12"><div class="bg-primary  bg-opacity-25 p-3 rounded" ><strong>Note: </strong>${text}</div></div>`);
+    addNote(note: string) {
+        tplMainDiv.insertAdjacentHTML(
+            "beforeend",
+            `
+        <div class="col-12 note">
+            <div class="bg-primary bg-opacity-25 p-3 rounded">
+                <div class="mb-4"><strong class="text-white bg-primary p-3 ">Note</strong></div> 
+                ${markdownHtml(note)}
+            </div>
+        </div>
+        `
+        );
     },
     addHTMLElement(element: HTMLElement) {
         tplMainDiv.appendChild(element);

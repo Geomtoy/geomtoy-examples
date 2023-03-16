@@ -67,4 +67,4 @@ const image = new Image(0, 0, 80, 84, 560, 540, 800, 840, imageUrl, false);
     );
     view.add(new ViewElement(image, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
 }
-tpl.addNote(markdownHtml(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`));
+tpl.addNote(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`);

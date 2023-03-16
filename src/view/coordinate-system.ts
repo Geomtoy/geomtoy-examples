@@ -81,12 +81,10 @@ tpl.addCode(`
     );
 }
 
-tpl.addNote(
-    markdownHtml(`
+tpl.addNote(`
 Since we can set the axes like this, obviously **clockwise** and **counterclockwise** don't make any sense any more.
 Geomtoy does not care about the coordinate system for displaying when do geometric computing.
 So there will be NO **clockwise** and **counterclockwise** properties anywhere, instead \`positive\` and \`negative\`.
 \`Positive\` is the direction of rotation from the positive direction of the x-axis to the positive direction of the y-axis.
 Of course you can also remember this: \`Positive\` is **counterclockwise** in the right-handed coordinate system; \`positive\` is **clockwise** in the left-handed coordinate system.
-`)
-);
+`);

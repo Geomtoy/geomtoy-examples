@@ -40,4 +40,4 @@ const image2 = new Image(0, 0, 36, 36, 560, 540, 360, 360, imageUrl, false, Anch
     view.add(new ViewElement(image2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
 }
 
-tpl.addNote(markdownHtml(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`));
+tpl.addNote(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`);

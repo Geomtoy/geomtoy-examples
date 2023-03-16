@@ -15,12 +15,10 @@ tpl.addMarkdown(`
 The \`arcTo\` in \`Path\` commands is generally not easy to control, because it is not like 1, 2, 3 degree bezier curve, you can directly modify all parameters by control points, 
 and the five parameters \`radiusX\`, \`radiusY\`, \`largeArc\`, \`positive\`, \`rotation\` in \`arcTo\` are generally not controllable by points.
 `);
-tpl.addNote(
-    markdownHtml(`
+tpl.addNote(`
 The \`arcTo\` command here is Geomtoy's Path command, which basically corresponds to the \`A\` command in &lt;path d="..."&gt;, but there is a small difference: 
 The \`positive\` is not the \`sweep\`. More info: [Coordinate system](/view/coordinate-system.html).\
-`)
-);
+`);
 tpl.addMarkdown(`
 To solve this problem, we invented a method that is quite effective so far, but it is not necessarily intuitive and may be a little difficult to use.
 `);
@@ -101,13 +99,11 @@ But they are not independent, because they are built in the local coordinate sys
     view.add(new ViewElement(localCoordinateSystem.items.projections, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("black") }));
     view.add(new ViewElement(localCoordinateSystem.items.intros, { interactMode: ViewElementInteractMode.None, ...fillOnly("black") }));
 }
-tpl.addNote(
-    markdownHtml(`
+tpl.addNote(`
 According to the ellipse equation and Web specifications, the elliptical arc parametrized by the two endpoints has radii correction. 
 When \`radiusX\` and \`radiusY\` can satisfy the ellipse equation, their values ​​are true values. When they cannot satisfy the ellipse equation, 
 they will be corrected - They will be enlarged simultaneously according to the ratio between them.
-`)
-);
+`);
 
 tpl.addSection("Overall of path control");
 {
