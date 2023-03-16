@@ -29,7 +29,7 @@ jobs:
           node-version: 16
       - name: Generate the examples
         run: |
-          npm run ci
+          npm ci
           git submodule update --init
           node create-link
           npm run build-util
