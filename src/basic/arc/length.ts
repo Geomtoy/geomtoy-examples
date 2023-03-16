@@ -1,15 +1,15 @@
 import { Arc, Dynamic, Point } from "@geomtoy/core";
 import { Angle } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
+import { lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import { appendSvgElement } from "../../assets/scripts/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc length");
 
 tpl.addMarkdown(`
-    There is no exact formula for the perimeter of an ellipse, so of course neither does an elliptical arc.<br>
-    For higher accuracy, Geomtoy uses the <a href="https://en.wikipedia.org/wiki/Elliptic_integral">elliptic integral</a> to calculate <a href="https://en.wikipedia.org/wiki/Ellipse#Arc_length">arc length</a>.
+    There is no exact formula for the perimeter of an ellipse, so of course neither does an elliptical arc.
+    For higher accuracy, Geomtoy uses the [elliptic integral](https://en.wikipedia.org/wiki/Elliptic_integral) to calculate [arc length](https://en.wikipedia.org/wiki/Ellipse#Arc_length).
 `);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });

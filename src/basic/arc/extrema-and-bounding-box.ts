@@ -1,7 +1,7 @@
-import { Arc, Dynamic, LineSegment, Point, Rectangle, ShapeArray } from "@geomtoy/core";
+import { Arc, Dynamic, GeometryArray, LineSegment, Point, Rectangle } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
+import { lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc extrema and bounding box");
@@ -25,7 +25,7 @@ tpl.title("Arc extrema and bounding box");
         const { radiusX, radiusY, startAngle, endAngle, positive, rotation } = e2.target;
         this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
     });
-    const extremePoints = new ShapeArray().bind([arc, "any"], function (e) {
+    const extremePoints = new GeometryArray().bind([arc, "any"], function (e) {
         this.items = e.target.isValid() ? e.target.extrema().map(([p]) => ((p.appearance = "cross"), p)) : [];
     });
     const boundingBoxRectangle = new Rectangle().bind([arc, "any"], function (e) {
@@ -52,7 +52,7 @@ const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (
     const { radiusX, radiusY, startAngle, endAngle, positive, rotation } = e2.target;
     this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
 });
-const extremePoints = new ShapeArray().bind([arc, "any"], function (e) {
+const extremePoints = new GeometryArray().bind([arc, "any"], function (e) {
     this.items = e.target.isValid() ? e.target.extrema().map(([p]) => ((p.appearance = "cross"), p)) : [];
 });
 const boundingBoxRectangle = new Rectangle().bind([arc, "any"], function (e) {

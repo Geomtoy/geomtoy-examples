@@ -1,12 +1,12 @@
 import { Bezier, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
 import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
+import { lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Bezier portion and split");
 
-tpl.addSection("portion");
-tpl.addSection("portionOf");
+tpl.addSection("Portion");
+tpl.addSection("portionOf", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
@@ -42,7 +42,7 @@ const bezierPortion = new SealedShapeObject({
     view.add(new ViewElement(bezierPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
     view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
 }
-tpl.addSection("portionOfExtend");
+tpl.addSection("portionOfExtend", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
@@ -79,8 +79,8 @@ const bezierPortion = new SealedShapeObject({
     view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
 }
 
-tpl.addSection("split");
-tpl.addSubSection("splitAtTime");
+tpl.addSection("Split");
+tpl.addSubSection("splitAtTime", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
@@ -142,7 +142,7 @@ const bezierPortions = new SealedShapeObject({
     view.add(new ViewElement(bezierPortions.items.second, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("lime") }));
     view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
 }
-tpl.addSubSection("splitAtTimes");
+tpl.addSubSection("splitAtTimes", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));

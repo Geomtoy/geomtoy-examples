@@ -1,6 +1,6 @@
-import { Bezier, LineSegment, Point, QuadraticBezier, Rectangle, ShapeArray } from "@geomtoy/core";
+import { Bezier, GeometryArray, LineSegment, Point, QuadraticBezier, Rectangle } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
+import { dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -20,7 +20,7 @@ tpl.title("Bezier extrema and bounding box");
         this.copyFrom(new Bezier(e1.target, e2.target, e3.target, e4.target));
     });
 
-    const extremePoints = new ShapeArray().bind([bezier, "any"], function (e) {
+    const extremePoints = new GeometryArray().bind([bezier, "any"], function (e) {
         this.items = e.target.isValid() ? e.target.extrema().map(([p]) => ((p.appearance = "cross"), p)) : [];
     });
     const boundingBoxRectangle = new Rectangle().bind([bezier, "any"], function (e) {
@@ -42,7 +42,7 @@ const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint
     this.copyFrom(new Bezier(e1.target, e2.target, e3.target, e4.target));
 });
 
-const extremePoints = new ShapeArray().bind([bezier, "any"], function (e) {
+const extremePoints = new GeometryArray().bind([bezier, "any"], function (e) {
     this.items = e.target.isValid() ? e.target.extrema().map(([p]) => ((p.appearance = "cross"), p)) : [];
 });
 const boundingBoxRectangle = new Rectangle().bind([bezier, "any"], function (e) {

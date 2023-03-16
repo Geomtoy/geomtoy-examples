@@ -1,4 +1,4 @@
-import { Arc, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
+import { Arc, Point, SealedShapeObject, GeometryArray } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
@@ -6,8 +6,8 @@ import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc portion and split");
 
-tpl.addSection("portion");
-tpl.addSubSection("portionOf");
+tpl.addSection("Portion");
+tpl.addSubSection("portionOf", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
@@ -43,7 +43,7 @@ const arcPortion = new SealedShapeObject({
     view.add(new ViewElement(arcPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
     view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
 }
-tpl.addSubSection("portionOfExtend");
+tpl.addSubSection("portionOfExtend", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
@@ -80,8 +80,8 @@ const arcPortion = new SealedShapeObject({
     view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
 }
 
-tpl.addSection("split");
-tpl.addSubSection("splitAtAngle");
+tpl.addSection("Split");
+tpl.addSubSection("splitAtAngle", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
@@ -145,7 +145,7 @@ const arcPortions = new SealedShapeObject({
     view.add(new ViewElement(arcPortions.items.second, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("lime") }));
     view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
 }
-tpl.addSubSection("splitAtAngles");
+tpl.addSubSection("splitAtAngles", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
@@ -167,7 +167,7 @@ tpl.addSubSection("splitAtAngles");
             p1.appearance = "cross";
             const p2 = arc.point2;
             p2.appearance = "cross";
-            return new ViewElement(new ShapeArray([arc, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
+            return new ViewElement(new GeometryArray([arc, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
         });
     });
     card.setDescription(
@@ -188,7 +188,7 @@ arc.on("any", function (e) {
         p1.appearance = "cross";
         const p2 = arc.point2;
         p2.appearance = "cross";
-        return new ViewElement(new ShapeArray([arc, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
+        return new ViewElement(new GeometryArray([arc, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
     });
 });
     `

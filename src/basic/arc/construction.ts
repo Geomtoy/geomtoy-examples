@@ -1,12 +1,12 @@
 import { Arc, Dynamic, Point } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
+import { lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc construction");
 
-tpl.addSection("constructor");
+tpl.addSection("constructor", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     card.setTitle("This is the way SVG describe an arc.");
@@ -75,7 +75,7 @@ const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"]
     view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
 }
 
-tpl.addSection("fromCenterPointAndStartEndAnglesEtc");
+tpl.addSection("fromCenterPointAndStartEndAnglesEtc", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "svg", className: "col-12", withPane: true });
     card.setTitle("This is the way Canvas describe an arc.");
@@ -134,7 +134,7 @@ const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (
     view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
 }
 
-tpl.addSection("fromThreePointsCircular");
+tpl.addSection("fromThreePointsCircular", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));

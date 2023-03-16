@@ -1,12 +1,12 @@
-import { Bezier, Dynamic, LineSegment, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
+import { Bezier, Dynamic, LineSegment, Point, SealedShapeObject, GeometryArray } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
+import { dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Bezier construction");
 
-tpl.addSection(`constructor`);
+tpl.addSection("constructor", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
@@ -48,7 +48,7 @@ const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint
     view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
 }
 
-tpl.addSection(`fromFourPointsAndTimes`);
+tpl.addSection("fromFourPointsAndTimes", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
@@ -97,8 +97,8 @@ const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [point3, "any
 
     // #endregion
     const bindingShapeObject = new SealedShapeObject({
-        controlPoints: new ShapeArray(),
-        controlLineSegments: new ShapeArray()
+        controlPoints: new GeometryArray(),
+        controlLineSegments: new GeometryArray()
     }).bind([bezier, "any"], function (e) {
         if (e.target.isValid()) {
             const p1 = e.target.point1;

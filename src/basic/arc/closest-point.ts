@@ -1,4 +1,4 @@
-import { Arc, Dynamic, LineSegment, Point, SealedShapeObject } from "@geomtoy/core";
+import { Arc, Dynamic, LineSegment, Point, SealedGeometryObject } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
@@ -27,7 +27,7 @@ tpl.title("Arc closest point");
         this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
     });
 
-    const closestPointLineSegment = new SealedShapeObject({
+    const closestPointLineSegment = new SealedGeometryObject({
         point: new Point("cross"),
         lineSegment: new LineSegment()
     }).bind([point, "any"], [arc, "any"], function (e1, e2) {
@@ -54,11 +54,11 @@ const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (
     this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
 });
 
-const closestPointLineSegment = new SealedShapeObject({
+const closestPointLineSegment = new SealedGeometryObject({
     point: new Point("cross"),
     lineSegment: new LineSegment()
 }).bind([point, "any"], [arc, "any"], function (e1, e2) {
-    this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFrom(e1.target) : null);
+    this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFrom(e1.target)[0] : null);
     this.items.lineSegment.copyFrom(new LineSegment(e1.target, this.items.point));
 });
     `

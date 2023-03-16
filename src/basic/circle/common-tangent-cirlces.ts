@@ -1,6 +1,6 @@
 import { Circle, Point, ShapeArray } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeFill, strokeOnly } from "../../assets/scripts/common";
+import { lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Common tangent circles of two circles through a point");
@@ -54,7 +54,7 @@ tpl.title("Common tangent circles of two circles through a point");
     view.add(new ViewElement(radiusControlPoint1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("red") }));
     view.add(new ViewElement(centerPoint2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("blue") }));
     view.add(new ViewElement(radiusControlPoint2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("blue") }));
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("teal") }));
+    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("teal") }));
 
     view.add(new ViewElement(circle1, { interactMode: ViewElementInteractMode.None, ...strokeOnly("red") }));
     view.add(new ViewElement(circle2, { interactMode: ViewElementInteractMode.None, ...strokeOnly("blue") }));

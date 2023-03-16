@@ -7,9 +7,9 @@ import tpl from "../../assets/templates/tpl-renderer";
 tpl.title("Bezier length");
 
 tpl.addMarkdown(`
-    Geomtoy use <a href="https://en.wikipedia.org/wiki/Gauss–Legendre_quadrature">Gauss–Legendre quadrature</a> integral 
+    Geomtoy use [Gauss–Legendre quadrature](https://en.wikipedia.org/wiki/Gauss–Legendre_quadrature) integral 
     approximation to calculate bezier length, and use the \`n=24\` values of the table 
-    here <a href="https://pomax.github.io/bezierinfo/legendre-gauss.html">https://pomax.github.io/bezierinfo/legendre-gauss.html</a>.
+    here https://pomax.github.io/bezierinfo/legendre-gauss.html.
 `);
 
 {
