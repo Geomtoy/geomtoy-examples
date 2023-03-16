@@ -41,7 +41,7 @@ export default {
         `
         );
     },
-    addHTMLElement(element: HTMLElement) {
+    addHtmlElement(element: HTMLElement) {
         tplMainDiv.appendChild(element);
     },
     addCard({

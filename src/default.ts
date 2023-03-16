@@ -44,7 +44,7 @@ buttonWrapper.querySelector("button")!.addEventListener("click", function (this:
         });
     }
 });
-tpl.addHTMLElement(buttonWrapper);
+tpl.addHtmlElement(buttonWrapper);
 
 const sketchStyle: { style: Partial<Style> } = {
     style: {

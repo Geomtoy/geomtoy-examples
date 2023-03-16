@@ -20,7 +20,7 @@ const compound1 = Compound.fromSvgString(cherrySvg + anchorSvg);
 const compound2 = Compound.fromSvgString(infinitySvg);
 
 {
-    // tpl.addHTMLElement()
+    // tpl.addHtmlElement()
 }
 const dynamic = new Dynamic();
 const booleanOperationClass = dynamic.create({

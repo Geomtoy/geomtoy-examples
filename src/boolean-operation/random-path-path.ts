@@ -30,7 +30,7 @@ const viewCollection: View[] = [];
         });
         viewCollection.forEach(view => view.render());
     });
-    tpl.addHTMLElement(checkWrapper);
+    tpl.addHtmlElement(checkWrapper);
 }
 {
     tpl.addSection("Union");
