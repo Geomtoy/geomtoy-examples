@@ -1,7 +1,7 @@
 import { Arc, Dynamic, Point } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc construction");
@@ -31,7 +31,8 @@ tpl.addSection("constructor");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point([0, 0]);
 const point2 = new Point([10, 1]);
 
@@ -47,7 +48,7 @@ const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"]
     const { radiusX, radiusY, largeArc, positive, rotation } = e3.target;
     this.copyFrom(new Arc(e1.target, e2.target, radiusX, radiusY, largeArc, positive, rotation));
 });
-    `)
+    `
     );
 
     // `Arc` may correct its own radiusX and radiusY by itself.
@@ -98,7 +99,8 @@ tpl.addSection("fromCenterPointAndStartEndAnglesEtc");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const centerPoint = new Point([0, 0]);
 const restParams = new (new Dynamic().create({
     radiusX: 20,
@@ -113,7 +115,7 @@ const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (
     const { radiusX, radiusY, startAngle, endAngle, positive, rotation } = e2.target;
     this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
 });
-    `)
+    `
     );
 
     // #region Pane
@@ -148,7 +150,8 @@ tpl.addSection("fromThreePointsCircular");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const point1 = new Point([0, 10]);
 const point2 = new Point([10, 5]);
 const radiusControlPoint = new Point([10, 0]);
@@ -156,7 +159,7 @@ const radiusControlPoint = new Point([10, 0]);
 const arc = new Arc().bind([point1, "any"], [point2, "any"], [radiusControlPoint, "any"], function (e1, e2, e3) {
     this.copyFrom(Arc.fromThreePointsCircular(e1.target, e2.target, e3.target));
 });
-    `)
+    `
     );
 
     view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));

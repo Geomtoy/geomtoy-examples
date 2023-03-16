@@ -1,7 +1,7 @@
 import { Bezier, Dynamic, EventObject, LineSegment, Point, QuadraticBezier, SealedShapeObject, ShapeArray } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, strokeFill, strokeOnly, thinStrokeOnly } from "../../assets/common";
-import { twoPointsLineSegment } from "../../assets/general-construction";
+import { codeHtml, dashedThinStroke, lightStrokeFill, strokeFill, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
+import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Quadratic bezier construction");
@@ -21,14 +21,15 @@ tpl.addSection(`construction-1: constructor`);
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point([-2, 5]);
 const point2 = new Point([10, 6]);
 const controlPoint = new Point([5, 20]);
 const quadraticBezier = new QuadraticBezier().bind([point1, "any"], [point2, "any"], [controlPoint, "any"], function (e1, e2, e3) {
     this.copyFrom(new QuadraticBezier(e1.target, e2.target, e3.target));
 });
-    `)
+    `
     );
 
     const controlLineSegment1 = new LineSegment().bind([point1, "any"], [controlPoint, "any"], twoPointsLineSegment);
@@ -63,7 +64,8 @@ tpl.addSection(`construction-2: fromThreePointsAndTime`);
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point(-8, -8);
 const point2 = new Point(-6, 3);
 const point3 = new Point(10, 10);
@@ -76,7 +78,7 @@ const quadraticBezier = new QuadraticBezier().bind([point1, "any"], [point2, "an
     const { time } = e4.target;
     this.copyFrom(QuadraticBezier.fromThreePointsAndTime(e1.target, e2.target, e3.target, time));
 });
-    `)
+    `
     );
 
     // #region Pane

@@ -1,11 +1,11 @@
 import { Anchor, Image } from "@geomtoy/core";
 import { SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFillTrans, markdownHtml } from "../../assets/common";
+import { codeHtml, lightStrokeFillTrans, markdownHtml } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Image explanation");
 
-tpl.addParagraph("The construction of Geomtoy's Image is slightly complex, with a total of 14 overloads.");
+tpl.addMarkdown("The construction of Geomtoy's Image is slightly complex, with a total of 14 overloads.");
 tpl.addSection("Constructor overloads");
 tpl.addCode(`
 constructor(x: number, y: number, width: number, height: number, source: string, consistent?: boolean, anchor?: Anchor);
@@ -24,7 +24,7 @@ constructor(source: string, consistent?: boolean, anchor?: Anchor);
 constructor(consistent?: boolean, anchor?: Anchor);
 `);
 tpl.addSection("Parameters");
-tpl.addParagraph("Although there are so many overloads, the main parameters are as follows:");
+tpl.addMarkdown("Although there are so many overloads, the main parameters are as follows:");
 tpl.addMarkdown(`
 - \`x\`:<br>
 The x-axis coordinate of the image anchor in the view coordinate system.
@@ -111,14 +111,15 @@ const imageUrl = "assets/img/emoji-icons-set-flat-design-free-vector.jpg";
     // This is the second cropped image, scaled to 72x72, relocated to [200,200], `consistent` is true - does not follow `zoom`, and anchored at the right bottom.
     const image2 = new Image(200, 200, 72, 72, 1440, 540, 360, 360, imageUrl, true, Anchor.RightBottom);
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 // This is the original image, not cropped, but scaled to 240x240, \`consistent\` is false - follow the \`zoom\`.
 const image = new Image(0, 0, 240, 240, imageUrl, false);
 // This is the first cropped image, scaled to 36x36, relocated to [100,100] and \`consistent\` is true - does not follow \`zoom\`.
 const image1 = new Image(100, 100, 36, 36, 120, 60, 360, 360, imageUrl, true);
 // This is the second cropped image, scaled to 72x72, relocated to [200,200], \`consistent\` is true - does not follow \`zoom\`, and anchored at the right bottom.
 const image2 = new Image(200, 200, 72, 72, 1440, 540, 360, 360, imageUrl, true, Anchor.RightBottom);
-        `)
+        `
     );
     view.add(new ViewElement(image, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
     view.add(new ViewElement(image1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));

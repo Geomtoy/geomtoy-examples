@@ -1,12 +1,12 @@
 import { Bezier, EventObject, LineSegment, Point } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, strokeOnly } from "../../assets/common";
-import { appendSvgElement } from "../../assets/svg-append";
+import { codeHtml, dashedThinStroke, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
+import { appendSvgElement } from "../../assets/scripts/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Circle length and area");
 
-tpl.addParagraph(`
+tpl.addMarkdown(`
     Geomtoy use <a href="https://en.wikipedia.org/wiki/Gauss–Legendre_quadrature">Gauss–Legendre quadrature</a> integral 
     approximation to calculate bezier length, and use the \`n=24\` values of the table 
     here <a href="https://pomax.github.io/bezierinfo/legendre-gauss.html">https://pomax.github.io/bezierinfo/legendre-gauss.html</a>.
@@ -36,7 +36,8 @@ tpl.addParagraph(`
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
     const point1 = new Point([-20, 40]);
     const point2 = new Point([10, 20]);
     const controlPoint1 = new Point([30, 70]);
@@ -62,7 +63,7 @@ tpl.addParagraph(`
             lengths.lengthBySvg = svgPath.getTotalLength();
         }
     );
-    `)
+    `
     );
 
     const twoPointLineSegmentFn = function (this: LineSegment, e1: EventObject<Point>, e2: EventObject<Point>) {

@@ -1,7 +1,7 @@
 import { Bezier, Dynamic, LineSegment, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
-import { twoPointsLineSegment } from "../../assets/general-construction";
+import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
+import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Bezier construction");
@@ -22,7 +22,8 @@ tpl.addSection(`constructor`);
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point([-20, 20]);
 const point2 = new Point([10, 20]);
 const controlPoint1 = new Point([10, -10]);
@@ -30,7 +31,7 @@ const controlPoint2 = new Point([40, 20]);
 const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint1, "any"], [controlPoint2, "any"], function (e1, e2, e3, e4) {
     this.copyFrom(new Bezier(e1.target, e2.target, e3.target, e4.target));
 });
-    `)
+    `
     );
 
     const controlLineSegment1 = new LineSegment().bind([point1, "any"], [controlPoint1, "any"], twoPointsLineSegment);
@@ -69,7 +70,8 @@ tpl.addSection(`fromFourPointsAndTimes`);
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point(-80, -80);
 const point2 = new Point(-60, 30);
 const point3 = new Point(10, 10);
@@ -83,7 +85,7 @@ const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [point3, "any
     const { time1, time2 } = e5.target;
     this.copyFrom(Bezier.fromFourPointsAndTimes(e1.target, e2.target, e3.target, e4.target, [time1, time2]));
 });
-    `)
+    `
     );
 
     // #region Pane

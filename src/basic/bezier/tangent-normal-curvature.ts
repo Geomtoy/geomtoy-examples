@@ -1,8 +1,8 @@
 import { Bezier, Circle, Dynamic, LineSegment, Point, Vector } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly, thinStrokeOnly } from "../../assets/common";
-import { twoPointsLineSegment } from "../../assets/general-construction";
+import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
+import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Bezier tangent, normal vector and curvature");
@@ -50,7 +50,8 @@ tpl.title("Bezier tangent, normal vector and curvature");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point([-25, 0]);
 const point2 = new Point([10, 10]);
 const controlPoint1 = new Point([-10, 5]);
@@ -86,7 +87,7 @@ bezier.on("any", function () {
 const osculatingCircle = new Circle().bind([bezier, "any"], [stepParams, "step"], function (e1, e2) {
     this.copyFrom(e1.target.isValid() ? e1.target.getOsculatingCircleAtTime(deltaTime * e2.target.step) : null);
 });
-        `)
+        `
     );
 
     // #region Pane

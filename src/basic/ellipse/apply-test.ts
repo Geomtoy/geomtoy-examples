@@ -1,9 +1,9 @@
 import Geomtoy, { type EventObject, type Text, Point, type Arc, Ellipse, Dynamic, Transformation, Arbitrary } from "@geomtoy/core";
 import { Maths, Polynomial, Utility } from "@geomtoy/util";
 import { View, ViewElement, CanvasRenderer, SvgRenderer, ViewElementInteractMode } from "@geomtoy/view";
-import color from "../../assets/color";
-import { strokeFill, strokeOnly } from "../../assets/common";
-// import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/common";
+import color from "../../assets/scripts/color";
+import { strokeFill, strokeOnly } from "../../assets/scripts/common";
+// import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Ellipse transformation");

@@ -1,8 +1,8 @@
 // import { Maths } from "@geomtoy/util";
 // import Geomtoy, { Ellipse } from "@geomtoy/core";
 // import { View, ViewElement, CanvasRenderer } from "@geomtoy/view";
-// import color from "../../assets/color";
-// // import { mathFont, interactableStyles } from "../../assets/common";
+// import color from "../../assets/scripts/color";
+// // import { mathFont, interactableStyles } from "../../assets/scripts/common";
 // import tpl from "../../assets/templates/simple-canvas-renderer";
 
 // import type { EventObject, Text, Point } from "@geomtoy/core";

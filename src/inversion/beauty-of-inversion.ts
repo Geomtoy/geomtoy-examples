@@ -1,7 +1,7 @@
 import { Circle, Inversion, Line, ShapeArray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, thinStrokeOnly } from "../assets/common";
+import { codeHtml, lightStrokeFill, thinStrokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Beauty of inversion");
@@ -24,7 +24,8 @@ tpl.title("Beauty of inversion");
         })
     );
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const lines = new ShapeArray(
     Utility.range(0, 11).map(index => {
         return new Line(-5 + index, 0, Infinity);
@@ -36,7 +37,7 @@ const inverses = new ShapeArray(
         return inversion.invertLine(l);
     })
 );
-    `)
+    `
     );
 
     view.add(new ViewElement(lines, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
@@ -63,7 +64,8 @@ const inverses = new ShapeArray(
     );
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const circles = new ShapeArray(
     Utility.range(0, 6).map(index => {
         return new Circle(index, 2, 1);
@@ -76,7 +78,7 @@ const inverses = new ShapeArray(
         return inversion.invertCircle(circle);
     })
 );
-    `)
+    `
     );
     view.add(new ViewElement(circles, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
     view.add(new ViewElement(inverses, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
@@ -104,7 +106,8 @@ const inverses = new ShapeArray(
         })
     );
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const lines = new ShapeArray([
     ...Utility.range(0, 20).map(i => {
         return new Line(-1 + 0.1 * i, 0, Infinity);
@@ -120,7 +123,7 @@ const inverses = new ShapeArray(
         return inversion.invertLine(l);
     })
 );
-    `)
+    `
     );
     view.add(new ViewElement(lines, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("gray") }));
     view.add(new ViewElement(inverses, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("teal") }));

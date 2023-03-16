@@ -1,7 +1,7 @@
 import { LineSegment, Point, QuadraticBezier, SealedShapeObject } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeOnly, strokeFill, strokeOnly } from "../../assets/common";
-import { twoPointsLineSegment } from "../../assets/general-construction";
+import { codeHtml, dashedThinStroke, lightStrokeOnly, strokeFill, strokeOnly } from "../../assets/scripts/common";
+import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Quadratic bezier closest point");
@@ -30,7 +30,8 @@ tpl.title("Quadratic bezier closest point");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point([-20, 0]);
 const point2 = new Point([20, -10]);
 const controlPoint = new Point([20, 30]);
@@ -47,7 +48,7 @@ const closestPointLineSegment = new SealedShapeObject({
     this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFrom(e1.target) : null);
     this.items.lineSegment.copyFrom(new LineSegment(e1.target, this.items.point));
 });
-    `)
+    `
     );
 
     const controlLineSegment1 = new LineSegment().bind([point1, "any"], [controlPoint, "any"], twoPointsLineSegment);

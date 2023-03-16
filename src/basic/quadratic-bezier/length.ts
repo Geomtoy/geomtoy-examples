@@ -1,8 +1,8 @@
 import { LineSegment, Point, QuadraticBezier } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly, thinStrokeOnly } from "../../assets/common";
-import { twoPointsLineSegment } from "../../assets/general-construction";
+import { codeHtml, lightStrokeFill, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
+import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Quadratic bezier length");
@@ -30,7 +30,8 @@ tpl.title("Quadratic bezier length");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
     const point1 = new Point([-20, 40]);
     const point2 = new Point([10, 20]);
     const controlPoint = new Point([30, 70]);
@@ -54,7 +55,7 @@ tpl.title("Quadratic bezier length");
             lengths.lengthBySvg = path.getTotalLength();
         }
     );
-    `)
+    `
     );
 
     const controlLineSegment1 = new LineSegment().bind([point1, "any"], [controlPoint, "any"], twoPointsLineSegment);

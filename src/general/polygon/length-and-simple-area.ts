@@ -1,7 +1,7 @@
 import { Dynamic, Polygon } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, strokeFill } from "../../assets/common";
-import { appendSvgElement } from "../../assets/svg-append";
+import { codeHtml, strokeFill } from "../../assets/scripts/common";
+import { appendSvgElement } from "../../assets/scripts/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Polygon length and simple area");
@@ -45,7 +45,7 @@ lengths.lengthBySvg= svgPolygon.getTotalLength()
 }
 
 tpl.addSection("area");
-tpl.addParagraph(
+tpl.addMarkdown(
     "\
 For simple(non-self-intersecting) polygons, `getArea` returns correct results, but for complex(​​self-intersecting) polygons, `getArea` cannot be directly used, but perform a self-union boolean operation first. \
 And the fill rule that affects the final graphics will also be processed in self-union.\

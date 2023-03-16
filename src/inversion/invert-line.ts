@@ -1,7 +1,7 @@
 import { Arbitrary, Dynamic, Inversion, Line, Point } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeFillTrans, strokeOnly, strokeFill, thinStrokeOnly } from "../assets/common";
+import { codeHtml, lightStrokeFill, lightStrokeFillTrans, strokeOnly, strokeFill, thinStrokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Inversion: inverse of line");
@@ -33,7 +33,8 @@ tpl.title("Inversion: inverse of line");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
     const point1 = new Point([-5, 6]);
     const point2 = new Point([5, 9]);
     const line = new Line().bind([point1, "any"], [point2, "any"], function (e1, e2) {
@@ -54,7 +55,7 @@ tpl.title("Inversion: inverse of line");
     const lineInverse = new Arbitrary().bind([line, "any"], [inversion, "any"], function (e1, e2) {
         this.copyFrom(e2.target.invertLine(e1.target));
     });
-    `)
+    `
     );
 
     // #region Pane

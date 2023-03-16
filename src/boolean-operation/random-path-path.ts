@@ -1,7 +1,7 @@
 import { BooleanOperation, Geomtoy, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { elementFromString, lightStrokeFill } from "../assets/common";
+import { newElement, lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand } from "./_common";
 
@@ -14,7 +14,7 @@ const description = bo.describe(path1, path2);
 
 const viewCollection: View[] = [];
 {
-    const checkWrapper = elementFromString(`
+    const checkWrapper = newElement(`
     <p>
         Refresh to random. Each of the two paths contain 10 random commands. 
         <input class="form-check-input" type="checkbox" id="check">

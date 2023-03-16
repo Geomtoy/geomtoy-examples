@@ -1,8 +1,8 @@
 import { Line, LineSegment, Path, Point, SealedShapeArray, SealedShapeObject, Text, Anchor } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import color from "../../assets/color";
-import { fillOnly, markdownHtml, mathFont, strokeFill, strokeOnly, thinStrokeOnly } from "../../assets/common";
-import { locateLabel } from "../../assets/general-construction";
+import color from "../../assets/scripts/color";
+import { fillOnly, markdownHtml, mathFont, strokeFill, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
+import { locateLabel } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 import { showCommands } from "../_control";
 
@@ -21,7 +21,7 @@ The \`arcTo\` command here is Geomtoy's Path command, which basically correspond
 The \`positive\` is not the \`sweep\`. More info: [Coordinate system](/view/coordinate-system.html).\
 `)
 );
-tpl.addParagraph(`
+tpl.addMarkdown(`
 To solve this problem, we invented a method that is quite effective so far, but it is not necessarily intuitive and may be a little difficult to use.
 `);
 {
@@ -67,7 +67,8 @@ To solve this problem, we invented a method that is quite effective so far, but 
     });
 
     card.setDescription(
-        markdownHtml(`
+        "markdown",
+        `
  
 First, assume that the point reached by the \`arcTo\` command is called **point**, 
 from which a local coordinate system is established: the black<span style="color:${color("black")};">&#9635;</span> colored lines.
@@ -90,7 +91,7 @@ Then the \`rotationPoint\` also needs a magnitude, and we can use \`rx+ry\`, a n
 
 Now we can change \`radiusX\`, \`radiusY\`, \`largeArc\`, \`positive\`, \`rotation\` parameters by moving **adjustPoint** and **rotationPoint**.
 But they are not independent, because they are built in the local coordinate system of the **point**. So when the **point** moves, these two points will follow.
-`)
+`
     );
 
     view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
@@ -126,12 +127,13 @@ tpl.addSection("Overall of path control");
     , true);
 
     card.setDescription(
-        markdownHtml(`
+        "markdown",
+        `
 <span style="color:${color("lime")};">&#9635;</span> \`arcTo\` adjustPoint<br>
 <span style="color:${color("teal")};">&#9635;</span> \`arcTo\` rotationPoint<br>
 <span style="color:${color("orange")};">&#9635;</span> \`bezierTo\` controlPoint<br>
 <span style="color:${color("purple")};">&#9635;</span> \`quadraticBezierTo\` controlPoint
-`)
+`
     );
 
     const { pathSubView, pathHelperSubView } = showCommands(path);

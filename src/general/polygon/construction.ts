@@ -1,7 +1,7 @@
 import { Point, Polygon, ShapeArray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, markdownHtml, strokeFill, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, markdownHtml, strokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Polygon construction");
@@ -20,9 +20,10 @@ tpl.addSection("constructor");
         Polygon.vertex([55, 20]), 
         Polygon.vertex([0, 80])
     ], true);
-    card.setDescription(markdownHtml("property `closed`: true - like SVG &lt;polygon&gt;"));
+    card.setDescription("markdown", "property `closed`: true - like SVG &lt;polygon&gt;");
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
 const polygon = new Polygon([
     Polygon.vertex([0, 100]), 
     Polygon.vertex([40, -10]), 
@@ -30,7 +31,7 @@ const polygon = new Polygon([
     Polygon.vertex([55, 20]), 
     Polygon.vertex([0, 80])
 ], true);
-        `)
+        `
     );
     view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
 }
@@ -48,9 +49,10 @@ const polygon = new Polygon([
         Polygon.vertex([55, 20]), 
         Polygon.vertex([0, 80])
     ], false);
-    card.setDescription(markdownHtml("property `closed`: false - like SVG &lt;polyline&gt;"));
+    card.setDescription("markdown", "property `closed`: false - like SVG &lt;polyline&gt;");
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
 const polygon = new Polygon([
     Polygon.vertex([0, 100]), 
     Polygon.vertex([40, -10]), 
@@ -58,7 +60,7 @@ const polygon = new Polygon([
     Polygon.vertex([55, 20]), 
     Polygon.vertex([0, 80])
 ], false);
-        `)
+        `
     );
     view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
 }
@@ -74,9 +76,10 @@ tpl.addSection("fromSVGString");
     const polygon = Polygon.fromSVGString("0,100 50,25 50,7 100,0", true);
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const polygon = Polygon.fromSVGString("0,100 50,25 50,7 100,0", true);
-        `)
+        `
     );
 
     view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
@@ -97,13 +100,14 @@ tpl.addSection("fromPoints");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const points = Utility.range(0, 10).map(_ => Point.random([-100, -100, 200, 200])); 
 
 const polygon = new Polygon(false).bind(...points.map(p => [p, "any"] as [Point, string]), function (...es) {
     this.copyFrom(Polygon.fromPoints(es.map(e => e.target)));
 });
-        `)
+        `
     );
     view.add(...points.map(p => new ViewElement(p, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") })));
     view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
@@ -123,13 +127,14 @@ tpl.addSection("fromPointsConvexHull");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const points = Utility.range(0, 10).map(_ => Point.random([-100, -100, 200, 200])); 
 
 const polygon = new Polygon().bind(...points.map(p => [p, "any"] as [Point, string]), function (...es) {
     this.copyFrom(Polygon.fromPointsConvexHull(es.map(e => e.target)));
 });
-        `)
+        `
     );
     view.add(...points.map(p => new ViewElement(p, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") })));
     view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.None, ...strokeFill("brown") }));

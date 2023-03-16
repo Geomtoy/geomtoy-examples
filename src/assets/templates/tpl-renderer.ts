@@ -3,7 +3,7 @@ import "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.mi
 import { buildTree } from "./shared/sidebar";
 
 import html from "./tpl-renderer.html";
-import { codeHtml, elementFromString, markdownHtml } from "../common";
+import { codeHtml, newElement, markdownHtml } from "../scripts/common";
 import { Utility } from "@geomtoy/util";
 document.body.insertAdjacentHTML("afterbegin", html);
 buildTree();
@@ -14,20 +14,17 @@ export default {
     title(title: string) {
         document.querySelector<HTMLHeadingElement>("h1")!.innerHTML = title;
     },
-    addSection(sectionTitle: string, className = "") {
-        tplMainDiv.insertAdjacentHTML("beforeend", `<h2 class="${className}">${sectionTitle}</h2>`);
+    addSection(sectionTitle: string) {
+        tplMainDiv.insertAdjacentHTML("beforeend", `<h2>${sectionTitle}</h2>`);
     },
-    addSubSection(sectionTitle: string, className = "") {
-        tplMainDiv.insertAdjacentHTML("beforeend", `<h3 class="${className}">${sectionTitle}</h3>`);
+    addSubSection(sectionTitle: string) {
+        tplMainDiv.insertAdjacentHTML("beforeend", `<h3>${sectionTitle}</h3>`);
     },
     addCode(code: string, lang = "js") {
         tplMainDiv.insertAdjacentHTML("beforeend", `<div class="col-12">${codeHtml(code, lang)}</div>`);
     },
-    addParagraph(text: string, className = "") {
-        tplMainDiv.insertAdjacentHTML("beforeend", `<p class="${className}">${text}</p>`);
-    },
     addMarkdown(md: string, className = "") {
-        const div = elementFromString(`<div class="md"></div>`);
+        const div = newElement(`<div class="md ${className}"></div>`);
         tplMainDiv.appendChild(div);
         div.innerHTML = markdownHtml(md);
     },
@@ -85,17 +82,27 @@ export default {
                 const cardTitle = card.querySelector(".card-title")!;
                 cardTitle.innerHTML = title;
             },
-            setDescription: function (description: string) {
+            setDescription: function (type: "code" | "markdown", description: string) {
                 const cardText = card.querySelector(".card-text")!;
-                cardText.innerHTML = description;
+                if (type === "code") {
+                    cardText.innerHTML = codeHtml(description);
+                }
+                if (type === "markdown") {
+                    cardText.innerHTML = markdownHtml(description);
+                }
+            },
+            appendDescription: function (type: "code" | "markdown", description: string) {
+                const cardText = card.querySelector(".card-text")!;
+                if (type === "code") {
+                    cardText.innerHTML = cardText.innerHTML + codeHtml(description);
+                }
+                if (type === "markdown") {
+                    cardText.innerHTML = cardText.innerHTML + markdownHtml(description);
+                }
             },
             setIntroduction: function (introduction: string) {
                 const cardIntroduction = card.querySelector(".card-introduction")!;
                 cardIntroduction.innerHTML = introduction;
-            },
-            appendDescription: function (description: string) {
-                const cardText = card.querySelector(".card-text")!;
-                cardText.innerHTML = cardText.innerHTML + description;
             }
         };
     }

@@ -1,12 +1,12 @@
 import { BooleanOperation, Compound, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { lightStrokeFill } from "../assets/common";
+import { lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand, strokeFillByIndex } from "./_common";
 
 tpl.title("Random compound self-union");
-tpl.addParagraph("Refresh to random");
+tpl.addMarkdown("Refresh to random");
 {
     const bo = new BooleanOperation();
     const path1 = new Path(Utility.range(0, 10).map(_ => randomPathCommand()));

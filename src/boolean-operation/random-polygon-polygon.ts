@@ -1,7 +1,7 @@
 import { BooleanOperation, Geomtoy, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { elementFromString, lightStrokeFill } from "../assets/common";
+import { newElement, lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPolygonVertex } from "./_common";
 
@@ -15,7 +15,7 @@ const description = bo.describe(polygon1, polygon2);
 
 const viewCollection: View[] = [];
 {
-    const checkWrapper = elementFromString(`
+    const checkWrapper = newElement(`
     <p>
         Refresh to random. Each of the two polygons contain 10 random vertices. 
         <input class="form-check-input" type="checkbox" id="check">

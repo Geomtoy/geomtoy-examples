@@ -1,35 +1,32 @@
-import Geomtoy, { type EventObject, type Text, Point, type Arc, Ellipse } from "@geomtoy/core";
+import Geomtoy, { type EventObject, type Text, Point, type Arc, Ellipse, Dynamic } from "@geomtoy/core";
 import { Maths, Polynomial, Utility } from "@geomtoy/util";
 import { View, ViewElement, CanvasRenderer, SvgRenderer } from "@geomtoy/view";
-import color from "../../assets/color";
-// import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/common";
+import color from "../../assets/scripts/color";
+// import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
- 
 
-tpl.title("Ellipse radiusX and radiusY explanation"); 
+tpl.title("Ellipse radiusX and radiusY explanation");
 
 tpl.addSection(`Ellipse radiusX and radiusY explanation`);
 {
     const card = tpl.addCard({
-        canvasId: Utility.uuid(),
         aspectRatio: "3:1",
         className: "col-12",
         withPane: true
     });
 
-    const view = new View(g, {}, new CanvasRenderer(card.canvas, g, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
+    const view = new View({}, new CanvasRenderer(card.canvas, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
-    const centerPoint = g.Point(0, 0);
+    const centerPoint = new Point(0, 0);
 
-    const dynamic = g.Dynamic();
+    const dynamic = new Dynamic();
     const restParams = dynamic.create({
         radiusX: 10,
         radiusY: 20,
-        on :"1"
+        on: "1"
     });
 
-    console.log(restParams.toArray())
     const ellipse = g.Ellipse().bind(
         [
             [centerPoint, "any"],
@@ -51,9 +48,9 @@ tpl.addSection(`Ellipse radiusX and radiusY explanation`);
         }
     );
 
-    restParams.on("radiusX",function(){
-        console.log(this)
-    })
+    restParams.on("radiusX", function () {
+        console.log(this);
+    });
 
     const circle2 = g.Circle().bind(
         [

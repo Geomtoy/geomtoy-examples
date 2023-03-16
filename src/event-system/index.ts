@@ -2,12 +2,12 @@ import { SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomto
 import tpl from "../assets/templates/tpl-renderer";
 
 import { Line, LineSegment, Point, Text, Vector } from "@geomtoy/core";
-import { codeHtml, fillOnly, lightStrokeFill, mathFont, strokeFill, strokeFillTrans, strokeOnly } from "../assets/common";
-import { locateLabel } from "../assets/general-construction";
+import { codeHtml, fillOnly, lightStrokeFill, mathFont, strokeFill, strokeFillTrans, strokeOnly } from "../assets/scripts/common";
+import { locateLabel } from "../assets/scripts/general-construction";
 
 tpl.addSection("Complex association between geometries");
 
-tpl.addParagraph(`
+tpl.addMarkdown(`
 Complex geometry associations can be easily implemented with Geomtoy's event system built specifically for geometries.<br><br>
 Here is an example. All the geometry in the view is interactive (excluding the letter labels).
 `);
@@ -64,7 +64,8 @@ tpl.addMarkdown(`
     const labelP = new Text(0, 0, 10, 10, "P", mathFont).bind({ priority: 0 }, [pointP, "any"], locateLabel);
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const pointA = new Point(-25, -12);
 const pointB = new Point(-20, 25);
 
@@ -95,7 +96,7 @@ const pointP = new Point()
         const vectorAB = Vector.fromTwoPoints(pointA, pointB);
         this.data("distToPointA", vectorAP.dotProduct(vectorAB) > 0 ? d : -d);
     });
-    `)
+    `
     );
 
     view.add(

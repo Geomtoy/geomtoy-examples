@@ -1,7 +1,7 @@
 import { Arc, Bezier, BooleanOperation, Compound, Geomtoy, Path, Polygon, QuadraticBezier } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { elementFromString, lightStroke, lightStrokeFill } from "../assets/common";
+import { newElement, lightStroke, lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand, randomPolygonVertex } from "./_common";
 

@@ -1,8 +1,8 @@
 import { Anchor, Arbitrary, Geometry, Image, Point, Rectangle, Transformation } from "@geomtoy/core";
 import { Vector2 } from "@geomtoy/util";
 import { SubView, View, ViewElement, ViewElementEventType, ViewElementInteractMode } from "@geomtoy/view";
-import color from "../assets/color";
-import { fillTransOnly, thinStrokeOnly } from "../assets/common";
+import color from "../assets/scripts/color";
+import { fillTransOnly, thinStrokeOnly } from "../assets/scripts/common";
 
 const iconHUrl = "assets/img/icons/h.svg";
 const iconNeSwUrl = "assets/img/icons/ne-sw.svg";

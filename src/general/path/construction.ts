@@ -1,7 +1,7 @@
 import { Path, Point, Polygon, ShapeArray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, markdownHtml, strokeFill, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, markdownHtml, strokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Path construction");
@@ -25,9 +25,10 @@ tpl.addSection("constructor");
         Path.quadraticBezierTo([8, -20], [55, 20]), 
         Path.arcTo(10, 20, 0, true, false, [0, 80])
     ], true);
-    card.setDescription(markdownHtml('property `closed`: false - like SVG &lt;path d="..."&gt; **without** final `[zZ]`'));
+    card.setDescription("markdown", 'property `closed`: false - like SVG &lt;path d="..."&gt; **without** final `[zZ]`');
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
 const path = new Path([
     Path.moveTo([0, 100]), 
     Path.lineTo([40, -10]), 
@@ -35,7 +36,7 @@ const path = new Path([
     Path.quadraticBezierTo([8, -20], [55, 20]), 
     Path.arcTo(10, 20, 0, true, false, [0, 80])
 ], true);
-        `)
+        `
     );
     view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
 }
@@ -53,9 +54,10 @@ const path = new Path([
         Path.quadraticBezierTo([8, -20], [55, 20]), 
         Path.arcTo(10, 20, 0, true, false, [0, 80])
     ], false);
-    card.setDescription(markdownHtml('property `closed`: false - like SVG &lt;path d="..."&gt; **with** final `[zZ]`'));
+    card.setDescription("markdown", 'property `closed`: false - like SVG &lt;path d="..."&gt; **with** final `[zZ]`');
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
 const path = new Path([
     Path.moveTo([0, 100]), 
     Path.lineTo([40, -10]), 
@@ -63,7 +65,7 @@ const path = new Path([
     Path.quadraticBezierTo([8, -20], [55, 20]), 
     Path.arcTo(10, 20, 0, true, false, [0, 80])
 ], false);
-        `)
+        `
     );
     view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
 }
@@ -79,9 +81,10 @@ tpl.addSection("fromSVGString");
     const path = Path.fromSVGString("M 10,30A 20,20 0,0,1 50,30A 20,20 0,0,1 90,30Q 90,60 50,90Q 10,60 10,30 z");
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const polygon = Polygon.fromSVGString("0,100 50,25 50,7 100,0", true);
-        `)
+        `
     );
 
     view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));

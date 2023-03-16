@@ -1,7 +1,7 @@
 import { Bezier, LineSegment, Point, QuadraticBezier, Rectangle, ShapeArray } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
-import { twoPointsLineSegment } from "../../assets/general-construction";
+import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
+import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Bezier extrema and bounding box");
@@ -32,7 +32,8 @@ tpl.title("Bezier extrema and bounding box");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const point1 = new Point([-20, 6]);
 const point2 = new Point([0, 15]);
 const controlPoint1 = new Point([20, 2]);
@@ -51,7 +52,7 @@ const boundingBoxRectangle = new Rectangle().bind([bezier, "any"], function (e) 
     if (dg instanceof Bezier) return this.copyFrom(new Rectangle(...e.target.getBoundingBox()));
     this.copyFrom(null);
 });
-    `)
+    `
     );
     const controlLineSegment1 = new LineSegment().bind([point1, "any"], [controlPoint1, "any"], twoPointsLineSegment);
     const controlLineSegment2 = new LineSegment().bind([controlPoint1, "any"], [controlPoint2, "any"], twoPointsLineSegment);

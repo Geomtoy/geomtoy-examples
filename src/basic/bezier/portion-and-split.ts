@@ -1,6 +1,6 @@
 import { Bezier, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
 import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Bezier portion and split");
@@ -25,7 +25,8 @@ tpl.addSection("portionOf");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const bezier = new Bezier([-10, -10], [20, 10], [-5, 3], [10, -2]);
 const bezierPortion = new SealedShapeObject({
     bezier: new Bezier(),
@@ -36,7 +37,7 @@ const bezierPortion = new SealedShapeObject({
     this.items.bezierPoint1.copyFrom(this.items.bezier.point1);
     this.items.bezierPoint2.copyFrom(this.items.bezier.point2);
 });
-    `)
+    `
     );
     view.add(new ViewElement(bezierPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
     view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
@@ -60,7 +61,8 @@ tpl.addSection("portionOfExtend");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const bezier = new Bezier([-10, -10], [20, 10], [-5, 3], [10, -2]);
 const bezierPortion = new SealedShapeObject({
     bezier: new Bezier(),
@@ -71,7 +73,7 @@ const bezierPortion = new SealedShapeObject({
     this.items.bezierPoint1.copyFrom(this.items.bezier.point1);
     this.items.bezierPoint2.copyFrom(this.items.bezier.point2);
 });
-    `)
+    `
     );
     view.add(new ViewElement(bezierPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
     view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
@@ -109,7 +111,8 @@ tpl.addSubSection("splitAtTime");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const bezier = new Bezier([-10, -10], [20, 10], [-5, 3], [10, -2]);
 const bezierPortions = new SealedShapeObject({
     first: new SealedShapeObject({
@@ -132,7 +135,7 @@ const bezierPortions = new SealedShapeObject({
     this.items.second.items.bezierPoint1.copyFrom(bezier2.point1);
     this.items.second.items.bezierPoint2.copyFrom(bezier2.point2);
 });
-    `)
+    `
     );
 
     view.add(new ViewElement(bezierPortions.items.first, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("cyan") }));
@@ -165,7 +168,8 @@ tpl.addSubSection("splitAtTimes");
         });
     });
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const bezier = new Bezier([-10, -10], [20, 10], [-5, 3], [10, -2]);
 
 const stylesFn = (index: number) => {
@@ -184,7 +188,7 @@ bezier.on("any", function (e) {
         return new ViewElement(new ShapeArray([bezier, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
     });
 });
-    `)
+    `
     );
     view.addSubView(bezierPortionsSubView);
     view.add(new ViewElement(bezier, { zIndex: -1, interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));

@@ -1,7 +1,7 @@
 import { Arc, Dynamic, LineSegment, Point, SealedShapeObject } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc closest point");
@@ -36,7 +36,8 @@ tpl.title("Arc closest point");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        `
 const centerPoint = new Point([0, 0]);
 const point = new Point([10, 15]);
 const restParams = new (new Dynamic().create({
@@ -60,7 +61,7 @@ const closestPointLineSegment = new SealedShapeObject({
     this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFrom(e1.target) : null);
     this.items.lineSegment.copyFrom(new LineSegment(e1.target, this.items.point));
 });
-    `)
+    `
     );
     // #region Pane
     // @ts-expect-error

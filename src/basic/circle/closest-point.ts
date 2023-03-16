@@ -1,6 +1,6 @@
 import { Circle, Dynamic, LineSegment, Point, SealedShapeObject } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Circle closest point");
@@ -28,7 +28,8 @@ tpl.title("Circle closest point");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point([0, 10]);
 const point2 = new Point([10, 22]);
 const controlPoint1 = new Point([2, 7]);
@@ -45,7 +46,7 @@ const closestPointLineSegment = new SealedShapeObject({
     this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFrom(e1.target) : null);
     this.items.lineSegment.copyFrom(new LineSegment(e1.target, this.items.point));
 });
-    `)
+    `
     );
 
     // #region Pane

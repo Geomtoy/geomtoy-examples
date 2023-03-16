@@ -1,6 +1,6 @@
 import { Dynamic, Point, Rectangle } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Rectangle center point and bounding box");
@@ -30,7 +30,8 @@ tpl.title("Rectangle center point and bounding box");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const point = new Point([0, 0]);
 const restParams = new (new Dynamic().create({
     width: 20,
@@ -49,7 +50,7 @@ const centerPoint = new Point().bind([rectangle, "any"], function (e) {
 const boundingBox = new Rectangle().bind([rectangle, "any"], function (e) {
     this.copyFrom(new Rectangle(...e.target.degenerate(false)!.getBoundingBox()));
 });
-    `)
+    `
     );
 
     // #region Pane

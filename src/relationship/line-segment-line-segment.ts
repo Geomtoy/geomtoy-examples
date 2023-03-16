@@ -2,7 +2,7 @@ import { Bezier, LineSegment, Relationship } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
 import { View, ViewElement, CanvasRenderer } from "@geomtoy/view";
 
-import color from "../assets/color";
+import color from "../assets/scripts/color";
 import tpl from "../assets/templates/tpl-renderer";
 import { arrayResult, trileanResult } from "./_common";
 

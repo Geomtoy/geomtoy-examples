@@ -4,17 +4,17 @@ tpl.title("About general geometry");
 
 tpl.addSection("What is meant by general geometry");
 
-tpl.addParagraph(`
+tpl.addMarkdown(`
 General geometry refers to those 2D figures, they have no way to be constructed simply with geometric parameters and can only be described by drawing commands. 
 For example, a circle can be easily specified by its center and radius, but the union of two intersecting circles cannot be specified by simple geometric parameters. 
 I'm afraid you can only describe what the each arcs of the union looks like.
 `);
-tpl.addParagraph(`
+tpl.addMarkdown(`
 Just like the browser SVG or Canvas drawing commands, the general geometry tries to describe a figure by only 1, 2, 3 degree bezier curves and elliptical arcs, which may involves curve fitting.
 `);
 
 tpl.addSection("Difference between Geomtoy and Web standard");
-tpl.addParagraph(`
+tpl.addMarkdown(`
 Geomtoy uses a completely different architecture than the browser standards (SVG and Canvas).
 Here we will mainly use SVG as an example to illustrate:
 `);
@@ -61,5 +61,5 @@ tpl.addCode(
     "svg"
 );
 
-tpl.addParagraph(`
+tpl.addMarkdown(`
 Such an architecture makes the call of method \`fromSvgString\` rather strange, so you must be careful when using.`);

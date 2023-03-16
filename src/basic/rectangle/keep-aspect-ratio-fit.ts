@@ -1,6 +1,6 @@
 import { Dynamic, Point, Rectangle } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedLightStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { codeHtml, dashedLightStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Rectangle keep aspect ratio fit ");
@@ -35,7 +35,8 @@ tpl.title("Rectangle keep aspect ratio fit ");
         });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const fitParams = new (new Dynamic().create({
     fitWidth: 20,
     fitHeight: 20,
@@ -59,7 +60,7 @@ const centerPoint = new Point(0, 0)
     .bind([rectangle, "any"], function (e) {
         this.copyFrom(e.target.getCenterPoint());
     });
-    `)
+    `
     );
 
     // #region Pane

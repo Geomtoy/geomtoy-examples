@@ -1,7 +1,7 @@
 import { Bezier, LineSegment, Point, Text } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { dashedThinStroke, fillOnly, lightStrokeFill, normalFont, strokeOnly } from "../../assets/common";
-import { twoPointsLineSegment } from "../../assets/general-construction";
+import { dashedThinStroke, fillOnly, lightStrokeFill, normalFont, strokeOnly } from "../../assets/scripts/common";
+import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Bezier triple line");

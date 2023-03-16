@@ -1,7 +1,7 @@
 import { Arc, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc portion and split");
@@ -26,7 +26,8 @@ tpl.addSubSection("portionOf");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 const arcPortion = new SealedShapeObject({
     arc: new Arc(),
@@ -37,7 +38,7 @@ const arcPortion = new SealedShapeObject({
     this.items.arcPoint1.copyFrom(this.items.arc.point1);
     this.items.arcPoint2.copyFrom(this.items.arc.point2);
 });
-    `)
+    `
     );
     view.add(new ViewElement(arcPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
     view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
@@ -61,7 +62,8 @@ tpl.addSubSection("portionOfExtend");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 const arcPortion = new SealedShapeObject({
     arc: new Arc(),
@@ -72,7 +74,7 @@ const arcPortion = new SealedShapeObject({
     this.items.arcPoint1.copyFrom(this.items.arc.point1);
     this.items.arcPoint2.copyFrom(this.items.arc.point2);
 });
-    `)
+    `
     );
     view.add(new ViewElement(arcPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
     view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
@@ -111,7 +113,8 @@ tpl.addSubSection("splitAtAngle");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 
 const arcPortions = new SealedShapeObject({
@@ -135,7 +138,7 @@ const arcPortions = new SealedShapeObject({
     this.items.second.items.arcPoint1.copyFrom(arc2.point1);
     this.items.second.items.arcPoint2.copyFrom(arc2.point2);
 });
-    `)
+    `
     );
 
     view.add(new ViewElement(arcPortions.items.first, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("cyan") }));
@@ -168,7 +171,8 @@ tpl.addSubSection("splitAtAngles");
         });
     });
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 
 const stylesFn = (index: number) => {
@@ -187,7 +191,7 @@ arc.on("any", function (e) {
         return new ViewElement(new ShapeArray([arc, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
     });
 });
-    `)
+    `
     );
     view.addSubView(arcPortionsSubView);
     view.add(new ViewElement(arc, { zIndex: -1, interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));

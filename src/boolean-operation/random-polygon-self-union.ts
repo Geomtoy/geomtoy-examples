@@ -1,12 +1,12 @@
 import { BooleanOperation, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { lightStrokeFill } from "../assets/common";
+import { lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPolygonVertex, strokeFillByIndex } from "./_common";
 
 tpl.title("Random polygon self-union");
-tpl.addParagraph("Refresh to random");
+tpl.addMarkdown("Refresh to random");
 {
     const bo = new BooleanOperation();
     const polygon = new Polygon(Utility.range(0, 20).map(_ => randomPolygonVertex()));

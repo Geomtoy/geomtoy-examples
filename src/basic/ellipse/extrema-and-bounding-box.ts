@@ -1,7 +1,7 @@
 import { Arc, Dynamic, LineSegment, Point, Rectangle, ShapeArray } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc extrema and bounding box");
@@ -36,7 +36,8 @@ tpl.title("Arc extrema and bounding box");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const centerPoint = new Point([0, 0]);
 const restParams = new (new Dynamic().create({
     radiusX: 20,
@@ -60,7 +61,7 @@ const boundingBoxRectangle = new Rectangle().bind([arc, "any"], function (e) {
     if (dg instanceof Arc) return this.copyFrom(new Rectangle(...e.target.getBoundingBox()));
     this.copyFrom(null);
 }); 
-    `)
+    `
     );
 
     // #region Pane

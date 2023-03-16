@@ -1,6 +1,6 @@
 import { Anchor, EventObject, Image, Point } from "@geomtoy/core";
 import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeFillTrans, markdownHtml } from "../../assets/common";
+import { codeHtml, lightStrokeFill, lightStrokeFillTrans, markdownHtml } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Image anchor");
@@ -65,7 +65,7 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     view.add(new ViewElement(image8, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
     view.add(new ViewElement(image9, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
 
-    card.setDescription(markdownHtml(`\`yAxisPositiveOnBottom\`: true\n\n\`xAxisPositiveOnRight\`: true`));
+    card.setDescription("markdown", `\`yAxisPositiveOnBottom\`: true\n\n\`xAxisPositiveOnRight\`: true`);
 }
 
 {
@@ -94,7 +94,7 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     view.add(new ViewElement(image7, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
     view.add(new ViewElement(image8, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
     view.add(new ViewElement(image9, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    card.setDescription(markdownHtml(`\`yAxisPositiveOnBottom\`: true\n\n\`xAxisPositiveOnRight\`: false`));
+    card.setDescription("markdown", `\`yAxisPositiveOnBottom\`: true\n\n\`xAxisPositiveOnRight\`: false`);
 }
 
 {
@@ -123,7 +123,7 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     view.add(new ViewElement(image7, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
     view.add(new ViewElement(image8, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
     view.add(new ViewElement(image9, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    card.setDescription(markdownHtml(`\`yAxisPositiveOnBottom\`: false\n\n\`xAxisPositiveOnRight\`: true`));
+    card.setDescription("markdown", `\`yAxisPositiveOnBottom\`: false\n\n\`xAxisPositiveOnRight\`: true`);
 }
 
 {
@@ -152,9 +152,9 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     view.add(new ViewElement(image7, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
     view.add(new ViewElement(image8, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
     view.add(new ViewElement(image9, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    card.setDescription(markdownHtml(`\`yAxisPositiveOnBottom\`: false\n\n\`xAxisPositiveOnRight\`: false`));
+    card.setDescription("markdown", `\`yAxisPositiveOnBottom\`: false\n\n\`xAxisPositiveOnRight\`: false`);
 }
-tpl.addParagraph(`
+tpl.addMarkdown(`
 The anchor position is trustworthy regardless of the coordinate system setting.
 `);
 tpl.addMarkdown(`See more info: [Image explanation](/basic/image/explanation.html)`);

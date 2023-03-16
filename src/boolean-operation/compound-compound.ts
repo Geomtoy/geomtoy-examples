@@ -1,6 +1,6 @@
 import { BooleanOperation, Compound } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { strokeFill } from "../assets/common";
+import { strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Compound-compound boolean operation");

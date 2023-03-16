@@ -1,6 +1,6 @@
 import { LineSegment, Point } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Line segment length");
@@ -27,7 +27,8 @@ tpl.title("Line segment length");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
     const point1 = new Point([-20, 40]);
     const point2 = new Point([10, 20]);
 
@@ -49,7 +50,7 @@ tpl.title("Line segment length");
             lengths.lengthBySvg = path.getTotalLength();
         }
     );
-    `)
+    `
     );
 
     // #region Pane

@@ -1,6 +1,6 @@
 import { BooleanOperation, Geomtoy, Polygon } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill } from "../assets/common";
+import { codeHtml, lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Polygon self-union");
@@ -36,7 +36,8 @@ const bo = new BooleanOperation();
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 3, pan: [-100, 100], yAxisPositiveOnBottom: false }));
 
     card1.setDescription(
-        codeHtml(`
+        "code",
+        `
     const polygon = new Polygon([
         Polygon.vertex([0, 0]),
         Polygon.vertex([5, 0]),
@@ -53,13 +54,14 @@ const bo = new BooleanOperation();
     ]);
 
     polygon.fillRule = "nonzero";
-    `)
+    `
     );
 
     card2.setDescription(
-        codeHtml(`
+        "code",
+        `
     const compound = bo.selfUnion(polygon);
-    `)
+    `
     );
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -97,7 +99,8 @@ const bo = new BooleanOperation();
         const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 2, yAxisPositiveOnBottom: false }));
 
         card1.setDescription(
-            codeHtml(`
+            "code",
+            `
     const polygon = new Polygon([
         Polygon.vertex([0, 0]),
         Polygon.vertex([5, 0]),
@@ -110,13 +113,14 @@ const bo = new BooleanOperation();
     ]);
 
     polygon.fillRule = "nonzero";
-    `)
+    `
         );
 
         card2.setDescription(
-            codeHtml(`
+            "code",
+            `
     const compound = bo.selfUnion(polygon);
-    `)
+    `
         );
 
         view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -155,7 +159,8 @@ const bo = new BooleanOperation();
         const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 2, pan: [-100, 0], yAxisPositiveOnBottom: false }));
 
         card1.setDescription(
-            codeHtml(`
+            "code",
+            `
     const polygon = new Polygon([
         Polygon.vertex([0, 0]),
         Polygon.vertex([5, 0]),
@@ -172,13 +177,14 @@ const bo = new BooleanOperation();
     ]);
 
     polygon.fillRule = "nonzero";
-    `)
+    `
         );
 
         card2.setDescription(
-            codeHtml(`
+            "code",
+            `
     const compound = bo.selfUnion(polygon);
-    `)
+    `
         );
 
         view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -213,7 +219,8 @@ const bo = new BooleanOperation();
         const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 2, pan: [-100, 50], yAxisPositiveOnBottom: false }));
 
         card1.setDescription(
-            codeHtml(`
+            "code",
+            `
     const polygon = new Polygon([
         Polygon.vertex([0, 0]),
         Polygon.vertex([0, 5]),
@@ -226,13 +233,14 @@ const bo = new BooleanOperation();
     ]);
 
     polygon.fillRule = "nonzero";
-    `)
+    `
         );
 
         card2.setDescription(
-            codeHtml(`
+            "code",
+            `
     const compound = bo.selfUnion(polygon);
-    `)
+    `
         );
 
         view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -247,7 +255,7 @@ const bo = new BooleanOperation();
 }
 {
     tpl.addSection("About fill rule");
-    tpl.addParagraph(`Case from <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule">https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule</a>`);
+    tpl.addMarkdown(`Case from <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule">https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule</a>`);
     // prettier-ignore
     const polygon1 = new Polygon([
         Polygon.vertex([50, 0]), 
@@ -276,7 +284,8 @@ const bo = new BooleanOperation();
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { pan: [50, 50], density: 10, zoom: 0.2 }));
 
     card1.setDescription(
-        codeHtml(`
+        "code",
+        `
     const polygon1 = new Polygon([
         Polygon.vertex([50, 0]), 
         Polygon.vertex([21, 90]),
@@ -293,14 +302,15 @@ const bo = new BooleanOperation();
         Polygon.vertex([179,90])
     ])
     polygon2.fillRule = "evenodd";
-    `)
+    `
     );
 
     card2.setDescription(
-        codeHtml(`
+        "code",
+        `
     const compound1 = bo.selfUnion(polygon1);
     const compound2 = bo.selfUnion(polygon2);
-    `)
+    `
     );
 
     view1.startResponsive(() => {});
@@ -368,7 +378,8 @@ const bo = new BooleanOperation();
     view2.add(new ViewElement(compound2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
 
     card1.setDescription(
-        codeHtml(`
+        "code",
+        `
     // red and blue polygons are both two loop closed polygon
     // red polygon
     const polygon1 = new Polygon(
@@ -403,16 +414,17 @@ const bo = new BooleanOperation();
         true
     );
     polygon2.fillRule = "nonzero";
-    `)
+    `
     );
 
     card2.setDescription(
-        codeHtml(`
+        "code",
+        `
     // red polygon after self-union is empty set 
     const compound1 = bo.selfUnion(polygon1);
 
     // blue polygon after self-union is normal polygon
     const compound2 = bo.selfUnion(polygon2); 
-    `)
+    `
     );
 }

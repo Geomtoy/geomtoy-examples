@@ -1,6 +1,6 @@
 import { Dynamic, Line, Point, Ray, Rectangle } from "@geomtoy/core";
 import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Rectangle construction");
@@ -26,9 +26,21 @@ tpl.addSection("constructor");
     });
 
     card.setDescription(
-        codeHtml(`
- 
-    `)
+        "code",
+        `
+const point = new Point([0, 0]);
+
+const restParams = new (new Dynamic().create({
+    width: 10,
+    height: 20,
+    rotation: 0
+}))();
+
+const rectangle = new Rectangle().bind([point, "any"], [restParams, "any"], function (e1, e2) {
+    const { width, height, rotation } = e2.target;
+    this.copyFrom(new Rectangle(e1.target, width, height, rotation));
+});
+    `
     );
     // #region Pane
     // @ts-expect-error
@@ -67,7 +79,8 @@ tpl.addSection("fromTwoPointsAndRotation");
         this.copyFrom(e.target.point);
     });
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point([0, 0]);
 const point2 = new Point([10, 5]);
 const restParams = new (new Dynamic().create({
@@ -84,7 +97,7 @@ const ray = new Ray().bind([rectangle, "any"], function (e) {
 const point = new Point("cross").bind([rectangle, "any"], function (e) {
     this.copyFrom(e.target.point);
 });
-        `)
+        `
     );
     // #region Pane
     // @ts-expect-error
@@ -121,8 +134,9 @@ tpl.addSection("fromCenterPointEtc");
     });
 
     card.setDescription(
-        codeHtml(`  
-    `)
+        "code",
+        `  
+    `
     );
 
     // #region Pane

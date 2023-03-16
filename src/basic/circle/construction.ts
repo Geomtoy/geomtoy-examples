@@ -1,6 +1,6 @@
 import { Circle, Point } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { strokeFill, strokeOnly } from "../../assets/common";
+import { strokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Circle construction");

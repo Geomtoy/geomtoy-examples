@@ -1,7 +1,7 @@
 import { Point } from "@geomtoy/core";
 import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementEventType, ViewElementInteractMode } from "@geomtoy/view";
-import color from "../assets/color";
-import { strokeFill, strokeOnly } from "../assets/common";
+import color from "../assets/scripts/color";
+import { strokeFill, strokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("View element events");

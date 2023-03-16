@@ -2,8 +2,8 @@ import Geomtoy, { Relationship, QuadraticBezier } from "@geomtoy/core";
 import { Maths, Polynomial, Utility } from "@geomtoy/util";
 import { View, ViewElement, CanvasRenderer } from "@geomtoy/view";
 
-import color from "../../assets/color";
-import { strokeOnly } from "../../assets/common";
+import color from "../../assets/scripts/color";
+import { strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 import { trileanResult } from "../_common";
 
@@ -46,11 +46,11 @@ const rs = new Relationship();
         view.add(new ViewElement(quadraticBezier1, false, redStrokeStyle));
         view.add(new ViewElement(quadraticBezier2, false, blueStrokeStyle));
         const result = rs.separate(quadraticBezier1, quadraticBezier2);
-        card.setDescription("Result: " + result.toString());
+        card.setDescription("markdown", "Result: " + result.toString());
     }
     {
-        const card = tpl.addCard({ title: "separate-not on same curve"});
-        const view = new View(  {}, new CanvasRenderer(card.canvas!,   {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
+        const card = tpl.addCard({ title: "separate-not on same curve" });
+        const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
         view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
         view.startInteractive();
         const quadraticBezier1 = g.QuadraticBezier([10, 0], [-10, 0], [0, -10]);
@@ -58,7 +58,7 @@ const rs = new Relationship();
         view.add(new ViewElement(quadraticBezier1, false, redStrokeStyle));
         view.add(new ViewElement(quadraticBezier2, false, blueStrokeStyle));
         const result = rs.separate(quadraticBezier1, quadraticBezier2);
-        card.setDescription("Result: " + result.toString());
+        card.setDescription("markdown", "Result: " + result.toString());
     }
 }
 {
@@ -77,7 +77,7 @@ const rs = new Relationship();
         view.add(new ViewElement(quadraticBezier2, false, blueStrokeStyle));
         const result = rs.merge(quadraticBezier1, quadraticBezier2);
         group.items = result;
-        card.setDescription("Result: " + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: " + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
     {
         const card = tpl.addCard("merge-contain", "", Utility.uuid());
@@ -92,7 +92,7 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.merge(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: " + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: " + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
     {
         const card = tpl.addCard("merge-equal", "", Utility.uuid());
@@ -107,7 +107,7 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.merge(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: " + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: " + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
 }
 {
@@ -125,7 +125,7 @@ const rs = new Relationship();
         view.add(new ViewElement(quadraticBezier2, false, blueStrokeStyle));
         const result = rs.cross(quadraticBezier1, quadraticBezier2);
         group.items = result;
-        card.setDescription("Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
     {
         const card = tpl.addCard("cross-2 points", "", Utility.uuid());
@@ -140,7 +140,7 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.cross(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
     {
         const card = tpl.addCard("cross-3 points", "", Utility.uuid());
@@ -155,7 +155,7 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.cross(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
     {
         const card = tpl.addCard("cross-4 points", "", Utility.uuid());
@@ -170,7 +170,7 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.cross(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
 }
 {
@@ -188,7 +188,7 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.touch(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
     {
         const card = tpl.addCard("touch-touch and cross", "", Utility.uuid());
@@ -203,7 +203,7 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.touch(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
 }
 {
@@ -221,7 +221,7 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.block(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
 }
 {
@@ -239,7 +239,7 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.extend(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
     {
         const card = tpl.addCard("extend-2 points", "", Utility.uuid());
@@ -254,6 +254,6 @@ const rs = new Relationship();
         view.add(new ViewElement(arc2, false, blueStrokeStyle));
         const result = rs.extend(arc1, arc2);
         group.items = result;
-        card.setDescription("Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
+        card.setDescription("markdown", "Result: <br>" + result.map(p => `<p>${p.toString()}</p>`).join(""));
     }
 }

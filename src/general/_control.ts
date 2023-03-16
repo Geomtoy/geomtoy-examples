@@ -1,8 +1,8 @@
 import { LineSegment, Path, PathCommandType, Point, Polygon, Vector } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { SubView, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { dashedThinStroke, lightStrokeFill, strokeFill } from "../assets/common";
-import { twoPointsLineSegment } from "../assets/general-construction";
+import { dashedThinStroke, lightStrokeFill, strokeFill } from "../assets/scripts/common";
+import { twoPointsLineSegment } from "../assets/scripts/general-construction";
 
 export function showCommands(path: Path) {
     const pathSubView = new SubView();

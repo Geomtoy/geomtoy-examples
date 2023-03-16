@@ -1,7 +1,7 @@
 import { BooleanOperation, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { lightStrokeFill, strokeFill } from "../assets/common";
+import { lightStrokeFill, strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand } from "./_common";
 

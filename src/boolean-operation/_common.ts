@@ -1,6 +1,6 @@
 import { Path, Point, Polygon } from "@geomtoy/core";
 import { Box, Maths } from "@geomtoy/util";
-import { lightStrokeOnly } from "../assets/common";
+import { lightStrokeOnly } from "../assets/scripts/common";
 
 export function randomPolygonVertex(box: [number, number, number, number] = [-100, -100, 200, 200]) {
     return Polygon.vertex(Point.random(box));

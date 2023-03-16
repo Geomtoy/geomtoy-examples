@@ -1,6 +1,6 @@
 import { Anchor, Image } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFillTrans, markdownHtml } from "../../assets/common";
+import { codeHtml, lightStrokeFillTrans, markdownHtml } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Image crop");
@@ -21,10 +21,11 @@ tpl.addSection("Resize only");
     const image = new Image(0, 0, 240, 240, imageUrl, false);
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 // This is the original image, not cropped, but scaled to 240 x 240, \`consistent\` is false - follow the \`zoom\`.
 const image = new Image(0, 0, 240, 240, imageUrl, false);
-        `)
+        `
     );
     view.add(new ViewElement(image, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
 }
@@ -39,10 +40,11 @@ tpl.addSection("Crop only");
     const image = new Image(0, 0, 360, 360, 1000, 60, 360, 360, imageUrl, false);
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 // This image is cropped, but not scaled(the size is still the original 360 x 360), \`consistent\` is false - follow the \`zoom\`.
 const image = new Image(0, 0, 360, 360, 1000, 60, 360, 360, imageUrl, false);
-        `)
+        `
     );
     view.add(new ViewElement(image, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
 }
@@ -57,10 +59,11 @@ tpl.addSection("Crop and resize");
     const image = new Image(0, 0, 80, 84, 560, 540, 800, 840, imageUrl, false);
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 // This image is cropped, and scaled to 84 x 80, \`consistent\` is false - follow the \`zoom\`.
 const image = new Image(0, 0, 80, 84, 560, 540, 800, 840, imageUrl, false);
-        `)
+        `
     );
     view.add(new ViewElement(image, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
 }

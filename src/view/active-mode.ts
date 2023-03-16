@@ -1,7 +1,7 @@
 import { Rectangle } from "@geomtoy/core";
 import { Vector2 } from "@geomtoy/util";
 import { CanvasRenderer, SvgRenderer, View, ViewElement } from "@geomtoy/view";
-import { codeHtml, markdownHtml, strokeFill } from "../assets/common";
+import { codeHtml, markdownHtml, strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Coordinate system");
@@ -18,5 +18,4 @@ const rectangle1 = new Rectangle([-2, -5], [23, 20]);
     view.add(new ViewElement(rectangle1, { ...strokeFill("purple") }));
     view.activeMode = "continuous";
     // view.startLasso();
- 
 }

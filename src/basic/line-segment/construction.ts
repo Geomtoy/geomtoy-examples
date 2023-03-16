@@ -1,7 +1,7 @@
 import { Bezier, Dynamic, LineSegment, Point, ShapeArray } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Line segment construction");
@@ -19,14 +19,15 @@ tpl.addSection(`constructor`);
         this.copyFrom(new LineSegment(e1.target, e2.target));
     });
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
     const point1 = new Point([-20, 40]);
     const point2 = new Point([10, 20]);
 
     const lineSegment = new LineSegment().bind([point1, "any"], [point2, "any"], function (e1, e2) {
         this.copyFrom(new LineSegment(e1.target, e2.target));
     });
-    `)
+    `
     );
 
     view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
@@ -53,7 +54,8 @@ tpl.addSection(`fromPointAndAngleAndLength`);
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
     const point = new Point(-80, -80);
     const restParams = new (new Dynamic().create({
         angle: 0,
@@ -64,7 +66,7 @@ tpl.addSection(`fromPointAndAngleAndLength`);
         const ls = LineSegment.fromPointAndAngleAndLength(e1.target, angle, length);
         if (ls !== null) this.copyFrom(ls);
     });
-    `)
+    `
     );
 
     // #region Pane

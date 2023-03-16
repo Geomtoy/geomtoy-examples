@@ -1,6 +1,6 @@
 import { Polygon } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, strokeFill } from "../../assets/common";
+import { codeHtml, strokeFill } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Polygon fill rule");

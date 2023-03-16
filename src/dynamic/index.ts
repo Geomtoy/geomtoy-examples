@@ -1,11 +1,11 @@
 import { Rectangle } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, strokeFill } from "../assets/common";
+import { codeHtml, strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Dynamic");
 
-tpl.addParagraph("When `Geometries` or other `EventTargets` need to interact with dependencies that are not all `Geometries`, dynamic objects can be used.");
+tpl.addMarkdown("When `Geometries` or other `EventTargets` need to interact with dependencies that are not all `Geometries`, dynamic objects can be used.");
 
 const rectangle = new Rectangle([10, 10], [20, 20]);
 
@@ -20,14 +20,15 @@ tpl.addCode(`
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
     view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    card.setDescription("Commonly used in mathematic, a right-handed coordinate system");
+    card.setDescription("markdown", "Commonly used in mathematic, a right-handed coordinate system");
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: true, yAxisPositiveOnBottom: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
     view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    `)
+    `
     );
 }
 {
@@ -36,14 +37,15 @@ tpl.addCode(`
     view.startResponsive(() => {});
     view.startInteractive();
     view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    card.setDescription("Commonly used in computer graphics, a left-handed coordinate system");
+    card.setDescription("markdown", "Commonly used in computer graphics, a left-handed coordinate system");
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
         const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: true, yAxisPositiveOnBottom: true }));
         view.startResponsive(() => {});
         view.startInteractive();
         view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-        `)
+        `
     );
 }
 {
@@ -52,14 +54,15 @@ tpl.addCode(`
     view.startResponsive(() => {});
     view.startInteractive();
     view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    card.setDescription("Not commonly used, a left-handed coordinate system");
+    card.setDescription("markdown", "Not commonly used, a left-handed coordinate system");
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
         const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: false, yAxisPositiveOnBottom: false, origin: [50, 50] }));
         view.startResponsive(() => {});
         view.startInteractive();
         view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-        `)
+        `
     );
 }
 {
@@ -68,14 +71,15 @@ tpl.addCode(`
     view.startResponsive(() => {});
     view.startInteractive();
     view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    card.setDescription("Not commonly used, a right-handed coordinate system");
+    card.setDescription("markdown", "Not commonly used, a right-handed coordinate system");
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
         const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: false, yAxisPositiveOnBottom: false, origin: [100, 0] }));
         view.startResponsive(() => {});
         view.startInteractive();
         view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-        `)
+        `
     );
 }
 

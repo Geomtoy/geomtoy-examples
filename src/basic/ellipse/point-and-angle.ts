@@ -1,7 +1,7 @@
 import { Bezier, Dynamic, Ellipse, LineSegment, Point, ShapeArray } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewGroupElement } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, stroke, thinStroke } from "../../assets/common";
+import { codeHtml, lightStrokeFill, stroke, thinStroke } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Ellipse point and angle");
@@ -49,7 +49,7 @@ tpl.addSection(`Get angle of point`);
     //     }
     // );
     // card.setDescription(
-    //     codeHtml(`
+    //     "code",(`
     // const point1 = new Point(-80, -80);
     // const point2 = new Point(-60, 30);
     // const point3 = new Point(10, 10);

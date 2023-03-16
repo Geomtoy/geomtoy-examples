@@ -1,12 +1,12 @@
 import { Circle, Geomtoy, Line, LineSegment, Path, Point, Ray, RegularPolygon, Relationship, Triangle, Vector } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
 import { CanvasRenderer, Style, View, ViewElement } from "@geomtoy/view";
-import { elementFromString } from "./assets/common";
+import { newElement } from "./assets/scripts/common";
 import tpl from "./assets/templates/tpl-renderer";
 
 tpl.title("Welcome to Geomtoy examples");
 
-tpl.addParagraph(`
+tpl.addMarkdown(`
 Recommended topics to start with:
 `);
 tpl.addMarkdown(`
@@ -16,11 +16,11 @@ tpl.addMarkdown(`
 - [Event system](/view/coordinate-system.html)
 `);
 
-tpl.addParagraph(`
+tpl.addMarkdown(`
 Here's a crude playback example(but Geomtoy is not an animation library now.). Click "play" to see it.
 `);
 
-const buttonWrapper = elementFromString(`
+const buttonWrapper = newElement(`
     <p class="d-grid gap-1">
     <button class="btn btn-primary">Play</button> 
     </p>

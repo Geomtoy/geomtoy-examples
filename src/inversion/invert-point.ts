@@ -1,7 +1,7 @@
 import { Dynamic, Inversion, Point, Ray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly, strokeFill, thinStrokeOnly } from "../assets/common";
+import { codeHtml, lightStrokeFill, strokeOnly, strokeFill, thinStrokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Inversion: inverse of point");
@@ -30,7 +30,8 @@ tpl.title("Inversion: inverse of point");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
     const point = new Point([-5, 6]);
     const inversionCenterPoint = new Point([0, 0]);
     const inversionPowerParam = new (new Dynamic().create({
@@ -48,7 +49,7 @@ tpl.title("Inversion: inverse of point");
     const pointInverse = new Point("plus").bind([point, "any"], [inversion, "any"], function (e1, e2) {
         this.copyFrom(e2.target.invertPoint(e1.target));
     });
-    `)
+    `
     );
 
     // #region Pane

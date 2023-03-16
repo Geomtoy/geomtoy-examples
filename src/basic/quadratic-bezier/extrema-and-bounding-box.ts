@@ -1,6 +1,6 @@
 import { Bezier, EventObject, LineSegment, Point, Rectangle, ShapeArray } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly, thinStrokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Quadratic bezier extrema and bounding box");
@@ -29,7 +29,8 @@ tpl.title("Quadratic bezier extrema and bounding box");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
     const point1 = new Point([-20, 6]);
     const point2 = new Point([0, 15]);
     const controlPoint1 = new Point([20, 2]);
@@ -47,7 +48,7 @@ tpl.title("Quadratic bezier extrema and bounding box");
     const boundingBoxRectangle = new Rectangle().bind([bezier, "any"], function (e) {
         this.copyFrom(new Rectangle(...e.target.getBoundingBox()));
     });
-    `)
+    `
     );
 
     const twoPointLineSegmentFn = function (this: LineSegment, e1: EventObject<Point>, e2: EventObject<Point>) {

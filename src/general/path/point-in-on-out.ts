@@ -1,7 +1,7 @@
 import { Dynamic, FontConfig, Geomtoy, Point, Polygon, Text } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, fillOnly, mathFont, strokeFill } from "../../assets/common";
-import { locateLabel } from "../../assets/general-construction";
+import { codeHtml, fillOnly, mathFont, strokeFill } from "../../assets/scripts/common";
+import { locateLabel } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Polygon point inside/on/outside");

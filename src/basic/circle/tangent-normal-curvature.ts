@@ -1,7 +1,7 @@
 import { Bezier, Ellipse, Geometry, Geomtoy, Point, Relationship, ShapeArray, Vector } from "@geomtoy/core";
 import { Angle, Maths, Polynomial } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { lightStrokeFill, lightStrokeOnly, strokeOnly, thinStrokeOnly } from "../../assets/common";
+import { lightStrokeFill, lightStrokeOnly, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Common tangent lines of two circles");

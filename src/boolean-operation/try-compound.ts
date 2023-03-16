@@ -9,7 +9,7 @@ const inkSpotSvg = `M4265 12096 c-115 -37 -252 -142 -296 -227 -57 -112 -30 -207 
 
 import { BooleanOperation, Compound, Dynamic, EventObject } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { lightStrokeFill } from "../assets/common";
+import { lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Try compound boolean operation");

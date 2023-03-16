@@ -1,8 +1,8 @@
 import { Bezier, EventObject, Geometry, LineSegment, Point, QuadraticBezier, ShapeArray, Trilean } from "@geomtoy/core";
 import { Coordinates, Utility } from "@geomtoy/util";
 import { CanvasRenderer, Style, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { strokeOnly } from "../assets/common";
-import { twoPointsLineSegment } from "../assets/general-construction";
+import { strokeOnly } from "../assets/scripts/common";
+import { twoPointsLineSegment } from "../assets/scripts/general-construction";
 import tpl from "../assets/templates/tpl-renderer";
 
 export function samePointsOffset(epsilon: number) {
@@ -31,7 +31,7 @@ export function trileanResult(card: ReturnType<typeof tpl.addCard>, g1: Geometry
     view.startInteractive();
     view.add(new ViewElement(g1, { interactMode: ViewElementInteractMode.None, ...strokeOnly("red") }));
     view.add(new ViewElement(g2, { interactMode: ViewElementInteractMode.None, ...strokeOnly("blue") }));
-    card.setDescription("Result: " + result?.toString() ?? "undefined");
+    card.setDescription("markdown", "Result: " + result?.toString() ?? "undefined");
     return view;
 }
 export function arrayResult(card: ReturnType<typeof tpl.addCard>, g1: Geometry, g2: Geometry, result: Geometry[]) {
@@ -50,7 +50,7 @@ export function arrayResult(card: ReturnType<typeof tpl.addCard>, g1: Geometry, 
         ${shapeArray.items.map(p => `<p><pre>${p.toString()}</pre></p>`).join("")} 
     </div>
     `;
-    card.setDescription(content);
+    card.setDescription("markdown", content);
     // @ts-expect-error
     new bootstrap.Collapse(document.querySelector(`#collapse-${card.uuid}`), { toggle: false });
     return view;

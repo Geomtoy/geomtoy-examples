@@ -1,7 +1,7 @@
 // import Geomtoy from "@geomtoy/core";
 // import { View, ViewElement, CanvasRenderer } from "@geomtoy/view";
-// import color from "../../assets/color";
-// // import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/common";
+// import color from "../../assets/scripts/color";
+// // import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/scripts/common";
 // import tpl from "../../assets/templates/simple-canvas-renderer";
 
 // const canvas = tpl.getCanvas();

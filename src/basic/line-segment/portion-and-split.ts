@@ -1,7 +1,7 @@
 import { Arc, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
 import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc portion and split");
@@ -25,7 +25,8 @@ tpl.addSection("portion");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 const arcPortion = new SealedShapeObject({
     arc: new Arc(),
@@ -36,7 +37,7 @@ const arcPortion = new SealedShapeObject({
     this.items.arcPoint1 = this.items.arc.point1;
     this.items.arcPoint2 = this.items.arc.point2;
 });
-    `)
+    `
     );
     view.add(new ViewElement(arcPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
     view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
@@ -75,7 +76,8 @@ tpl.addSubSection("splitAtAngle");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 
 const arcPortions = new SealedShapeObject({
@@ -99,7 +101,7 @@ const arcPortions = new SealedShapeObject({
     this.items.second.items.arcPoint1 = this.items.second.items.arc.point1;
     this.items.second.items.arcPoint2 = this.items.second.items.arc.point2;
 });    
-    `)
+    `
     );
 
     view.add(new ViewElement(arcPortions.items.first, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("lime") }));
@@ -126,7 +128,8 @@ tpl.addSubSection("splitAtAngles");
         splittedArcSubView.elements = arcPortions.map((p, i) => new ViewElement(new ShapeArray([p, p.point1, p.point2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) }));
     });
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 
 const stylesFn = function (index: number) {
@@ -139,7 +142,7 @@ arc.on("any", function (e) {
     const arcPortions = e.target.splitAtAngles([Maths.PI / 4, Maths.PI / 2, (2 * Maths.PI) / 3, Maths.PI]);
     splittedArcSubView.elements = arcPortions.map((p, i) => new ViewElement(new ShapeArray([p, p.point1, p.point2]), { interactMode: ViewElementInteractMode.Activation, ...styleFn(i) }));
 });
-    `)
+    `
     );
     view.addSubView(splittedArcSubView);
     view.add(new ViewElement(arc, { zIndex: -1, interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));

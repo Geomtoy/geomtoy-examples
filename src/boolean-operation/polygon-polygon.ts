@@ -1,7 +1,7 @@
 import { BooleanOperation, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { strokeFill } from "../assets/common";
+import { strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPolygonVertex, strokeFillByIndex } from "./_common";
 

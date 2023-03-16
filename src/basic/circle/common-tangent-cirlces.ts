@@ -1,6 +1,6 @@
 import { Circle, Point, ShapeArray } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeFill, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Common tangent circles of two circles through a point");
@@ -29,7 +29,8 @@ tpl.title("Common tangent circles of two circles through a point");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
     const centerPoint1 = new Point([-20, 20]);
     const radiusControlPoint1 = new Point([0, 0]);
     const centerPoint2 = new Point([10, 20]);
@@ -46,7 +47,7 @@ tpl.title("Common tangent circles of two circles through a point");
     const shapeArray = new ShapeArray().bind([circle1, "any"], [circle2, "any"], [point, "any"], function (e1, e2, e3) {
         this.items = Circle.getCommonTangentCirclesOfTwoCirclesThroughPoint(e1.target, e2.target, e3.target);
     });
-    `)
+    `
     );
 
     view.add(new ViewElement(centerPoint1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("red") }));

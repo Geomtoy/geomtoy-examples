@@ -10,10 +10,7 @@ const rs = new Relationship();
 
 const points = Utility.range(0, 20).map(_ => Point.random([-100, -100, 200, 200]));
 
-const polygon = new Polygon(points.map(p => Polygon.vertex(p))).bind(
-    points.map(p => [p, "any"] as [Point, string]),
-    function ([...evs]) {}
-);
+const polygon = new Polygon(points.map(p => Polygon.vertex(p))).bind(...points.map(p => [p, "any"] as [Point, string]), function (...evs) {});
 
 tpl.addSection("Try");
 const card = tpl.addCard({ canvasId: Utility.uuid() });
@@ -23,4 +20,4 @@ view.startResponsive((width, height) => (view.renderer.display.origin = [width /
 view.startInteractive();
 view.add(new ViewElement(g1, { interactMode: ViewElementInteractMode.None, autoUpdateView: true, style: redStrokeStyle }));
 view.add(new ViewElement(g2, { interactMode: ViewElementInteractMode.None, autoUpdateView: true, style: blueStrokeStyle }));
-card.setDescription("Result: " + result?.toString() ?? "undefined");
+card.setDescription("markdown", "Result: " + result?.toString() ?? "undefined");

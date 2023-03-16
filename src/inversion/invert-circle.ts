@@ -1,7 +1,7 @@
 import { Arbitrary, Circle, Dynamic, Geomtoy, Inversion, Point } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly, strokeFill, thinStrokeOnly } from "../assets/common";
+import { codeHtml, lightStrokeFill, strokeOnly, strokeFill, thinStrokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Inversion: inverse of circle");
@@ -34,7 +34,8 @@ tpl.title("Inversion: inverse of circle");
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
     const centerPoint = new Point([2, 10]);
     const radiusParam = new (new Dynamic().create({
         radius: 10
@@ -56,7 +57,7 @@ tpl.title("Inversion: inverse of circle");
     const circleInverse = new Arbitrary().bind([circle, "any"], [inversion, "any"], function (e1, e2) {
         this.copyFrom(e2.target.invertCircle(e1.target));
     });
-    `)
+    `
     );
 
     const epsilon = Geomtoy.getOptions().epsilon;

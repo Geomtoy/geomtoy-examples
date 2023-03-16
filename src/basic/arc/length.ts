@@ -1,13 +1,13 @@
 import { Arc, Dynamic, Point } from "@geomtoy/core";
 import { Angle } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/common";
-import { appendSvgElement } from "../../assets/svg-append";
+import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
+import { appendSvgElement } from "../../assets/scripts/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc length");
 
-tpl.addParagraph(`
+tpl.addMarkdown(`
     There is no exact formula for the perimeter of an ellipse, so of course neither does an elliptical arc.<br>
     For higher accuracy, Geomtoy uses the <a href="https://en.wikipedia.org/wiki/Elliptic_integral">elliptic integral</a> to calculate <a href="https://en.wikipedia.org/wiki/Ellipse#Arc_length">arc length</a>.
 `);
@@ -46,7 +46,8 @@ tpl.addParagraph(`
     });
 
     card.setDescription(
-        codeHtml(`
+        "code",
+        `
 const point1 = new Point([6, 2]);
 const point2 = new Point([0, 3]);
 const restParams = new (new Dynamic().create({
@@ -74,7 +75,7 @@ const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"]
     );
     lengths.lengthBySvg = svgPath.getTotalLength();
 });
-    `)
+    `
     );
     // `Arc` may correct its own radiusX and radiusY by itself.
     restParams.bind([arc, "radiusX|radiusY"], function (e) {

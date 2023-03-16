@@ -2,8 +2,8 @@ import Geomtoy, { Arc, Transformation, Point, Arbitrary } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
 import { View, ViewElement, CanvasRenderer, ViewElementInteractMode } from "@geomtoy/view";
 
-import color from "../assets/color";
-import { codeHtml, lightStrokeOnly, lightStrokeFill, strokeOnly } from "../assets/common";
+import color from "../assets/scripts/color";
+import { codeHtml, lightStrokeOnly, lightStrokeFill, strokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Transformation");

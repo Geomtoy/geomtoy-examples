@@ -1,6 +1,6 @@
 import { Circle, Dynamic, Point, Rectangle } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
+import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Circle bounding box");
@@ -22,7 +22,8 @@ tpl.title("Circle bounding box");
     });
 
     card.setDescription(
-        codeHtml(` 
+        "code",
+        ` 
 const point1 = new Point([-20, 6]);
 const point2 = new Point([0, 15]);
 
@@ -33,7 +34,7 @@ const lineSegment = new LineSegment().bind([point1, "any"], [point2, "any"], fun
 const boundingBoxRectangle = new Rectangle().bind([lineSegment, "any"], function (e) {
     this.copyFrom(e.target.isValid() ? new Rectangle(...e.target.getBoundingBox()) : null);
 });
-    `)
+    `
     );
 
     // #region Pane

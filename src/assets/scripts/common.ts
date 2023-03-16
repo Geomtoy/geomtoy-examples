@@ -36,7 +36,7 @@ export function styles(strokeColor: string, fillColor: string, style: Omit<Parti
             stroke: color("blue-a100"),
             strokeWidth
         },
-        clickStyle:{
+        clickStyle: {
             fill: color("blue-a200", 0.5),
             stroke: color("blue-a200"),
             strokeWidth
@@ -97,7 +97,7 @@ export function dashedThinStroke(c: ColorName) {
 export function fillOnly(c: ColorName) {
     return styles("black", color(c), { noStroke: true });
 }
-export function fillTransOnly(){
+export function fillTransOnly() {
     return styles("black", "transparent", { noStroke: true });
 }
 
@@ -110,7 +110,7 @@ export function markdownHtml(md: string) {
     return marked.parse(md);
 }
 
-export function elementFromString(htmlString: string) {
+export function newElement(htmlString: string) {
     const document = new DOMParser().parseFromString(htmlString, "text/html");
     return document.body.firstElementChild as HTMLElement;
 }
