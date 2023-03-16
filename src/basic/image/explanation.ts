@@ -96,7 +96,7 @@ export const enum Anchor {
 `);
 
 tpl.addSection("Example");
-const imageUrl = new URL("/img/emoji-icons-set-flat-design-free-vector.jpg", window.location.href).href;
+const imageUrl = "assets/img/emoji-icons-set-flat-design-free-vector.jpg";
 
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", rendererType: "svg", withPane: true });

@@ -5,9 +5,9 @@ import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Image crop");
 
-const imageUrl = new URL("/img/emoji-icons-set-flat-design-free-vector.jpg", window.location.href).href;
+const imageUrl = "assets/img/emoji-icons-set-flat-design-free-vector.jpg";
 tpl.addMarkdown(`
-See the [original image](/img/emoji-icons-set-flat-design-free-vector.jpg). The intrinsic size of the image is 1920 x 1920 px, and the size of each emoji icon is 360 x 360 px.
+See the [original image](assets/img/emoji-icons-set-flat-design-free-vector.jpg). The intrinsic size of the image is 1920 x 1920 px, and the size of each emoji icon is 360 x 360 px.
 `);
 tpl.addMarkdown(`See more info: [Image explanation](/basic/image/explanation.html)`);
 tpl.addSection("Resize only");

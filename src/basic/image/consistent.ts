@@ -4,10 +4,10 @@ import { codeHtml, fillOnly, lightStrokeFill, lightStrokeFillTrans, markdownHtml
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Image consistent");
-const imageUrl = new URL("/img/emoji-icons-set-flat-design-free-vector.jpg", window.location.href).href;
+const imageUrl = "assets/img/emoji-icons-set-flat-design-free-vector.jpg";
 
 tpl.addMarkdown(`
-See the [original image](/img/emoji-icons-set-flat-design-free-vector.jpg). The intrinsic size of the image is 1920 x 1920 px, and the size of each emoji icon is 360 x 360 px.
+See the [original image](assets/img/emoji-icons-set-flat-design-free-vector.jpg). The intrinsic size of the image is 1920 x 1920 px, and the size of each emoji icon is 360 x 360 px.
 `);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });

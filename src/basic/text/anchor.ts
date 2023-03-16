@@ -4,7 +4,7 @@ import { codeHtml, lightStrokeFill, lightStrokeFillTrans, markdownHtml } from ".
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Image anchor");
-const imageUrl = new URL("/img/emoji-icons-set-flat-design-free-vector.jpg", window.location.href).href;
+const imageUrl = "assets/img/emoji-icons-set-flat-design-free-vector.jpg";
 const image1 = new Image(50, 50, 36, 36, 560, 540, 360, 360, imageUrl, true, Anchor.LeftTop);
 const image2 = new Image(50, 0, 36, 36, 560, 1020, 360, 360, imageUrl, true, Anchor.LeftCenter);
 const image3 = new Image(50, -50, 36, 36, 560, 1500, 360, 360, imageUrl, true, Anchor.LeftBottom);

@@ -4,16 +4,16 @@ import { SubView, View, ViewElement, ViewElementEventType, ViewElementInteractMo
 import color from "../assets/color";
 import { fillTransOnly, thinStrokeOnly } from "../assets/common";
 
-const iconHUrl = new URL("/img/icons/h.svg", window.location.href).href;
-const iconNeSwUrl = new URL("/img/icons/ne-sw.svg", window.location.href).href;
-const iconNwSeUrl = new URL("/img/icons/nw-se.svg", window.location.href).href;
-const iconVUrl = new URL("/img/icons/v.svg", window.location.href).href;
-const iconCUrl = new URL("/img/icons/c.svg", window.location.href).href;
-const iconDotUrl = new URL("/img/icons/dot.svg", window.location.href).href;
-const iconNeUrl = new URL("/img/icons/ne.svg", window.location.href).href;
-const iconNwUrl = new URL("/img/icons/nw.svg", window.location.href).href;
-const iconSeUrl = new URL("/img/icons/se.svg", window.location.href).href;
-const iconSwUrl = new URL("/img/icons/sw.svg", window.location.href).href;
+const iconHUrl = "assets/img/icons/h.svg";
+const iconNeSwUrl = "assets/img/icons/ne-sw.svg";
+const iconNwSeUrl = "assets/img/icons/nw-se.svg";
+const iconVUrl = "assets/img/icons/v.svg";
+const iconCUrl = "assets/img/icons/c.svg";
+const iconDotUrl = "assets/img/icons/dot.svg";
+const iconNeUrl = "assets/img/icons/ne.svg";
+const iconNwUrl = "assets/img/icons/nw.svg";
+const iconSeUrl = "assets/img/icons/se.svg";
+const iconSwUrl = "assets/img/icons/sw.svg";
 
 export function showTransformInterface(arbitraryViewElement: ViewElement<Arbitrary>, view: View) {
     const arbitrary = arbitraryViewElement.shape as Arbitrary;
