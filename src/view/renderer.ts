@@ -1,5 +1,5 @@
 import { Line, Point, Relationship } from "@geomtoy/core";
-import { CanvasRenderer, SvgRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, strokeOnly, strokeFill, strokeFillTrans } from "../assets/common";
 import tpl from "../assets/templates/tpl-renderer";
 

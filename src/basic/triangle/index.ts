@@ -1,5 +1,5 @@
 import { Circle, Line, LineSegment, Point, SealedShapeArray, Text, Triangle } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { fillOnly, mathFont, strokeFill, strokeOnly, thinStrokeFill, thinStrokeOnly } from "../../assets/common";
 import { locateLabel } from "../../assets/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";

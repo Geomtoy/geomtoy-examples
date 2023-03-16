@@ -1,5 +1,5 @@
 import { Bezier, EventObject, LineSegment, Point } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, dashedThinStroke, lightStrokeFill, strokeOnly } from "../../assets/common";
 import { appendSvgElement } from "../../assets/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";

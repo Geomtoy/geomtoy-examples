@@ -1,5 +1,5 @@
 import { Bezier, Dynamic, Geomtoy, Point, Relationship, ShapeArray, Trilean } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import color from "../../assets/color";
 import { lightStrokeFill, lightStrokeFillTrans, lightStrokeOnly, strokeOnly } from "../../assets/common";
 import tpl from "../../assets/templates/tpl-renderer";

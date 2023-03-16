@@ -1,5 +1,5 @@
 import { Bezier, EventObject, LineSegment, Point, Rectangle, ShapeArray } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, strokeOnly, thinStrokeOnly } from "../../assets/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -12,7 +12,7 @@ tpl.title("Quadratic bezier extrema and bounding box");
     view.startInteractive();
 
     const point1 = new Point([-20, 6]);
-    const point2 = new Point([0, 15]); 
+    const point2 = new Point([0, 15]);
     const controlPoint = new Point([10, 20]);
     const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint1, "any"], [controlPoint2, "any"], function (e1, e2, e3, e4) {
         this.copyFrom(new Bezier(e1.target, e2.target, e3.target, e4.target));

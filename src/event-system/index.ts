@@ -1,4 +1,4 @@
-import { SvgRenderer, View, ViewElement } from "@geomtoy/view";
+import { SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import tpl from "../assets/templates/tpl-renderer";
 
 import { Line, LineSegment, Point, Text, Vector } from "@geomtoy/core";
@@ -19,7 +19,6 @@ tpl.addMarkdown(`
 - Move point \`P\` to determine the distance between it and point \`A\`. The distance will be kept until you move point \`P\`.
 - Move line \`L\`, point \`A\`, point \`B\` and point \`P\` will follow.</li>
 `);
-
 {
     const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "svg", className: "col-12", withPane: true });
     const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: true, xAxisPositiveOnRight: false }));

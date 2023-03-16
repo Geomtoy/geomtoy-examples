@@ -1,6 +1,6 @@
 import { BooleanOperation, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { strokeFill } from "../assets/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPolygonVertex, strokeFillByIndex } from "./_common";
@@ -8,9 +8,36 @@ import { randomPolygonVertex, strokeFillByIndex } from "./_common";
 tpl.title("Polygon-polygon boolean operation");
 
 const bo = new BooleanOperation();
-const polygon1 = new Polygon([{"x":-90.23110712404501,"y":-12.993568063787947,"uuid":"011a73d9-20c4-4618-bbe1-a84cb7d0dace"},{"x":7.188768846322176,"y":36.65639324662121,"uuid":"265e83c1-1e42-4d8a-831f-0134957eb4e1"},{"x":76.92961075082758,"y":61.72309917870322,"uuid":"268b06f6-a866-4f9e-9c7a-0cfa2caef9d9"},{"x":34.922263092425425,"y":73.16008597529128,"uuid":"4742af2e-956a-49a8-b278-eb707feb6550"},{"x":-16.446212113151987,"y":-67.9752961723366,"uuid":"987ab2ab-a1ba-4c2e-a427-0290c416aec7"},{"x":-10.527474286118064,"y":53.6228886111692,"uuid":"3a8dc6a8-a184-4c0d-8de1-3ca6de6ec2e0"},{"x":30.844466691766797,"y":97.72738405002812,"uuid":"492ed35d-9685-41ef-ac10-0d180f2959fe"},{"x":-14.000911844508707,"y":29.46854551522486,"uuid":"b82c6329-b108-4f50-86f9-d16c595a51f9"},{"x":4.341658719591294,"y":-83.5538126178157,"uuid":"13f6d053-1be0-47b4-81ee-761d5ccf86ca"},{"x":10.51595650107977,"y":17.928806745682152,"uuid":"b261fb6a-8c3f-45b8-a604-1bafeacd80ec"}],true)
-const polygon2 = new Polygon([{"x":44.237078866972155,"y":48.13978138406202,"uuid":"f20c6a19-e6c1-4f8a-9d70-9f782be49f2e"},{"x":83.5616450439789,"y":-15.582767987856144,"uuid":"48040341-b320-49e5-ae51-fb710b08e4df"},{"x":36.67813907122604,"y":89.24616737461787,"uuid":"9275ae83-e5cc-4078-8b2a-7e75b68b790b"},{"x":-68.9166021907611,"y":66.1970582771713,"uuid":"595f293f-107b-426a-b62a-f23a8986e607"},{"x":-68.73012759143298,"y":-99.92895984021727,"uuid":"0c860116-6e4b-42b3-827b-4d14867ad395"},{"x":-42.6939141775533,"y":54.85697298643345,"uuid":"ac2c126b-ba3d-41c5-aca2-61afc3d074b6"},{"x":74.0492252581991,"y":-67.53713918117943,"uuid":"a0418260-2acd-4624-a207-2a3788f64d2a"},{"x":31.03247829130771,"y":-39.50204906365143,"uuid":"37bd9ea3-b6e5-4642-9ebd-0bc9d7797b64"},{"x":18.903051818148683,"y":-95.517652335431,"uuid":"a0a224c9-9b7b-46bd-9898-554f6f260397"},{"x":-30.092025665484684,"y":50.98347889715399,"uuid":"ad257176-df11-4f9b-97bc-b779ec4bea92"}],true)
-
+const polygon1 = new Polygon(
+    [
+        { x: -90.23110712404501, y: -12.993568063787947, uuid: "011a73d9-20c4-4618-bbe1-a84cb7d0dace" },
+        { x: 7.188768846322176, y: 36.65639324662121, uuid: "265e83c1-1e42-4d8a-831f-0134957eb4e1" },
+        { x: 76.92961075082758, y: 61.72309917870322, uuid: "268b06f6-a866-4f9e-9c7a-0cfa2caef9d9" },
+        { x: 34.922263092425425, y: 73.16008597529128, uuid: "4742af2e-956a-49a8-b278-eb707feb6550" },
+        { x: -16.446212113151987, y: -67.9752961723366, uuid: "987ab2ab-a1ba-4c2e-a427-0290c416aec7" },
+        { x: -10.527474286118064, y: 53.6228886111692, uuid: "3a8dc6a8-a184-4c0d-8de1-3ca6de6ec2e0" },
+        { x: 30.844466691766797, y: 97.72738405002812, uuid: "492ed35d-9685-41ef-ac10-0d180f2959fe" },
+        { x: -14.000911844508707, y: 29.46854551522486, uuid: "b82c6329-b108-4f50-86f9-d16c595a51f9" },
+        { x: 4.341658719591294, y: -83.5538126178157, uuid: "13f6d053-1be0-47b4-81ee-761d5ccf86ca" },
+        { x: 10.51595650107977, y: 17.928806745682152, uuid: "b261fb6a-8c3f-45b8-a604-1bafeacd80ec" }
+    ],
+    true
+);
+const polygon2 = new Polygon(
+    [
+        { x: 44.237078866972155, y: 48.13978138406202, uuid: "f20c6a19-e6c1-4f8a-9d70-9f782be49f2e" },
+        { x: 83.5616450439789, y: -15.582767987856144, uuid: "48040341-b320-49e5-ae51-fb710b08e4df" },
+        { x: 36.67813907122604, y: 89.24616737461787, uuid: "9275ae83-e5cc-4078-8b2a-7e75b68b790b" },
+        { x: -68.9166021907611, y: 66.1970582771713, uuid: "595f293f-107b-426a-b62a-f23a8986e607" },
+        { x: -68.73012759143298, y: -99.92895984021727, uuid: "0c860116-6e4b-42b3-827b-4d14867ad395" },
+        { x: -42.6939141775533, y: 54.85697298643345, uuid: "ac2c126b-ba3d-41c5-aca2-61afc3d074b6" },
+        { x: 74.0492252581991, y: -67.53713918117943, uuid: "a0418260-2acd-4624-a207-2a3788f64d2a" },
+        { x: 31.03247829130771, y: -39.50204906365143, uuid: "37bd9ea3-b6e5-4642-9ebd-0bc9d7797b64" },
+        { x: 18.903051818148683, y: -95.517652335431, uuid: "a0a224c9-9b7b-46bd-9898-554f6f260397" },
+        { x: -30.092025665484684, y: 50.98347889715399, uuid: "ad257176-df11-4f9b-97bc-b779ec4bea92" }
+    ],
+    true
+);
 
 // const polygon1 = new Polygon(
 //     [
@@ -42,19 +69,17 @@ const polygon2 = new Polygon([{"x":44.237078866972155,"y":48.13978138406202,"uui
 //     ],
 //     true,"nonzero"
 // );
- 
- 
- 
+
 const description = bo.describe(polygon1, polygon2);
 
 {
     tpl.addSection("Union");
     const compound = bo.chain(bo.selectUnion(description));
 
-    const card1 = tpl.addCard({ title: "original",  className: "col-6" });
+    const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean",  className: "col-6" });
+    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -74,10 +99,10 @@ const description = bo.describe(polygon1, polygon2);
 {
     tpl.addSection("Intersection");
     const compound = bo.chain(bo.selectIntersection(description));
-    const card1 = tpl.addCard({ title: "original",  className: "col-6" });
+    const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean",  className: "col-6" });
+    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -95,10 +120,10 @@ const description = bo.describe(polygon1, polygon2);
     tpl.addSection("Difference");
     const compound = bo.chain(bo.selectDifference(description));
 
-    const card1 = tpl.addCard({ title: "original",  className: "col-6" });
+    const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean",  className: "col-6" });
+    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -116,10 +141,10 @@ const description = bo.describe(polygon1, polygon2);
     tpl.addSection("DifferenceRev");
     const compound = bo.chain(bo.selectDifferenceRev(description));
 
-    const card1 = tpl.addCard({ title: "original",  className: "col-6" });
+    const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean",  className: "col-6" });
+    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -137,10 +162,10 @@ const description = bo.describe(polygon1, polygon2);
     tpl.addSection("Exclusion");
     const compound = bo.chain(bo.selectExclusion(description));
 
-    const card1 = tpl.addCard({ title: "original",  className: "col-6" });
+    const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean",  className: "col-6" });
+    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));

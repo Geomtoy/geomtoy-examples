@@ -1,6 +1,6 @@
 import { BooleanOperation, Geomtoy, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { elementFromString, lightStrokeFill } from "../assets/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPolygonVertex } from "./_common";
@@ -11,8 +11,7 @@ const bo = new BooleanOperation("sweep-line");
 
 const polygon1 = new Polygon(Utility.range(0, 10).map(_ => randomPolygonVertex()));
 const polygon2 = new Polygon(Utility.range(0, 10).map(_ => randomPolygonVertex()));
-const description = bo.describe(polygon1,polygon2); 
-
+const description = bo.describe(polygon1, polygon2);
 
 const viewCollection: View[] = [];
 {
@@ -77,7 +76,7 @@ const viewCollection: View[] = [];
 }
 
 {
-    tpl.addSection("Difference");  
+    tpl.addSection("Difference");
     const compound = bo.chain(bo.selectDifference(description));
 
     const card1 = tpl.addCard({ title: "original", className: "col-6" });

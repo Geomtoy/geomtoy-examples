@@ -1,5 +1,5 @@
 import { Dynamic, Line, Point, Ray, Rectangle } from "@geomtoy/core";
-import { CanvasRenderer, SvgRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/common";
 import tpl from "../../assets/templates/tpl-renderer";
 

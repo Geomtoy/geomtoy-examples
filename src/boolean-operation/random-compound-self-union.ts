@@ -1,6 +1,6 @@
 import { BooleanOperation, Compound, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { lightStrokeFill } from "../assets/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand, strokeFillByIndex } from "./_common";
@@ -11,7 +11,7 @@ tpl.addParagraph("Refresh to random");
     const bo = new BooleanOperation();
     const path1 = new Path(Utility.range(0, 10).map(_ => randomPathCommand()));
     const path2 = new Path(Utility.range(0, 10).map(_ => randomPathCommand()));
-    const origCompound = new Compound([path1,path2])
+    const origCompound = new Compound([path1, path2]);
     const compound = bo.selfUnion(origCompound);
 
     const card1 = tpl.addCard({ title: "original compound", className: "col-6", aspectRatio: "1:1" });

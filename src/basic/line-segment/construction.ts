@@ -1,6 +1,6 @@
 import { Bezier, Dynamic, LineSegment, Point, ShapeArray } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/common";
 import tpl from "../../assets/templates/tpl-renderer";
 

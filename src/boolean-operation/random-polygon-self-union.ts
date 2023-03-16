@@ -1,6 +1,6 @@
 import { BooleanOperation, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { lightStrokeFill } from "../assets/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPolygonVertex, strokeFillByIndex } from "./_common";

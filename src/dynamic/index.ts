@@ -1,13 +1,12 @@
 import { Rectangle } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, strokeFill } from "../assets/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("Dynamic");
 
-tpl.addParagraph("When `Geometries` or other `EventTargets` need to interact with dependencies that are not all `Geometries`, dynamic objects can be used.")
+tpl.addParagraph("When `Geometries` or other `EventTargets` need to interact with dependencies that are not all `Geometries`, dynamic objects can be used.");
 
-  
 const rectangle = new Rectangle([10, 10], [20, 20]);
 
 tpl.addCode(`

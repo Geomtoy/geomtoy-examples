@@ -1,6 +1,6 @@
 import { Path, PathCommandType, Point, Polygon, ShapeArray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, markdownHtml, strokeFill, strokeOnly } from "../../assets/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -25,10 +25,10 @@ tpl.addSection("constructor");
         {type: PathCommandType.LineTo, x: -161.2050807568877, y: 100.63397459621562} 
     ], true);
 
-    path.getSegments().forEach(seg=>{
-        console.log(seg, seg.getBoundingBox())
-    })
-    console.log(path.getBoundingBox())
+    path.getSegments().forEach(seg => {
+        console.log(seg, seg.getBoundingBox());
+    });
+    console.log(path.getBoundingBox());
 
     card.setDescription(markdownHtml('property `closed`: false - like SVG &lt;path d="..."&gt; **without** final `[zZ]`'));
     card.appendDescription(

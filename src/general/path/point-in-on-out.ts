@@ -1,5 +1,5 @@
 import { Dynamic, FontConfig, Geomtoy, Point, Polygon, Text } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, fillOnly, mathFont, strokeFill } from "../../assets/common";
 import { locateLabel } from "../../assets/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";

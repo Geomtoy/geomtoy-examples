@@ -1,6 +1,6 @@
 import { LineSegment, Point, QuadraticBezier } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, strokeOnly, thinStrokeOnly } from "../../assets/common";
 import { twoPointsLineSegment } from "../../assets/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";

@@ -1,6 +1,6 @@
 import { Point, Polygon, ShapeArray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, markdownHtml, strokeFill, strokeOnly } from "../../assets/common";
 import tpl from "../../assets/templates/tpl-renderer";
 

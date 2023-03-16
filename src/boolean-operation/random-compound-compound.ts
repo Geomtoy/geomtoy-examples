@@ -1,6 +1,6 @@
 import { BooleanOperation, Compound, Geomtoy, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { elementFromString, lightStrokeFill } from "../assets/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand } from "./_common";
@@ -8,14 +8,8 @@ import { randomPathCommand } from "./_common";
 tpl.title("Random compound-compound boolean operation");
 
 const bo = new BooleanOperation();
-const compound1 = new Compound([
-    new Path(Utility.range(0, 5).map(_ => randomPathCommand())),
-    new Path(Utility.range(0, 5).map(_ => randomPathCommand()))
-])
-const compound2 = new Compound([
-    new Path(Utility.range(0, 5).map(_ => randomPathCommand())),
-    new Path(Utility.range(0, 5).map(_ => randomPathCommand()))
-])
+const compound1 = new Compound([new Path(Utility.range(0, 5).map(_ => randomPathCommand())), new Path(Utility.range(0, 5).map(_ => randomPathCommand()))]);
+const compound2 = new Compound([new Path(Utility.range(0, 5).map(_ => randomPathCommand())), new Path(Utility.range(0, 5).map(_ => randomPathCommand()))]);
 const description = bo.describe(compound1, compound2);
 
 const viewCollection: View[] = [];

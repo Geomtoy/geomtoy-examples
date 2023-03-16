@@ -1,6 +1,6 @@
 import { LineSegment, Path, PathCommandType, Point, Polygon, Vector } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { SubView, ViewElement } from "@geomtoy/view";
+import { SubView, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { dashedThinStroke, lightStrokeFill, strokeFill } from "../assets/common";
 import { twoPointsLineSegment } from "../assets/general-construction";
 

@@ -1,6 +1,6 @@
 import Geomtoy, { Arc, Point, Polygon, Relationship } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import tpl from "../assets/templates/tpl-renderer";
 import { arrayResult, trileanResult } from "./_common";
 

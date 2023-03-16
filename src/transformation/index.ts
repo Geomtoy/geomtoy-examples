@@ -1,6 +1,6 @@
 import Geomtoy, { Arc, Transformation, Point, Arbitrary } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
-import { View, ViewElement, ViewGroupElement, CanvasRenderer } from "@geomtoy/view";
+import { View, ViewElement, CanvasRenderer, ViewElementInteractMode } from "@geomtoy/view";
 
 import color from "../assets/color";
 import { codeHtml, lightStrokeOnly, lightStrokeFill, strokeOnly } from "../assets/common";

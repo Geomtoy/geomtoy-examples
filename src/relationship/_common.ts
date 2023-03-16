@@ -1,6 +1,6 @@
 import { Bezier, EventObject, Geometry, LineSegment, Point, QuadraticBezier, ShapeArray, Trilean } from "@geomtoy/core";
 import { Coordinates, Utility } from "@geomtoy/util";
-import { CanvasRenderer, Style, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, Style, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { strokeOnly } from "../assets/common";
 import { twoPointsLineSegment } from "../assets/general-construction";
 import tpl from "../assets/templates/tpl-renderer";

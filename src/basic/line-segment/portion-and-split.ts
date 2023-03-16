@@ -1,6 +1,6 @@
 import { Arc, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/common";
 import tpl from "../../assets/templates/tpl-renderer";
 

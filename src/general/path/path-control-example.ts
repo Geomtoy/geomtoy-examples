@@ -1,5 +1,5 @@
 import { Line, LineSegment, Path, Point, SealedShapeArray, SealedShapeObject, Text, Anchor } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import color from "../../assets/color";
 import { fillOnly, markdownHtml, mathFont, strokeFill, strokeOnly, thinStrokeOnly } from "../../assets/common";
 import { locateLabel } from "../../assets/general-construction";

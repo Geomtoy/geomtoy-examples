@@ -1,5 +1,5 @@
 import { BooleanOperation, Geomtoy, Polygon } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill } from "../assets/common";
 import tpl from "../assets/templates/tpl-renderer";
 
