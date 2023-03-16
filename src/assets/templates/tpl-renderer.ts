@@ -14,19 +14,19 @@ export default {
     title(title: string) {
         document.querySelector<HTMLHeadingElement>("h1")!.innerHTML = title;
     },
-    addSection(sectionTitle: string) {
-        tplMainDiv.insertAdjacentHTML("beforeend", `<h2>${sectionTitle}</h2>`);
+    addSection(sectionTitle: string, code = false) {
+        tplMainDiv.insertAdjacentHTML("beforeend", code ? `<h2><code>${sectionTitle}</code></h2>` : `<h2>${sectionTitle}</h2>`);
     },
-    addSubSection(sectionTitle: string) {
-        tplMainDiv.insertAdjacentHTML("beforeend", `<h3>${sectionTitle}</h3>`);
+    addSubSection(sectionTitle: string, code = false) {
+        tplMainDiv.insertAdjacentHTML("beforeend", code ? `<h3><code>${sectionTitle}</code></h3>` : `<h3>${sectionTitle}</h3>`);
     },
     addCode(code: string, lang = "js") {
-        tplMainDiv.insertAdjacentHTML("beforeend", `<div class="col-12 rounded">${codeHtml(code, lang)}</div>`);
+        tplMainDiv.insertAdjacentHTML("beforeend", `<div class="col-12 rounded">${codeHtml(code.trim(), lang)}</div>`);
     },
     addMarkdown(md: string, className = "") {
         const div = newElement(`<div class="md ${className}"></div>`);
         tplMainDiv.appendChild(div);
-        div.innerHTML = markdownHtml(md);
+        div.innerHTML = markdownHtml(md.trim());
     },
     addNote(note: string) {
         tplMainDiv.insertAdjacentHTML(
@@ -35,7 +35,7 @@ export default {
         <div class="col-12 note">
             <div class="bg-primary bg-opacity-25 p-3 rounded">
                 <div class="mb-4"><strong class="text-white bg-primary p-3 ">Note</strong></div> 
-                ${markdownHtml(note)}
+                ${markdownHtml(note.trim())}
             </div>
         </div>
         `
@@ -46,7 +46,6 @@ export default {
     },
     addCard({
         title = "",
-        description = "",
         rendererType = "canvas" as "canvas" | "svg" | false,
         withIntroduction = false,
         withPane = false,
@@ -75,7 +74,7 @@ export default {
                 }
                 <div class="card-body">
                     <h5 class="card-title">${title}</h5>
-                    <div class="card-text">${description}</div>
+                    <div class="card-text"></div>
                 </div>
             </div>
         </div>`;
@@ -95,19 +94,19 @@ export default {
             setDescription: function (type: "code" | "markdown", description: string) {
                 const cardText = card.querySelector(".card-text")!;
                 if (type === "code") {
-                    cardText.innerHTML = codeHtml(description);
+                    cardText.innerHTML = codeHtml(description.trim());
                 }
                 if (type === "markdown") {
-                    cardText.innerHTML = markdownHtml(description);
+                    cardText.innerHTML = markdownHtml(description.trim());
                 }
             },
             appendDescription: function (type: "code" | "markdown", description: string) {
                 const cardText = card.querySelector(".card-text")!;
                 if (type === "code") {
-                    cardText.innerHTML = cardText.innerHTML + codeHtml(description);
+                    cardText.innerHTML = cardText.innerHTML + codeHtml(description.trim());
                 }
                 if (type === "markdown") {
-                    cardText.innerHTML = cardText.innerHTML + markdownHtml(description);
+                    cardText.innerHTML = cardText.innerHTML + markdownHtml(description.trim());
                 }
             },
             setIntroduction: function (introduction: string) {
