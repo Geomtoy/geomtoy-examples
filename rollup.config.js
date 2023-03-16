@@ -8,7 +8,7 @@ const livereload = require("rollup-plugin-livereload");
 const json = require("@rollup/plugin-json");
 const pluginUtils = require("@rollup/pluginutils");
 const ejs = require("ejs");
-// const { config } = require("../../package.json");
+const { config } = require("./geomtoy/package.json");
 
 const fs = require("fs");
 const path = require("path");
@@ -62,10 +62,10 @@ export default {
         dir: exampleDistPath,
         sourcemap: true,
         format: "esm",
-        // manualChunks: {
-        //     geomtoy: [config.packages.core.scopedName, config.packages.util.scopedName, config.packages.view.scopedName]
-        // },
-        chunkFileNames: "js/[name].js"
+        manualChunks: {
+            geomtoy: [config.packages.core.scopedName, config.packages.util.scopedName, config.packages.view.scopedName]
+        },
+        chunkFileNames: "assets/js/[name].js"
     },
     plugins: [
         nodeResolve({ extensions }),
@@ -143,8 +143,8 @@ export default {
         })(),
         copy({
             targets: [
-                { src: "src/assets/styles/*", dest: "dist/css" },
-                { src: "src/assets/images/*", dest: "dist/img" }
+                { src: "src/assets/styles/*", dest: "dist/assets/css" },
+                { src: "src/assets/images/*", dest: "dist/assets/img" }
             ],
             copyOnce: true
         }),
