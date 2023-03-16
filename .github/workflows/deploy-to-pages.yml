@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  generate: 
+  deploy: 
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Generate the examples
+      - name: Generate examples
         run: |
           npm ci
           git submodule update --init
