@@ -1,5 +1,5 @@
 {
-    "name": "@geomtoy/examples",
+    "name": "geomtoy-examples",
     "version": "0.0.0",
     "description": "A 2D geometry responsive computing, visualizing and interacting library.",
     "author": "Fish Eleven",
@@ -12,6 +12,9 @@
     "scripts": {
         "commit": "git-cz",
         "prepare": "husky install",
+        "build-util": "cd geomtoy/packages/util && npm run bundle-js && npm run bundle-dts",
+        "build-core": "cd geomtoy/packages/core && npm run bundle-js && npm run bundle-dts",
+        "build-view": "cd geomtoy/packages/view && npm run bundle-js && npm run bundle-dts",
         "serve": "rollup --config --watch",
         "generate": "rollup --config --environment GENERATE"
     },
@@ -38,6 +41,7 @@
         "@rollup/plugin-node-resolve": "^13.1.2",
         "@rollup/pluginutils": "^4.2.1",
         "commitizen": "^4.2.4",
+        "dts-bundle-generator": "^7.2.0",
         "ejs": "^3.1.7",
         "husky": "^7.0.4",
         "prettier": "^2.5.1",
@@ -48,6 +52,7 @@
         "rollup-plugin-livereload": "^2.0.5",
         "rollup-plugin-serve": "^1.1.0",
         "rollup-plugin-terser": "^7.0.2",
+        "symlink-dir": "^5.1.1",
         "typescript": "^4.5.4"
     }
 }
