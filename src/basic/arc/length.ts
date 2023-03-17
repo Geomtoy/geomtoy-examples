@@ -36,13 +36,15 @@ tpl.addMarkdown(`
     const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"], function (e1, e2, e3) {
         const { radiusX, radiusY, largeArc, positive, rotation } = e3.target;
         this.copyFrom(new Arc(e1.target, e2.target, radiusX, radiusY, largeArc, positive, rotation));
-        lengths.lengthByGeomtoy = this.getLength();
-        const { radiusX: correctedRadiusX, radiusY: correctedRadiusY } = this;
-        svgPath.setAttribute(
-            "d",
-            `M${e1.target.x},${e1.target.y}A${correctedRadiusX} ${correctedRadiusY} ${Angle.radianToDegree(rotation)} ${largeArc ? "1" : "0"} ${positive ? "1" : "0"} ${e2.target.x},${e2.target.y}`
-        );
-        lengths.lengthBySvg = svgPath.getTotalLength();
+        if (this.isValid()) {
+            lengths.lengthByGeomtoy = this.getLength();
+            const { radiusX: correctedRadiusX, radiusY: correctedRadiusY } = this;
+            svgPath.setAttribute(
+                "d",
+                `M${e1.target.x},${e1.target.y}A${correctedRadiusX} ${correctedRadiusY} ${Angle.radianToDegree(rotation)} ${largeArc ? "1" : "0"} ${positive ? "1" : "0"} ${e2.target.x},${e2.target.y}`
+            );
+            lengths.lengthBySvg = svgPath.getTotalLength();
+        }
     });
 
     card.setDescription(
@@ -67,13 +69,15 @@ const lengths = {
 const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"], function (e1, e2, e3) {
     const { radiusX, radiusY, largeArc, positive, rotation } = e3.target;
     this.copyFrom(new Arc(e1.target, e2.target, radiusX, radiusY, largeArc, positive, rotation));
-    lengths.lengthByGeomtoy = this.getLength();
-    const { radiusX: correctedRadiusX, radiusY: correctedRadiusY } = this;
-    svgPath.setAttribute(
-        "d",
-        \`M\${e1.target.x},\${e1.target.y}A\${correctedRadiusX} \${correctedRadiusY} \${Angle.radianToDegree(rotation)} \${largeArc ? "1" : "0"} \${positive ? "1" : "0"} \${e2.target.x},\${e2.target.y}\`
-    );
-    lengths.lengthBySvg = svgPath.getTotalLength();
+    if (this.isValid()) {
+        lengths.lengthByGeomtoy = this.getLength();
+        const { radiusX: correctedRadiusX, radiusY: correctedRadiusY } = this;
+        svgPath.setAttribute(
+            "d",
+            \`M\${e1.target.x},\${e1.target.y}A\${correctedRadiusX} \${correctedRadiusY} \${Angle.radianToDegree(rotation)} \${largeArc ? "1" : "0"} \${positive ? "1" : "0"} \${e2.target.x},\${e2.target.y}\`
+        );
+        lengths.lengthBySvg = svgPath.getTotalLength();
+    }
 });
     `
     );

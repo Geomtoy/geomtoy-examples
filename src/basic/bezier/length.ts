@@ -1,6 +1,7 @@
-import { Bezier, EventObject, LineSegment, Point } from "@geomtoy/core";
+import { Bezier, LineSegment, Point } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
-import { codeHtml, dashedThinStroke, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
+import { dashedThinStroke, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
+import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import { appendSvgElement } from "../../assets/scripts/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -30,49 +31,39 @@ tpl.addMarkdown(`
 
     const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint1, "any"], [controlPoint2, "any"], function (e1, e2, e3, e4) {
         this.copyFrom(new Bezier(e1.target, e2.target, e3.target, e4.target));
-        lengths.lengthByGeomtoy = this.getLength();
-        svgPath.setAttribute("d", `M${e1.target.x},${e1.target.y}C${e3.target.x},${e3.target.y} ${e4.target.x},${e4.target.y} ${e2.target.x},${e2.target.y}`);
-        lengths.lengthBySvg = svgPath.getTotalLength();
+        if (this.isValid()) {
+            lengths.lengthByGeomtoy = this.getLength();
+            svgPath.setAttribute("d", `M${e1.target.x},${e1.target.y}C${e3.target.x},${e3.target.y} ${e4.target.x},${e4.target.y} ${e2.target.x},${e2.target.y}`);
+            lengths.lengthBySvg = svgPath.getTotalLength();
+        }
     });
 
     card.setDescription(
         "code",
         `
-    const point1 = new Point([-20, 40]);
-    const point2 = new Point([10, 20]);
-    const controlPoint1 = new Point([30, 70]);
-    const controlPoint2 = new Point([40, 20]);
+const point1 = new Point([-20, 40]);
+const point2 = new Point([10, 20]);
+const controlPoint1 = new Point([30, 70]);
+const controlPoint2 = new Point([40, 20]);
 
-    const svgPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    const lengths = {
-        lengthByGeomtoy: 0,
-        lengthBySvg: 0
-    };
+const svgPath = appendSvgElement("path");
+const lengths = {
+    lengthByGeomtoy: 0,
+    lengthBySvg: 0
+};
 
-    const bezier = new Bezier().bind(
-        [
-            [point1, "any"],
-            [point2, "any"],
-            [controlPoint1, "any"],
-            [controlPoint2, "any"]
-        ],
-        function ([e1, e2, e3, e4]) {
-            this.copyFrom(new Bezier(e1.target, e2.target, e3.target, e4.target));
-            lengths.lengthByGeomtoy = this.getLength();
-            svgPath.setAttribute("d", \`M\${e1.target.x},\${e1.target.y}C\${e3.target.x},\${e3.target.y} \${e4.target.x},\${e4.target.y} \${e2.target.x},\${e2.target.y}\`);
-            lengths.lengthBySvg = svgPath.getTotalLength();
-        }
-    );
+const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint1, "any"], [controlPoint2, "any"], function (e1, e2, e3, e4) {
+    this.copyFrom(new Bezier(e1.target, e2.target, e3.target, e4.target));
+    lengths.lengthByGeomtoy = this.getLength();
+    svgPath.setAttribute("d", \`M\${e1.target.x},\${e1.target.y}C\${e3.target.x},\${e3.target.y} \${e4.target.x},\${e4.target.y} \${e2.target.x},\${e2.target.y}\`);
+    lengths.lengthBySvg = svgPath.getTotalLength();
+});
     `
     );
 
-    const twoPointLineSegmentFn = function (this: LineSegment, e1: EventObject<Point>, e2: EventObject<Point>) {
-        this.copyFrom(new LineSegment(e1.target, e2.target));
-    };
-
-    const controlLineSegment1 = new LineSegment().bind([point1, "any"], [controlPoint1, "any"], twoPointLineSegmentFn);
-    const controlLineSegment2 = new LineSegment().bind([controlPoint1, "any"], [controlPoint2, "any"], twoPointLineSegmentFn);
-    const controlLineSegment3 = new LineSegment().bind([controlPoint2, "any"], [point2, "any"], twoPointLineSegmentFn);
+    const controlLineSegment1 = new LineSegment().bind([point1, "any"], [controlPoint1, "any"], twoPointsLineSegment);
+    const controlLineSegment2 = new LineSegment().bind([controlPoint1, "any"], [controlPoint2, "any"], twoPointsLineSegment);
+    const controlLineSegment3 = new LineSegment().bind([controlPoint2, "any"], [point2, "any"], twoPointsLineSegment);
 
     // #region Pane
     // @ts-expect-error

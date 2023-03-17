@@ -10,10 +10,10 @@ tpl.addMarkdown(`
 Recommended topics to start with:
 `);
 tpl.addMarkdown(`
-- [Coordinate system](/view/coordinate-system.html)
-- [Renderer](/view/renderer.html)
-- [Dynamic](/view/coordinate-system.html)
-- [Event system](/view/coordinate-system.html)
+- [Coordinate system](view/coordinate-system.html)
+- [Renderer](view/renderer.html)
+- [Dynamic](view/coordinate-system.html)
+- [Event system](view/coordinate-system.html)
 `);
 
 tpl.addMarkdown(`

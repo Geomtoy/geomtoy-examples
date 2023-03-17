@@ -1,4 +1,4 @@
-import { Bezier, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
+import { Bezier, GeometryArray, Point, SealedShapeObject } from "@geomtoy/core";
 import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -164,7 +164,7 @@ tpl.addSubSection("splitAtTimes", true);
             p1.appearance = "cross";
             const p2 = bezier.point2;
             p2.appearance = "cross";
-            return new ViewElement(new ShapeArray([bezier, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
+            return new ViewElement(new GeometryArray([bezier, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
         });
     });
     card.setDescription(
@@ -185,7 +185,7 @@ bezier.on("any", function (e) {
         p1.appearance = "cross";
         const p2 = bezier.point2;
         p2.appearance = "cross";
-        return new ViewElement(new ShapeArray([bezier, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
+        return new ViewElement(new GeometryArray([bezier, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
     });
 });
     `

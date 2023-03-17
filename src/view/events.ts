@@ -1,7 +1,7 @@
 import { Point } from "@geomtoy/core";
 import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementEventType, ViewElementInteractMode } from "@geomtoy/view";
 import color from "../assets/scripts/color";
-import { strokeFill, strokeOnly } from "../assets/scripts/common";
+import { strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
 tpl.title("View element events");
@@ -71,7 +71,7 @@ Open the browser devtool and see the console.
 <span style="color:${color("black")};">&#9635;</span> interactMode: \`ViewElementInteractMode.None\` 
 `);
 {
-    const card = tpl.addCard({ aspectRatio: "1:1", rendererType: "svg", className: "col-12" });
+    const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "svg", className: "col-12" });
     const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
@@ -86,7 +86,6 @@ Open the browser devtool and see the console.
 
     view.add(ve1, ve2, ve3, ve4, ve5, ve6, ve7);
     card.setTitle("View element events on SVG renderer");
-    view.startLasso();
     activationEvents(ve1);
     activationEvents(ve2);
     activationEvents(ve3);
@@ -95,7 +94,7 @@ Open the browser devtool and see the console.
     operationEvents(ve6);
 }
 {
-    const card = tpl.addCard({ aspectRatio: "1:1", rendererType: "canvas", className: "col-12" });
+    const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "canvas", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
@@ -109,8 +108,7 @@ Open the browser devtool and see the console.
     const ve7 = new ViewElement(Point.origin(), { interactMode: ViewElementInteractMode.None, ...strokeFill("black") });
 
     view.add(ve1, ve2, ve3, ve4, ve5, ve6, ve7);
-    card.setTitle("View element events on SVG renderer");
-    view.startLasso();
+    card.setTitle("View element events on Canvas renderer");
     activationEvents(ve1);
     activationEvents(ve2);
     activationEvents(ve3);

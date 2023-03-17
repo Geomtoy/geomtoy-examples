@@ -1,4 +1,4 @@
-import { Circle, Point, ShapeArray } from "@geomtoy/core";
+import { Circle, GeometryArray, Point } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
 import { lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -24,7 +24,7 @@ tpl.title("Common tangent circles of two circles through a point");
         this.copyFrom(Circle.fromTwoPoints(e1.target, e2.target));
     });
 
-    const shapeArray = new ShapeArray().bind([circle1, "any"], [circle2, "any"], [point, "any"], function (e1, e2, e3) {
+    const geometryArray = new GeometryArray().bind([circle1, "any"], [circle2, "any"], [point, "any"], function (e1, e2, e3) {
         this.items = Circle.getCommonTangentCirclesOfTwoCirclesThroughPoint(e1.target, e2.target, e3.target);
     });
 
@@ -44,7 +44,7 @@ tpl.title("Common tangent circles of two circles through a point");
         this.copyFrom(Circle.fromTwoPoints(e1.target, e2.target));
     });
 
-    const shapeArray = new ShapeArray().bind([circle1, "any"], [circle2, "any"], [point, "any"], function (e1, e2, e3) {
+    const geometryArray = new GeometryArray().bind([circle1, "any"], [circle2, "any"], [point, "any"], function (e1, e2, e3) {
         this.items = Circle.getCommonTangentCirclesOfTwoCirclesThroughPoint(e1.target, e2.target, e3.target);
     });
     `
@@ -58,5 +58,5 @@ tpl.title("Common tangent circles of two circles through a point");
 
     view.add(new ViewElement(circle1, { interactMode: ViewElementInteractMode.None, ...strokeOnly("red") }));
     view.add(new ViewElement(circle2, { interactMode: ViewElementInteractMode.None, ...strokeOnly("blue") }));
-    view.add(new ViewElement(shapeArray, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("orange") }));
+    view.add(new ViewElement(geometryArray, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("orange") }));
 }

@@ -23,7 +23,7 @@ tpl.title("Circle closest point");
         point: new Point("cross"),
         lineSegment: new LineSegment()
     }).bind([point, "any"], [circle, "any"], function (e1, e2) {
-        this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFrom(e1.target)[0] : null);
+        this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFromPoint(e1.target)[0] : null);
         this.items.lineSegment.copyFrom(new LineSegment(e1.target, this.items.point));
     });
 
