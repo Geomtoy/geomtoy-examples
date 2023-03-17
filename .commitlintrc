@@ -9,6 +9,10 @@
             [
                 "sentence-case"
             ]
+        ],
+        "scope-empty": [
+            2,
+            "always"
         ]
     }
 }
