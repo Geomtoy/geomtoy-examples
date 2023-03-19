@@ -53,9 +53,9 @@
     vertical-align: middle;
 }
 
-.nested {
+#treeRoot ul.nested {
     display: none;
 }
-.active {
+#treeRoot ul.active {
     display: block;
 }

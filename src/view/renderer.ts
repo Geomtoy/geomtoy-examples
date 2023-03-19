@@ -64,6 +64,7 @@ view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activati
     view.add(new ViewElement(line2, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("blue") }));
     view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("gray") }));
     card.setTitle("Canvas renderer");
+
     card.setDescription(
         "code",
         `

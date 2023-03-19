@@ -20,7 +20,7 @@ tpl.addCode(`
 
 {
     const card = tpl.addCard({ title: "density 10 and zoom 1", className: "col-12", aspectRatio: "3:1" });
-    const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1.6 }));
+    const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1 }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
     view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
@@ -28,10 +28,10 @@ tpl.addCode(`
     card.appendDescription(
         "code",
         `
-    const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1.6 }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
-    view.startInteractive();
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1 }));
+view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+view.startInteractive();
+view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
     `
     );
 }
@@ -45,10 +45,10 @@ tpl.addCode(`
     card.appendDescription(
         "code",
         `
-        const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 1  }));
-        view.startResponsive(() => {});
-        view.startInteractive();
-        view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 1  }));
+view.startResponsive(() => {});
+view.startInteractive();
+view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
         `
     );
 }
@@ -62,10 +62,10 @@ tpl.addCode(`
     card.appendDescription(
         "code",
         `
-        const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1 }));
-        view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
-        view.startInteractive();
-        view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1 }));
+view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+view.startInteractive();
+view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
         `
     );
 }
@@ -79,10 +79,10 @@ tpl.addCode(`
     card.appendDescription(
         "code",
         `
-        const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 0.1 }));
-        view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
-        view.startInteractive();
-        view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 0.1 }));
+view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+view.startInteractive();
+view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
         `
     );
 }

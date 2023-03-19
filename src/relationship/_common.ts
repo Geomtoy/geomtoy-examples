@@ -43,16 +43,14 @@ export function arrayResult(card: ReturnType<typeof tpl.addCard>, g1: Geometry, 
     view.add(new ViewElement(g1, { interactMode: ViewElementInteractMode.None, ...strokeOnly("red") }));
     view.add(new ViewElement(g2, { interactMode: ViewElementInteractMode.None, ...strokeOnly("blue") }));
 
-    const content = `Result: <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${card.uuid}">
+    const content = `Result: <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${card.id}">
         View
     </button>
-    <div class="collapse" id="collapse-${card.uuid}"> 
-        ${shapeArray.items.map(p => `<p><pre>${p.toString()}</pre></p>`).join("")} 
+    <div class="collapse" id="collapse-${card.id}">
+        ${shapeArray.items.map(p => `<pre style="tab-size: 4">${p.toString()}</pre>`).join("")} 
     </div>
     `;
-    card.setDescription("markdown", content);
-    // @ts-expect-error
-    new bootstrap.Collapse(document.querySelector(`#collapse-${card.uuid}`), { toggle: false });
+    card.setDescription("html", content);
     return view;
 }
 

@@ -1,5 +1,5 @@
 import "https://cdn.jsdelivr.net/npm/tweakpane@3.0.8/dist/tweakpane.min.js";
-import "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js";
+import "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js";
 import { buildTree } from "./shared/sidebar";
 
 import html from "./tpl-renderer.html";
@@ -91,8 +91,11 @@ export default {
                 const cardTitle = card.querySelector(".card-title")!;
                 cardTitle.innerHTML = title;
             },
-            setDescription: function (type: "code" | "markdown", description: string) {
+            setDescription: function (type: "code" | "markdown" | "html", description: string) {
                 const cardText = card.querySelector(".card-text")!;
+                if (type === "html") {
+                    cardText.innerHTML = description.trim();
+                }
                 if (type === "code") {
                     cardText.innerHTML = codeHtml(description.trim());
                 }
@@ -100,8 +103,11 @@ export default {
                     cardText.innerHTML = markdownHtml(description.trim());
                 }
             },
-            appendDescription: function (type: "code" | "markdown", description: string) {
+            appendDescription: function (type: "code" | "markdown" | "html", description: string) {
                 const cardText = card.querySelector(".card-text")!;
+                if (type === "html") {
+                    cardText.innerHTML = cardText.innerHTML + description.trim();
+                }
                 if (type === "code") {
                     cardText.innerHTML = cardText.innerHTML + codeHtml(description.trim());
                 }
