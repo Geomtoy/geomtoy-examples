@@ -9,28 +9,31 @@ const json = require("@rollup/plugin-json");
 const pluginUtils = require("@rollup/pluginutils");
 const ejs = require("ejs");
 const { config } = require("./geomtoy/package.json");
+const { order } = require("./order");
 
 const fs = require("fs");
 const path = require("path");
 
 const extensions = [".js", ".ts"];
-
 const exampleSrcPath = "./src";
 const exampleDistPath = "./dist";
 const host = "0.0.0.0";
 const port = 1347;
 
-const traverseDir = (dir, callback, excludes) => {
+const traverseDir = (dir, callback, excludeReg) => {
     const entries = fs.readdirSync(dir);
     entries.forEach(entry => {
+        if (excludeReg.test(entry)) return;
         const entryPath = path.resolve(dir, entry);
-        if (fs.statSync(entryPath).isDirectory() && !excludes.includes(entry)) {
-            traverseDir(entryPath, callback, excludes);
+        if (fs.statSync(entryPath).isDirectory()) {
+            traverseDir(entryPath, callback, excludeReg);
         } else {
-            if (entry.startsWith("_")) return;
             callback(entryPath);
         }
     });
+};
+const posixDirPath = function (dirPath, addTailingSep = true) {
+    return dirPath.split(path.sep).join(path.posix.sep) + (addTailingSep ? path.posix.sep : "");
 };
 
 const examples = (() => {
@@ -39,19 +42,22 @@ const examples = (() => {
         exampleSrcPath,
         filePath => {
             if (extensions.includes(path.extname(filePath))) {
+                const fileSubDir = path.dirname(path.relative(path.resolve(exampleSrcPath), filePath));
+                const fileName = path.basename(filePath, path.extname(filePath));
                 ret.push({
                     filePath,
-                    fileSubDir: path.dirname(filePath.replace(path.resolve(exampleSrcPath) + path.sep, "")),
-                    fileName: path.basename(filePath, path.extname(filePath))
+                    order: order(fileSubDir, fileName),
+                    fileSubDir,
+                    fileName
                 });
             }
         },
-        ["assets"]
+        /^_.+|assets/
     );
-    return ret;
+    return ret.sort((a, b) => (a.order < b.order ? -1 : 1));
 })();
 
-export default {
+module.exports = {
     input: {
         ...examples.reduce((result, item) => {
             result[path.join(item.fileSubDir, item.fileName)] = item.filePath;
@@ -60,7 +66,7 @@ export default {
     },
     output: {
         dir: exampleDistPath,
-        sourcemap: true,
+        sourcemap: process.env.GENERATE === "true" ? false : true,
         format: "esm",
         manualChunks: {
             geomtoy: [config.packages.core.scopedName, config.packages.util.scopedName, config.packages.view.scopedName]
@@ -83,7 +89,7 @@ export default {
                             <meta http-equiv="X-UA-Compatible" content="IE=edge">
                             ${process.env.GENERATE === "true" ? "<base href='/geomtoy-examples/' />" : "<base href='/' />"}
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                            <title>${"Geomtoy examples-" + item.fileSubDir.split(path.sep).join("/") + "/" + item.fileName}</title>
+                            <title>${"Geomtoy examples-" + (item.fileSubDir === "." ? "" : posixDirPath(item.fileSubDir)) + item.fileName}</title>
                             <link rel="canonical" href="https://geomtoy.github.io/" />
 
                             <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
@@ -96,7 +102,7 @@ export default {
                             <meta name="description" content="Geomtoy is a 2D geometry responsive computing, visualizing and interacting library.">
                         </head>
                         <body>
-                            <script src="${item.fileSubDir.split(path.sep).join("/") + "/" + item.fileName + ".js"}" type="module"></script>
+                            <script src="${posixDirPath(item.fileSubDir) + item.fileName + ".js"}" type="module"></script>
                         </body>
                     </html>`;
                 }
@@ -128,7 +134,7 @@ export default {
                         const treeData = examples.reduce(
                             (a, { fileSubDir, fileName }) => {
                                 if (fileSubDir === ".") {
-                                    a.children.push({ type: "file", name: fileName, url: `${path.posix.join(fileSubDir, fileName)}.html` });
+                                    a.children.push({ type: "file", name: fileName, url: `${posixDirPath(fileSubDir) + fileName}.html` });
                                 } else {
                                     const parent = fileSubDir.split(path.sep).reduce((a, c) => {
                                         const index = a.children.findIndex(item => item.name === c);
@@ -139,7 +145,7 @@ export default {
                                             return a.children[l - 1];
                                         }
                                     }, a);
-                                    parent.children.push({ type: "file", name: fileName, url: `${path.posix.join(fileSubDir, fileName)}.html` });
+                                    parent.children.push({ type: "file", name: fileName, url: `${posixDirPath(fileSubDir) + fileName}.html` });
                                 }
                                 return a;
                             },
