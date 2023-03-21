@@ -1,6 +1,6 @@
 import { Anchor, Geometry, Image, Point, Rectangle, Transformation } from "@geomtoy/core";
 import { Box, Vector2 } from "@geomtoy/util";
-import { SubView, View, ViewElement, ViewElementEventType, ViewElementInteractMode, ViewEventObject, ViewEventType } from "@geomtoy/view";
+import { SubView, View, ViewElement, ViewElementEventType, ViewElementType, ViewEventObject, ViewEventType } from "@geomtoy/view";
 import color from "../assets/scripts/color";
 import { fillTransOnly, thinStrokeOnly } from "../assets/scripts/common";
 
@@ -74,15 +74,15 @@ export class TransformOperation {
         const t = this;
 
         this._iconSet1 = {
-            scaleNw: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNwSeUrl, true, Anchor.RightBottom), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            scaleN: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconVUrl, true, Anchor.CenterBottom), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            scaleNe: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNeSwUrl, true, Anchor.LeftBottom), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            scaleE: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconHUrl, true, Anchor.LeftCenter), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            scaleSe: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNwSeUrl, true, Anchor.LeftTop), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            scaleS: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconVUrl, true, Anchor.CenterTop), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            scaleSw: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNeSwUrl, true, Anchor.RightTop), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            scaleW: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconHUrl, true, Anchor.RightCenter), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            translate: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconCUrl, true, Anchor.CenterCenter), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() })
+            scaleNw: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNwSeUrl, true, Anchor.RightBottom), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            scaleN: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconVUrl, true, Anchor.CenterBottom), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            scaleNe: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNeSwUrl, true, Anchor.LeftBottom), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            scaleE: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconHUrl, true, Anchor.LeftCenter), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            scaleSe: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNwSeUrl, true, Anchor.LeftTop), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            scaleS: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconVUrl, true, Anchor.CenterTop), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            scaleSw: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNeSwUrl, true, Anchor.RightTop), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            scaleW: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconHUrl, true, Anchor.RightCenter), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            translate: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconCUrl, true, Anchor.CenterCenter), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() })
         };
 
         this._iconSet1.translate.on(ViewElementEventType.DragStart, function () {
@@ -143,15 +143,15 @@ export class TransformOperation {
         this._iconSet1SubView.add(...Object.values(this._iconSet1));
 
         this._iconSet2 = {
-            rotateNw: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNwUrl, true, Anchor.RightBottom), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            skewN: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconHUrl, true, Anchor.CenterBottom), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            rotateNe: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNeUrl, true, Anchor.LeftBottom), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            skewE: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconVUrl, true, Anchor.LeftCenter), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            rotateSe: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconSeUrl, true, Anchor.LeftTop), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            skewS: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconHUrl, true, Anchor.CenterTop), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            rotateSw: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconSwUrl, true, Anchor.RightTop), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            skewW: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconVUrl, true, Anchor.RightCenter), { zIndex: 2, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() }),
-            dot: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconDotUrl, true, Anchor.CenterCenter), { zIndex: 3, interactMode: ViewElementInteractMode.Operation, ...fillTransOnly() })
+            rotateNw: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNwUrl, true, Anchor.RightBottom), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            skewN: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconHUrl, true, Anchor.CenterBottom), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            rotateNe: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconNeUrl, true, Anchor.LeftBottom), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            skewE: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconVUrl, true, Anchor.LeftCenter), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            rotateSe: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconSeUrl, true, Anchor.LeftTop), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            skewS: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconHUrl, true, Anchor.CenterTop), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            rotateSw: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconSwUrl, true, Anchor.RightTop), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            skewW: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconVUrl, true, Anchor.RightCenter), { zIndex: 2, type: ViewElementType.Operation, ...fillTransOnly() }),
+            dot: new ViewElement(new Image(0, 0, 20, 20, this._iconUrls.iconDotUrl, true, Anchor.CenterCenter), { zIndex: 3, type: ViewElementType.Operation, ...fillTransOnly() })
         };
 
         this._iconSet2.dot
@@ -208,8 +208,8 @@ export class TransformOperation {
     }
     private _initOperation() {
         const t = this;
-        this._operationOrigin = new ViewElement(new Point("plus"), { zIndex: 3, interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("red") });
-        this._operationAction = new ViewElement(new Point("cross"), { zIndex: 3, interactMode: ViewElementInteractMode.Operation, ...thinStrokeOnly("green") });
+        this._operationOrigin = new ViewElement(new Point("plus"), { zIndex: 3, type: ViewElementType.None, ...thinStrokeOnly("red") });
+        this._operationAction = new ViewElement(new Point("cross"), { zIndex: 3, type: ViewElementType.Operation, ...thinStrokeOnly("green") });
 
         this._operationAction.on(ViewElementEventType.DragEnd, function () {
             t._stopOp();
@@ -272,7 +272,7 @@ export class TransformOperation {
 
         this._operationBox = new ViewElement(new Rectangle(), {
             zIndex: 1,
-            interactMode: ViewElementInteractMode.Operation,
+            type: ViewElementType.Operation,
             noDrag: true,
             style: {
                 stroke: color("gray"),

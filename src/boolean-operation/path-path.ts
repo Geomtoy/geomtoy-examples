@@ -1,6 +1,6 @@
 import { BooleanOperation, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand } from "./_common";
@@ -38,9 +38,9 @@ const combined = bo.describe(path1, path2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -59,9 +59,9 @@ const combined = bo.describe(path1, path2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -80,9 +80,9 @@ const combined = bo.describe(path1, path2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -101,9 +101,9 @@ const combined = bo.describe(path1, path2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -122,7 +122,7 @@ const combined = bo.describe(path1, path2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }

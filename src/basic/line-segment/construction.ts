@@ -1,6 +1,6 @@
 import { Bezier, Dynamic, LineSegment, Point, ShapeArray } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -30,9 +30,9 @@ tpl.addSection(`constructor`);
     `
     );
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(lineSegment, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(lineSegment, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }
 
 tpl.addSection(`fromPointAndAngleAndLength`);
@@ -79,6 +79,6 @@ tpl.addSection(`fromPointAndAngleAndLength`);
     pane.addInput(restParams, "length", { min: 0 });
     // #endregion
 
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(lineSegment, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(lineSegment, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

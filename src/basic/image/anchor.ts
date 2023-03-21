@@ -1,5 +1,5 @@
 import { Anchor, EventObject, Image, Point } from "@geomtoy/core";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, lightStrokeFillTrans, markdownHtml } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -45,25 +45,25 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point3, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point4, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point5, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point6, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point7, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point8, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point9, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point1, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point2, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point3, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point4, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point5, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point6, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point7, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point8, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point9, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
 
-    view.add(new ViewElement(image1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image3, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image4, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image5, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image6, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image7, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image8, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image9, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image1, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image2, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image3, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image4, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image5, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image6, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image7, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image8, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image9, { ...lightStrokeFillTrans("gray") }));
 
     card.setDescription("markdown", `\`yAxisPositiveOnBottom\`: true\n\n\`xAxisPositiveOnRight\`: true`);
 }
@@ -75,25 +75,25 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point3, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point4, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point5, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point6, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point7, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point8, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point9, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point1, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point2, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point3, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point4, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point5, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point6, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point7, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point8, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point9, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
 
-    view.add(new ViewElement(image1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image3, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image4, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image5, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image6, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image7, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image8, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image9, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image1, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image2, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image3, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image4, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image5, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image6, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image7, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image8, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image9, { ...lightStrokeFillTrans("gray") }));
     card.setDescription("markdown", `\`yAxisPositiveOnBottom\`: true\n\n\`xAxisPositiveOnRight\`: false`);
 }
 
@@ -104,25 +104,25 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point3, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point4, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point5, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point6, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point7, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point8, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point9, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point1, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point2, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point3, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point4, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point5, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point6, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point7, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point8, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point9, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
 
-    view.add(new ViewElement(image1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image3, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image4, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image5, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image6, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image7, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image8, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image9, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image1, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image2, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image3, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image4, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image5, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image6, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image7, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image8, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image9, { ...lightStrokeFillTrans("gray") }));
     card.setDescription("markdown", `\`yAxisPositiveOnBottom\`: false\n\n\`xAxisPositiveOnRight\`: true`);
 }
 
@@ -133,25 +133,25 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point3, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point4, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point5, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point6, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point7, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point8, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
-    view.add(new ViewElement(point9, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point1, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point2, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point3, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point4, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point5, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point6, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point7, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point8, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
+    view.add(new ViewElement(point9, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
 
-    view.add(new ViewElement(image1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image3, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image4, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image5, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image6, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image7, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image8, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image9, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image1, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image2, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image3, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image4, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image5, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image6, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image7, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image8, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image9, { ...lightStrokeFillTrans("gray") }));
     card.setDescription("markdown", `\`yAxisPositiveOnBottom\`: false\n\n\`xAxisPositiveOnRight\`: false`);
 }
 tpl.addMarkdown(`

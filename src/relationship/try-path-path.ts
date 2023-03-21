@@ -1,6 +1,6 @@
 import { Arc, Path, PathBezierToCommand, PathLineToCommand, Point, Polygon, Relationship, ShapeObject } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import tpl from "../assets/templates/tpl-renderer";
 import { arrayResult, trileanResult } from "./_common";
 
@@ -37,8 +37,8 @@ function showBezierAssets(view: View, path: Path, uuid: string) {
     } else {
         cp1 = new Point(controlPoint1X, controlPoint1Y);
         cp2 = new Point(controlPoint2X, controlPoint2Y);
-        cp1Element = new ViewElement(cp1, { interactMode: ViewElementInteractMode.Activation });
-        cp2Element = new ViewElement(cp2, { interactMode: ViewElementInteractMode.Activation });
+        cp1Element = new ViewElement(cp1, {});
+        cp2Element = new ViewElement(cp2, {});
         pathCpElements[uuid] = [cp1Element, cp2Element];
     }
 
@@ -73,6 +73,6 @@ const card = tpl.addCard({ canvasId: Utility.uuid() });
 const view = new View({}, new CanvasRenderer(card.canvas, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
-view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.None }));
+view.add(new ViewElement(path, { type: ViewElementType.None }));
 
 showBezierControlPoints(view, path, path.getUuidOfIndex(1));

@@ -1,5 +1,5 @@
 import { Bezier, GeometryArray, LineSegment, Point, QuadraticBezier, Rectangle } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -58,14 +58,14 @@ const boundingBoxRectangle = new Rectangle().bind([bezier, "any"], function (e) 
     const controlLineSegment2 = new LineSegment().bind([controlPoint1, "any"], [controlPoint2, "any"], twoPointsLineSegment);
     const controlLineSegment3 = new LineSegment().bind([controlPoint2, "any"], [point2, "any"], twoPointsLineSegment);
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlPoint1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlPoint2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(extremePoints, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("green") }));
-    view.add(new ViewElement(boundingBoxRectangle, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("purple") }));
-    view.add(new ViewElement(controlLineSegment1, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(controlLineSegment2, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(controlLineSegment3, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlPoint1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlPoint2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(extremePoints, { type: ViewElementType.None, ...lightStrokeOnly("green") }));
+    view.add(new ViewElement(boundingBoxRectangle, { type: ViewElementType.None, ...lightStrokeOnly("purple") }));
+    view.add(new ViewElement(controlLineSegment1, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(controlLineSegment2, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(controlLineSegment3, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(bezier, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

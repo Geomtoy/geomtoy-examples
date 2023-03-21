@@ -1,6 +1,6 @@
 import { Circle, Dynamic, Point, Vector } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -31,8 +31,8 @@ tpl.title("Circle tangent, normal vector");
             nvs.push(this.getNormalVectorAtAngle(a));
         }
         tangentNormalSubView.elements = [
-            ...tvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("red") })),
-            ...nvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("blue") }))
+            ...tvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("red") })),
+            ...nvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("blue") }))
         ];
     });
 
@@ -58,8 +58,8 @@ circle.on("any", function () {
         nvs.push(this.getNormalVectorAtAngle(a));
     }
     tangentNormalSubView.elements = [
-        ...tvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("red") })),
-        ...nvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("blue") }))
+        ...tvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("red") })),
+        ...nvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("blue") }))
     ];
 });
         `
@@ -72,6 +72,6 @@ circle.on("any", function () {
     circleFolder.addInput(restParams, "radius", { min: 0 });
     // #endregion
     view.addSubView(tangentNormalSubView);
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

@@ -1,6 +1,6 @@
 import { Dynamic, Inversion, Point, Ray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, strokeOnly, strokeFill, thinStrokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -65,8 +65,8 @@ tpl.title("Inversion: inverse of point");
     point.on("any", () => inputPoint.refresh());
     // #endregion
 
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("teal") }));
-    view.add(new ViewElement(inversionCenterPoint, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(pointInverse, { interactMode: ViewElementInteractMode.None, ...strokeOnly("gray") }));
-    view.add(new ViewElement(ray, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("gray") }));
+    view.add(new ViewElement(point, { ...lightStrokeFill("teal") }));
+    view.add(new ViewElement(inversionCenterPoint, { ...strokeFill("brown") }));
+    view.add(new ViewElement(pointInverse, { type: ViewElementType.None, ...strokeOnly("gray") }));
+    view.add(new ViewElement(ray, { type: ViewElementType.None, ...thinStrokeOnly("gray") }));
 }

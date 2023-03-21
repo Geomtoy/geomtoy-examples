@@ -1,6 +1,6 @@
 import { BooleanOperation, Geomtoy, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { newElement, lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPolygonVertex } from "./_common";
@@ -50,9 +50,9 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 {
     tpl.addSection("Intersection");
@@ -70,9 +70,9 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 
 {
@@ -92,9 +92,9 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 
 {
@@ -114,9 +114,9 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 
 {
@@ -136,7 +136,7 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }

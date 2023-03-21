@@ -1,6 +1,6 @@
 import { Circle, Inversion, Line, ShapeArray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, thinStrokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -40,8 +40,8 @@ const inverses = new ShapeArray(
     `
     );
 
-    view.add(new ViewElement(lines, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view.add(new ViewElement(inverses, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
+    view.add(new ViewElement(lines, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view.add(new ViewElement(inverses, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
 }
 
 {
@@ -80,8 +80,8 @@ const inverses = new ShapeArray(
 );
     `
     );
-    view.add(new ViewElement(circles, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view.add(new ViewElement(inverses, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
+    view.add(new ViewElement(circles, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view.add(new ViewElement(inverses, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
 }
 
 {
@@ -125,6 +125,6 @@ const inverses = new ShapeArray(
 );
     `
     );
-    view.add(new ViewElement(lines, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("gray") }));
-    view.add(new ViewElement(inverses, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("teal") }));
+    view.add(new ViewElement(lines, { type: ViewElementType.None, ...thinStrokeOnly("gray") }));
+    view.add(new ViewElement(inverses, { type: ViewElementType.None, ...lightStrokeFill("teal") }));
 }

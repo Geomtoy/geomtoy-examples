@@ -1,6 +1,6 @@
 import { LineSegment, Path, PathCommandType, Point, Polygon, Vector } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { SubView, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { SubView, ViewElement, ViewElementType } from "@geomtoy/view";
 import { dashedThinStroke, lightStrokeFill, strokeFill } from "../assets/scripts/common";
 import { twoPointsLineSegment } from "../assets/scripts/general-construction";
 
@@ -12,32 +12,32 @@ export function showCommands(path: Path) {
 
     commands.forEach((cmd, index) => {
         if (cmd.type == PathCommandType.MoveTo) {
-            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...strokeFill("brown") });
+            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { zIndex: 10, ...strokeFill("brown") });
             pathSubView.add(pointVe);
             path.bind([pointVe.shape, "any"], function (e) {
                 this.setCommand(index, Path.moveTo(e.target.coordinates));
             });
         }
         if (cmd.type === PathCommandType.LineTo) {
-            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...strokeFill("brown") });
+            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { zIndex: 10, ...strokeFill("brown") });
             pathSubView.add(pointVe);
             path.bind([pointVe.shape, "any"], function (e) {
                 this.setCommand(index, Path.lineTo(e.target.coordinates));
             });
         }
         if (cmd.type === PathCommandType.QuadraticBezierTo) {
-            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...strokeFill("brown") });
+            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { zIndex: 10, ...strokeFill("brown") });
             pathSubView.add(pointVe);
 
-            const controlPointVe = new ViewElement(new Point(cmd.controlPointX, cmd.controlPointY), { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...lightStrokeFill("purple") });
+            const controlPointVe = new ViewElement(new Point(cmd.controlPointX, cmd.controlPointY), { zIndex: 10, ...lightStrokeFill("purple") });
 
             const controlLs1Ve = new ViewElement(new LineSegment().bind([pathSubView.elements[index - 1].shape as Point, "any"], [controlPointVe.shape, "any"], twoPointsLineSegment), {
-                interactMode: ViewElementInteractMode.None,
+                type: ViewElementType.None,
                 zIndex: 10,
                 ...dashedThinStroke("gray")
             });
             const controlLs2Ve = new ViewElement(new LineSegment().bind([pointVe.shape, "any"], [controlPointVe.shape, "any"], twoPointsLineSegment), {
-                interactMode: ViewElementInteractMode.None,
+                type: ViewElementType.None,
                 zIndex: 10,
                 ...dashedThinStroke("gray")
             });
@@ -48,24 +48,24 @@ export function showCommands(path: Path) {
             });
         }
         if (cmd.type === PathCommandType.BezierTo) {
-            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...strokeFill("brown") });
+            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { zIndex: 10, ...strokeFill("brown") });
             pathSubView.add(pointVe);
 
-            const controlPoint1Ve = new ViewElement(new Point(cmd.controlPoint1X, cmd.controlPoint1Y), { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...lightStrokeFill("orange") });
-            const controlPoint2Ve = new ViewElement(new Point(cmd.controlPoint2X, cmd.controlPoint2Y), { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...lightStrokeFill("orange") });
+            const controlPoint1Ve = new ViewElement(new Point(cmd.controlPoint1X, cmd.controlPoint1Y), { zIndex: 10, ...lightStrokeFill("orange") });
+            const controlPoint2Ve = new ViewElement(new Point(cmd.controlPoint2X, cmd.controlPoint2Y), { zIndex: 10, ...lightStrokeFill("orange") });
 
             const controlLs1Ve = new ViewElement(new LineSegment().bind([pathSubView.elements[index - 1].shape as Point, "any"], [controlPoint1Ve.shape, "any"], twoPointsLineSegment), {
-                interactMode: ViewElementInteractMode.None,
+                type: ViewElementType.None,
                 zIndex: 10,
                 ...dashedThinStroke("gray")
             });
             const controlLs2Ve = new ViewElement(new LineSegment().bind([controlPoint1Ve.shape, "any"], [controlPoint2Ve.shape, "any"], twoPointsLineSegment), {
-                interactMode: ViewElementInteractMode.None,
+                type: ViewElementType.None,
                 zIndex: 10,
                 ...dashedThinStroke("gray")
             });
             const controlLs3Ve = new ViewElement(new LineSegment().bind([controlPoint2Ve.shape, "any"], [pointVe.shape, "any"], twoPointsLineSegment), {
-                interactMode: ViewElementInteractMode.None,
+                type: ViewElementType.None,
                 zIndex: 10,
                 ...dashedThinStroke("gray")
             });
@@ -76,7 +76,7 @@ export function showCommands(path: Path) {
             });
         }
         if (cmd.type === PathCommandType.ArcTo) {
-            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...strokeFill("brown") });
+            const pointVe = new ViewElement(new Point(cmd.x, cmd.y), { zIndex: 10, ...strokeFill("brown") });
             pathSubView.add(pointVe);
 
             const { x, y, largeArc, positive, radiusX: rx, radiusY: ry, rotation } = cmd;
@@ -98,7 +98,7 @@ export function showCommands(path: Path) {
                     .on("any", function () {
                         this.data("vector", Vector.fromTwoPoints(pointVe.shape, this));
                     }),
-                { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...lightStrokeFill("lime") }
+                { zIndex: 10, ...lightStrokeFill("lime") }
             );
 
             const rotationInitVector = Vector.fromAngleAndMagnitude(rotation, rx + ry);
@@ -114,16 +114,16 @@ export function showCommands(path: Path) {
                         this.data("vector", Vector.fromTwoPoints(pointVe.shape, this));
                     }),
 
-                { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...lightStrokeFill("teal") }
+                { zIndex: 10, ...lightStrokeFill("teal") }
             );
 
             const adjustLsVe = new ViewElement(new LineSegment().bind([pointVe.shape, "any"], [adjustPointVe.shape, "any"], twoPointsLineSegment), {
-                interactMode: ViewElementInteractMode.None,
+                type: ViewElementType.None,
                 zIndex: 10,
                 ...dashedThinStroke("gray")
             });
             const rotationLsVe = new ViewElement(new LineSegment().bind([pointVe.shape, "any"], [rotationPointVe.shape, "any"], twoPointsLineSegment), {
-                interactMode: ViewElementInteractMode.None,
+                type: ViewElementType.None,
                 zIndex: 10,
                 ...dashedThinStroke("gray")
             });
@@ -168,7 +168,7 @@ export function showVertices(polygon: Polygon) {
     const vertices = polygon.vertices;
 
     vertices.forEach((vtx, index) => {
-        const pointVe = new ViewElement(new Point(vtx.x, vtx.y), { interactMode: ViewElementInteractMode.Activation, zIndex: 10, ...strokeFill("brown") });
+        const pointVe = new ViewElement(new Point(vtx.x, vtx.y), { zIndex: 10, ...strokeFill("brown") });
         polygonSubView.add(pointVe);
         polygon.bind([pointVe.shape, "any"], function (e) {
             this.setVertex(index, Polygon.vertex(e.target.coordinates));

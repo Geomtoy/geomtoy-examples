@@ -1,6 +1,6 @@
 import { LineSegment, Point, QuadraticBezier } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
 import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -68,10 +68,10 @@ tpl.title("Quadratic bezier length");
     pane.addMonitor(lengths, "lengthBySvg", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
     // #endregion
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlLineSegment1, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("gray") }));
-    view.add(new ViewElement(controlLineSegment2, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("gray") }));
-    view.add(new ViewElement(quadraticBezier, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlLineSegment1, { type: ViewElementType.None, ...thinStrokeOnly("gray") }));
+    view.add(new ViewElement(controlLineSegment2, { type: ViewElementType.None, ...thinStrokeOnly("gray") }));
+    view.add(new ViewElement(quadraticBezier, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

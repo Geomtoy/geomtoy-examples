@@ -1,6 +1,6 @@
 import { Bezier, Circle, Dynamic, LineSegment, Point, Vector } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
 import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -40,8 +40,8 @@ tpl.title("Bezier tangent, normal vector and curvature");
             nvs.push(this.getNormalVectorAtTime(t).scalarMultiply(this.getCurvatureAtTime(t) * 10));
         }
         tangentNormalSubView.elements = [
-            ...tvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("red") })),
-            ...nvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("blue") }))
+            ...tvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("red") })),
+            ...nvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("blue") }))
         ];
     });
 
@@ -79,8 +79,8 @@ bezier.on("any", function () {
         nvs.push(this.getNormalVectorAtTime(t).scalarMultiply(this.getCurvatureAtTime(t) * 10));
     }
     tangentNormalSubView.elements = [
-        ...tvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("red") })),
-        ...nvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("blue") }))
+        ...tvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("red") })),
+        ...nvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("blue") }))
     ];
 });
 
@@ -102,13 +102,13 @@ const osculatingCircle = new Circle().bind([bezier, "any"], [stepParams, "step"]
     const controlLineSegment3 = new LineSegment().bind([controlPoint2, "any"], [point2, "any"], twoPointsLineSegment);
 
     view.addSubView(tangentNormalSubView);
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlPoint1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlPoint2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlLineSegment1, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(controlLineSegment2, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(controlLineSegment3, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
-    view.add(new ViewElement(osculatingCircle, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("orange") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlPoint1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlPoint2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlLineSegment1, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(controlLineSegment2, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(controlLineSegment3, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(bezier, { type: ViewElementType.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(osculatingCircle, { type: ViewElementType.None, ...lightStrokeOnly("orange") }));
 }

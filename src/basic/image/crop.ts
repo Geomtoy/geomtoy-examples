@@ -1,5 +1,5 @@
 import { Anchor, Image } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFillTrans, markdownHtml } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -27,7 +27,7 @@ tpl.addSection("Resize only");
 const image = new Image(0, 0, 240, 240, imageUrl, false);
         `
     );
-    view.add(new ViewElement(image, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
+    view.add(new ViewElement(image, { ...lightStrokeFillTrans("blue") }));
 }
 tpl.addSection("Crop only");
 {
@@ -46,7 +46,7 @@ tpl.addSection("Crop only");
 const image = new Image(0, 0, 360, 360, 1000, 60, 360, 360, imageUrl, false);
         `
     );
-    view.add(new ViewElement(image, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
+    view.add(new ViewElement(image, { ...lightStrokeFillTrans("blue") }));
 }
 tpl.addSection("Crop and resize");
 {
@@ -65,6 +65,6 @@ tpl.addSection("Crop and resize");
 const image = new Image(0, 0, 80, 84, 560, 540, 800, 840, imageUrl, false);
         `
     );
-    view.add(new ViewElement(image, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
+    view.add(new ViewElement(image, { ...lightStrokeFillTrans("blue") }));
 }
 tpl.addNote(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`);

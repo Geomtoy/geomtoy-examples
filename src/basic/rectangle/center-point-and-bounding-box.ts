@@ -1,5 +1,5 @@
 import { Dynamic, Point, Rectangle } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -62,8 +62,8 @@ const boundingBox = new Rectangle().bind([rectangle, "any"], function (e) {
     rectFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     // #endregion
 
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("pink") }));
-    view.add(new ViewElement(boundingBox, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("purple") }));
-    view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(centerPoint, { type: ViewElementType.None, ...lightStrokeFill("pink") }));
+    view.add(new ViewElement(boundingBox, { type: ViewElementType.None, ...lightStrokeOnly("purple") }));
+    view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

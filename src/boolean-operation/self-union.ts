@@ -1,6 +1,6 @@
 import { Arc, Bezier, BooleanOperation, Compound, Geomtoy, Path, Polygon, QuadraticBezier } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { newElement, lightStroke, lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand, randomPolygonVertex } from "./_common";
@@ -141,13 +141,13 @@ const sl = new BooleanOperation("sweep-line");
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 
     // description.annotations.forEach(sfa=>{
-    //     view2.add(new ViewElement(sfa.segment, { interactMode: ViewElementInteractMode.None, ...lightStroke("purple") }));
-    //     view2.add(new ViewElement(sfa.segment.point1, { interactMode: ViewElementInteractMode.None, ...lightStroke("gray") }));
-    //     view2.add(new ViewElement(sfa.segment.point2, { interactMode: ViewElementInteractMode.None, ...lightStroke("gray") }));
+    //     view2.add(new ViewElement(sfa.segment, { type: ViewElementType.None, ...lightStroke("purple") }));
+    //     view2.add(new ViewElement(sfa.segment.point1, { type: ViewElementType.None, ...lightStroke("gray") }));
+    //     view2.add(new ViewElement(sfa.segment.point2, { type: ViewElementType.None, ...lightStroke("gray") }));
     // })
 }
 // {
@@ -166,9 +166,9 @@ const sl = new BooleanOperation("sweep-line");
 //     view2.startInteractive();
 //     viewCollection.push(view1, view2);
 
-//     view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-//     view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-//     view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+//     view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+//     view1.add(new ViewElement(path2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+//     view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 // }
 
 // {
@@ -188,9 +188,9 @@ const sl = new BooleanOperation("sweep-line");
 //     view2.startInteractive();
 //     viewCollection.push(view1, view2);
 
-//     view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-//     view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-//     view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+//     view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+//     view1.add(new ViewElement(path2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+//     view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 // }
 
 // {
@@ -210,9 +210,9 @@ const sl = new BooleanOperation("sweep-line");
 //     view2.startInteractive();
 //     viewCollection.push(view1, view2);
 
-//     view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-//     view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-//     view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+//     view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+//     view1.add(new ViewElement(path2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+//     view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 // }
 
 // {
@@ -232,7 +232,7 @@ const sl = new BooleanOperation("sweep-line");
 //     view2.startInteractive();
 //     viewCollection.push(view1, view2);
 
-//     view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-//     view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-//     view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+//     view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+//     view1.add(new ViewElement(path2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+//     view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 // }

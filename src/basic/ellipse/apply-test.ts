@@ -1,7 +1,6 @@
-import Geomtoy, { type EventObject, type Text, Point, type Arc, Ellipse, Dynamic, Transformation, Arbitrary } from "@geomtoy/core";
-import { Maths, Polynomial, Utility } from "@geomtoy/util";
-import { View, ViewElement, CanvasRenderer, SvgRenderer, ViewElementInteractMode } from "@geomtoy/view";
-import color from "../../assets/scripts/color";
+import { Arbitrary, Dynamic, Ellipse, Point, Transformation } from "@geomtoy/core";
+import { Maths } from "@geomtoy/util";
+import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
 import { strokeFill, strokeOnly } from "../../assets/scripts/common";
 // import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -44,7 +43,7 @@ tpl.title("Ellipse transformation");
     restParamsFolder.addInput(restParams, "rotation");
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(ellipse, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
-    view.add(new ViewElement(arbitrary, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("red") }));
+    view.add(new ViewElement(centerPoint, { ...strokeFill("brown") }));
+    view.add(new ViewElement(ellipse, { ...strokeOnly("brown") }));
+    view.add(new ViewElement(arbitrary, { ...strokeOnly("red") }));
 }

@@ -1,6 +1,6 @@
 import Geomtoy, { Arc, Point, Polygon, Relationship } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import tpl from "../assets/templates/tpl-renderer";
 import { arrayResult, trileanResult } from "./_common";
 
@@ -18,6 +18,6 @@ const card = tpl.addCard({ canvasId: Utility.uuid() });
 const view = new View({}, new CanvasRenderer(card.canvas, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
-view.add(new ViewElement(g1, { interactMode: ViewElementInteractMode.None, autoUpdateView: true, style: redStrokeStyle }));
-view.add(new ViewElement(g2, { interactMode: ViewElementInteractMode.None, autoUpdateView: true, style: blueStrokeStyle }));
+view.add(new ViewElement(g1, { type: ViewElementType.None, autoUpdateView: true, style: redStrokeStyle }));
+view.add(new ViewElement(g2, { type: ViewElementType.None, autoUpdateView: true, style: blueStrokeStyle }));
 card.setDescription("markdown", "Result: " + result?.toString() ?? "undefined");

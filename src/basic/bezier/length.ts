@@ -1,5 +1,5 @@
 import { Bezier, LineSegment, Point } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { dashedThinStroke, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import { appendSvgElement } from "../../assets/scripts/svg-append";
@@ -73,12 +73,12 @@ const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint
     lengthFolder.addMonitor(lengths, "lengthBySvg", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
     // #endregion
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlPoint1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlPoint2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(controlLineSegment1, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(controlLineSegment2, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(controlLineSegment3, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlPoint1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlPoint2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlLineSegment1, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(controlLineSegment2, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(controlLineSegment3, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(bezier, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

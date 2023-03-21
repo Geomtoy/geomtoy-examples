@@ -1,5 +1,5 @@
 import { Bezier, Dynamic, EventObject, LineSegment, Point, QuadraticBezier, SealedShapeObject, ShapeArray } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, dashedThinStroke, lightStrokeFill, strokeFill, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
 import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -35,12 +35,12 @@ const quadraticBezier = new QuadraticBezier().bind([point1, "any"], [point2, "an
     const controlLineSegment1 = new LineSegment().bind([point1, "any"], [controlPoint, "any"], twoPointsLineSegment);
     const controlLineSegment2 = new LineSegment().bind([controlPoint, "any"], [point2, "any"], twoPointsLineSegment);
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(controlPoint, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(controlLineSegment1, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(controlLineSegment2, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(quadraticBezier, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...strokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...strokeFill("brown") }));
+    view.add(new ViewElement(controlPoint, { ...strokeFill("brown") }));
+    view.add(new ViewElement(controlLineSegment1, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(controlLineSegment2, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(quadraticBezier, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }
 
 tpl.addSection(`construction-2: fromThreePointsAndTime`);
@@ -109,10 +109,10 @@ const quadraticBezier = new QuadraticBezier().bind([point1, "any"], [point2, "an
         }
     });
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(point3, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(bindingShapeObject.items.controlPoint, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("gray") }));
-    view.add(new ViewElement(bindingShapeObject.items.controlLineSegments, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(quadraticBezier, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...strokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...strokeFill("brown") }));
+    view.add(new ViewElement(point3, { ...strokeFill("brown") }));
+    view.add(new ViewElement(bindingShapeObject.items.controlPoint, { type: ViewElementType.None, ...thinStrokeOnly("gray") }));
+    view.add(new ViewElement(bindingShapeObject.items.controlLineSegments, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(quadraticBezier, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

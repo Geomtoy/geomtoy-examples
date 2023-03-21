@@ -1,6 +1,6 @@
 import { Arc, Dynamic, LineSegment, Point, SealedShapeObject } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -31,7 +31,7 @@ tpl.title("Arc closest point");
         point: new Point("cross"),
         lineSegment: new LineSegment()
     }).bind([point, "any"], [arc, "any"], function (e1, e2) {
-        this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFrom(e1.target)[0] : null);
+        this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFromPoint(e1.target)[0] : null);
         this.items.lineSegment.copyFrom(new LineSegment(e1.target, this.items.point));
     });
 
@@ -58,7 +58,7 @@ const closestPointLineSegment = new SealedShapeObject({
     point: new Point("cross"),
     lineSegment: new LineSegment()
 }).bind([point, "any"], [arc, "any"], function (e1, e2) {
-    this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFrom(e1.target) : null);
+    this.items.point.copyFrom(e2.target.isValid() ? e2.target.getClosestPointFromPoint(e1.target) : null);
     this.items.lineSegment.copyFrom(new LineSegment(e1.target, this.items.point));
 });
     `
@@ -77,9 +77,9 @@ const closestPointLineSegment = new SealedShapeObject({
     closestPointFolder.addMonitor(closestPointLineSegment.items.point, "x");
     closestPointFolder.addMonitor(closestPointLineSegment.items.point, "y");
     // #endregion
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("pink") }));
-    view.add(new ViewElement(closestPointLineSegment.items.point, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("pink") }));
-    view.add(new ViewElement(closestPointLineSegment.items.lineSegment, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point, { ...lightStrokeFill("pink") }));
+    view.add(new ViewElement(closestPointLineSegment.items.point, { type: ViewElementType.None, ...lightStrokeOnly("pink") }));
+    view.add(new ViewElement(closestPointLineSegment.items.lineSegment, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(arc, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

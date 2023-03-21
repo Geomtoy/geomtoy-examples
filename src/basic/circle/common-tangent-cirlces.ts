@@ -1,5 +1,5 @@
 import { Circle, GeometryArray, Point } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -50,13 +50,13 @@ tpl.title("Common tangent circles of two circles through a point");
     `
     );
 
-    view.add(new ViewElement(centerPoint1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("red") }));
-    view.add(new ViewElement(radiusControlPoint1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("red") }));
-    view.add(new ViewElement(centerPoint2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("blue") }));
-    view.add(new ViewElement(radiusControlPoint2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("blue") }));
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("teal") }));
+    view.add(new ViewElement(centerPoint1, { ...lightStrokeFill("red") }));
+    view.add(new ViewElement(radiusControlPoint1, { ...lightStrokeFill("red") }));
+    view.add(new ViewElement(centerPoint2, { ...lightStrokeFill("blue") }));
+    view.add(new ViewElement(radiusControlPoint2, { ...lightStrokeFill("blue") }));
+    view.add(new ViewElement(point, { ...lightStrokeFill("teal") }));
 
-    view.add(new ViewElement(circle1, { interactMode: ViewElementInteractMode.None, ...strokeOnly("red") }));
-    view.add(new ViewElement(circle2, { interactMode: ViewElementInteractMode.None, ...strokeOnly("blue") }));
-    view.add(new ViewElement(geometryArray, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("orange") }));
+    view.add(new ViewElement(circle1, { type: ViewElementType.None, ...strokeOnly("red") }));
+    view.add(new ViewElement(circle2, { type: ViewElementType.None, ...strokeOnly("blue") }));
+    view.add(new ViewElement(geometryArray, { type: ViewElementType.None, ...lightStrokeOnly("orange") }));
 }

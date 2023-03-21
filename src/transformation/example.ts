@@ -1,6 +1,6 @@
 import { Arbitrary, Ellipse, Geometry, Line, Path, Point, Polygon, Rectangle, Transformation } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { newElement, strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { TransformOperation } from "./_TransformOperation";
@@ -79,12 +79,12 @@ The summary below will display the original geometry, the transformation generat
 
     new TransformOperation(view).enable();
 
-    view.add(new ViewElement(pointWithTransform, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("green") }));
-    view.add(new ViewElement(lineWithTransform, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("teal") }));
-    view.add(new ViewElement(rectangleWithTransform, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("red") }));
-    view.add(new ViewElement(ellipseWithTransform, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("orange") }));
-    view.add(new ViewElement(pathWithTransform, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("purple") }));
-    view.add(new ViewElement(polygonWithTransform, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("indigo") }));
+    view.add(new ViewElement(pointWithTransform, { ...strokeFill("green") }));
+    view.add(new ViewElement(lineWithTransform, { ...strokeFill("teal") }));
+    view.add(new ViewElement(rectangleWithTransform, { ...strokeFill("red") }));
+    view.add(new ViewElement(ellipseWithTransform, { ...strokeFill("orange") }));
+    view.add(new ViewElement(pathWithTransform, { ...strokeFill("purple") }));
+    view.add(new ViewElement(polygonWithTransform, { ...strokeFill("indigo") }));
 
     card.setDescription("markdown", "See summary below:");
 

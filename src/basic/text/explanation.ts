@@ -1,5 +1,5 @@
 import { Anchor, Image } from "@geomtoy/core";
-import { SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFillTrans, markdownHtml } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -118,8 +118,8 @@ const image1 = new Image(100, 100, 36, 36, 120, 60, 360, 360, imageUrl, true);
 const image2 = new Image(200, 200, 72, 72, 1440, 540, 360, 360, imageUrl, true, Anchor.RightBottom);
         `
     );
-    view.add(new ViewElement(image, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
-    view.add(new ViewElement(image1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
-    view.add(new ViewElement(image2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("blue") }));
+    view.add(new ViewElement(image, { ...lightStrokeFillTrans("blue") }));
+    view.add(new ViewElement(image1, { ...lightStrokeFillTrans("blue") }));
+    view.add(new ViewElement(image2, { ...lightStrokeFillTrans("blue") }));
 }
 tpl.addNote(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`);

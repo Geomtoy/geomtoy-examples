@@ -114,3 +114,7 @@ export function newElement(htmlString: string) {
     const document = new DOMParser().parseFromString(htmlString, "text/html");
     return document.body.firstElementChild as HTMLElement;
 }
+
+export function tagToEntity(html: string) {
+    return html.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}

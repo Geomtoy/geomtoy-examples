@@ -1,6 +1,6 @@
 import { Path, PathCommandType, Point, Polygon, ShapeArray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, markdownHtml, strokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -43,5 +43,5 @@ const path = new Path([
 ], true);
         `
     );
-    view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
+    view.add(new ViewElement(path, { ...strokeFill("brown") }));
 }

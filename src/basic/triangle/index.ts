@@ -1,5 +1,5 @@
 import { Circle, Line, LineSegment, Point, SealedShapeArray, Text, Triangle } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { fillOnly, mathFont, strokeFill, strokeOnly, thinStrokeFill, thinStrokeOnly } from "../../assets/scripts/common";
 import { locateLabel } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -122,35 +122,35 @@ tpl.title("Triangle");
     });
 
     const optionElements = {
-        centroidPoint: new ViewElement(centroidPoint, { interactMode: ViewElementInteractMode.None, ...thinStrokeFill("amber") }),
-        medianSegments: new ViewElement(medianSegments, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("amber") }),
+        centroidPoint: new ViewElement(centroidPoint, { type: ViewElementType.None, ...thinStrokeFill("amber") }),
+        medianSegments: new ViewElement(medianSegments, { type: ViewElementType.None, ...thinStrokeOnly("amber") }),
 
-        angleBisectingSegments: new ViewElement(angleBisectingSegments, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("deepOrange") }),
-        incenterPoint: new ViewElement(incenterPoint, { interactMode: ViewElementInteractMode.None, ...thinStrokeFill("deepOrange") }),
-        inscribedCircle: new ViewElement(inscribedCircle, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("deepOrange") }),
+        angleBisectingSegments: new ViewElement(angleBisectingSegments, { type: ViewElementType.None, ...thinStrokeOnly("deepOrange") }),
+        incenterPoint: new ViewElement(incenterPoint, { type: ViewElementType.None, ...thinStrokeFill("deepOrange") }),
+        inscribedCircle: new ViewElement(inscribedCircle, { type: ViewElementType.None, ...thinStrokeOnly("deepOrange") }),
 
-        orthocenterPoint: new ViewElement(orthocenterPoint, { interactMode: ViewElementInteractMode.None, ...thinStrokeFill("purple") }),
-        altitudeLinesL: new ViewElement(altitudeLines, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("purple") }),
-        orthicTriangle: new ViewElement(orthicTriangle, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("purple") }),
-        polarCircle: new ViewElement(polarCircle, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("purple") }),
+        orthocenterPoint: new ViewElement(orthocenterPoint, { type: ViewElementType.None, ...thinStrokeFill("purple") }),
+        altitudeLinesL: new ViewElement(altitudeLines, { type: ViewElementType.None, ...thinStrokeOnly("purple") }),
+        orthicTriangle: new ViewElement(orthicTriangle, { type: ViewElementType.None, ...thinStrokeOnly("purple") }),
+        polarCircle: new ViewElement(polarCircle, { type: ViewElementType.None, ...thinStrokeOnly("purple") }),
 
-        medialTriangle: new ViewElement(medialTriangle, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("green") }),
-        antimedialTriangle: new ViewElement(antimedialTriangle, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("green") }),
+        medialTriangle: new ViewElement(medialTriangle, { type: ViewElementType.None, ...thinStrokeOnly("green") }),
+        antimedialTriangle: new ViewElement(antimedialTriangle, { type: ViewElementType.None, ...thinStrokeOnly("green") }),
 
-        perpendicularlyBisectingLines: new ViewElement(perpendicularlyBisectingLines, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("teal") }),
-        circumcenterPoint: new ViewElement(circumcenterPoint, { interactMode: ViewElementInteractMode.None, ...thinStrokeFill("teal") }),
-        circumscribedCircle: new ViewElement(circumscribedCircle, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("teal") }),
+        perpendicularlyBisectingLines: new ViewElement(perpendicularlyBisectingLines, { type: ViewElementType.None, ...thinStrokeOnly("teal") }),
+        circumcenterPoint: new ViewElement(circumcenterPoint, { type: ViewElementType.None, ...thinStrokeFill("teal") }),
+        circumscribedCircle: new ViewElement(circumscribedCircle, { type: ViewElementType.None, ...thinStrokeOnly("teal") }),
 
-        escenterPoints: new ViewElement(escenterPoints, { interactMode: ViewElementInteractMode.None, ...thinStrokeFill("pink") }),
-        escribedCircles: new ViewElement(escribedCircles, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("pink") }),
+        escenterPoints: new ViewElement(escenterPoints, { type: ViewElementType.None, ...thinStrokeFill("pink") }),
+        escribedCircles: new ViewElement(escribedCircles, { type: ViewElementType.None, ...thinStrokeOnly("pink") }),
 
-        symmedianSegments: new ViewElement(symmedianSegments, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("indigo") }),
-        lemoinePoint: new ViewElement(lemoinePoint, { interactMode: ViewElementInteractMode.None, ...thinStrokeFill("indigo") }),
+        symmedianSegments: new ViewElement(symmedianSegments, { type: ViewElementType.None, ...thinStrokeOnly("indigo") }),
+        lemoinePoint: new ViewElement(lemoinePoint, { type: ViewElementType.None, ...thinStrokeFill("indigo") }),
 
-        eulerLine: new ViewElement(eulerLine, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("blue") }),
+        eulerLine: new ViewElement(eulerLine, { type: ViewElementType.None, ...thinStrokeOnly("blue") }),
 
-        ninePointCenterPoint: new ViewElement(ninePointCenterPoint, { interactMode: ViewElementInteractMode.None, ...thinStrokeFill("lime") }),
-        ninePointCircle: new ViewElement(ninePointCircle, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("lime") })
+        ninePointCenterPoint: new ViewElement(ninePointCenterPoint, { type: ViewElementType.None, ...thinStrokeFill("lime") }),
+        ninePointCircle: new ViewElement(ninePointCircle, { type: ViewElementType.None, ...thinStrokeOnly("lime") })
     };
 
     const options: { [key: string]: boolean } = {};
@@ -179,11 +179,11 @@ tpl.title("Triangle");
     });
     // #endregion
 
-    view.add(new ViewElement(pointA, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("black") }));
-    view.add(new ViewElement(labelA, { interactMode: ViewElementInteractMode.None, ...fillOnly("black") }));
-    view.add(new ViewElement(pointB, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("black") }));
-    view.add(new ViewElement(labelB, { interactMode: ViewElementInteractMode.None, ...fillOnly("black") }));
-    view.add(new ViewElement(pointC, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("black") }));
-    view.add(new ViewElement(labelC, { interactMode: ViewElementInteractMode.None, ...fillOnly("black") }));
-    view.add(new ViewElement(triangle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("black") }));
+    view.add(new ViewElement(pointA, { ...strokeFill("black") }));
+    view.add(new ViewElement(labelA, { type: ViewElementType.None, ...fillOnly("black") }));
+    view.add(new ViewElement(pointB, { ...strokeFill("black") }));
+    view.add(new ViewElement(labelB, { type: ViewElementType.None, ...fillOnly("black") }));
+    view.add(new ViewElement(pointC, { ...strokeFill("black") }));
+    view.add(new ViewElement(labelC, { type: ViewElementType.None, ...fillOnly("black") }));
+    view.add(new ViewElement(triangle, { type: ViewElementType.None, ...strokeOnly("black") }));
 }

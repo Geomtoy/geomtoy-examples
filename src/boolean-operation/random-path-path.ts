@@ -1,6 +1,6 @@
 import { BooleanOperation, Geomtoy, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { newElement, lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand } from "./_common";
@@ -28,7 +28,7 @@ const viewCollection: View[] = [];
                 pathSegmentArrow: this.checked
             }
         });
-        viewCollection.forEach(view => view.render());
+        viewCollection.forEach(view => view.requestRender());
     });
     tpl.addHtmlElement(checkWrapper);
 }
@@ -49,9 +49,10 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    console.log(compound);
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 {
     tpl.addSection("Intersection");
@@ -69,9 +70,9 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 
 {
@@ -91,9 +92,9 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 
 {
@@ -113,9 +114,9 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 
 {
@@ -135,7 +136,7 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(path1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(path2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("purple") }));
+    view1.add(new ViewElement(path1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(path2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }

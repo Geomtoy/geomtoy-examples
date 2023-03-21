@@ -1,5 +1,5 @@
 import { LineSegment, Point, Rectangle } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -37,8 +37,8 @@ const boundingBoxRectangle = new Rectangle().bind([lineSegment, "any"], function
     `
     );
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(boundingBoxRectangle, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("purple") }));
-    view.add(new ViewElement(lineSegment, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(boundingBoxRectangle, { type: ViewElementType.None, ...lightStrokeOnly("purple") }));
+    view.add(new ViewElement(lineSegment, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

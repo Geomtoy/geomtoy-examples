@@ -1,5 +1,5 @@
 import { Point } from "@geomtoy/core";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementEventType, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementEventType, ViewElementType } from "@geomtoy/view";
 import color from "../assets/scripts/color";
 import { strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
@@ -16,11 +16,11 @@ To simplify \`View\` handling, \`ViewElement\` only supports the following trans
 - \`ViewElementEventType.Hover\` = "hover",
 - \`ViewElementEventType.Unhover\` = "unhover"
 
-For \`ViewElement\` with  interactMode = \`ViewElementInteractMode.None\`, all events above will not be triggered because it is not interactable.
+For \`ViewElement\` with  interactMode = \`ViewElementType.None\`, all events above will not be triggered because it is not interactable.
 
-For \`ViewElement\` with  interactMode = \`ViewElementInteractMode.Activation\`, **dragStart**, **dragEnd**, **activate**, **deactivate**, **hover**, **unhover** will be triggered when it should.
+For \`ViewElement\` with  interactMode = \`ViewElementType.Activation\`, **dragStart**, **dragEnd**, **activate**, **deactivate**, **hover**, **unhover** will be triggered when it should.
 
-For \`ViewElement\` with  interactMode = \`ViewElementInteractMode.Operation\`, **dragStart**, **dragEnd**, **click**, **hover**, **unhover** will be triggered when it should.
+For \`ViewElement\` with  interactMode = \`ViewElementType.Operation\`, **dragStart**, **dragEnd**, **click**, **hover**, **unhover** will be triggered when it should.
 
 
 `);
@@ -66,9 +66,9 @@ function operationEvents(ve: ViewElement) {
 tpl.addMarkdown(`
 Open the browser devtool and see the console. 
 
-<span style="color:${color("brown")};">&#9635;</span> interactMode: \`ViewElementInteractMode.Activation\`<br>
-<span style="color:${color("gray")};">&#9635;</span> interactMode: \`ViewElementInteractMode.Operation\`<br>
-<span style="color:${color("black")};">&#9635;</span> interactMode: \`ViewElementInteractMode.None\` 
+<span style="color:${color("brown")};">&#9635;</span> interactMode: \`ViewElementType.Activation\`<br>
+<span style="color:${color("gray")};">&#9635;</span> interactMode: \`ViewElementType.Operation\`<br>
+<span style="color:${color("black")};">&#9635;</span> interactMode: \`ViewElementType.None\` 
 `);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "svg", className: "col-12" });
@@ -79,10 +79,10 @@ Open the browser devtool and see the console.
     const ve1 = new ViewElement(Point.random([-100, -100, 200, 200]), { ...strokeFill("brown") });
     const ve2 = new ViewElement(Point.random([-100, -100, 200, 200]), { ...strokeFill("brown") });
     const ve3 = new ViewElement(Point.random([-100, -100, 200, 200]), { ...strokeFill("brown") });
-    const ve4 = new ViewElement(Point.random([-100, -100, 200, 200]), { interactMode: ViewElementInteractMode.Operation, ...strokeFill("gray") });
-    const ve5 = new ViewElement(Point.random([-100, -100, 200, 200]), { interactMode: ViewElementInteractMode.Operation, ...strokeFill("gray") });
-    const ve6 = new ViewElement(Point.random([-100, -100, 200, 200]), { interactMode: ViewElementInteractMode.Operation, ...strokeFill("gray") });
-    const ve7 = new ViewElement(Point.origin(), { interactMode: ViewElementInteractMode.None, ...strokeFill("black") });
+    const ve4 = new ViewElement(Point.random([-100, -100, 200, 200]), { type: ViewElementType.Operation, ...strokeFill("gray") });
+    const ve5 = new ViewElement(Point.random([-100, -100, 200, 200]), { type: ViewElementType.Operation, ...strokeFill("gray") });
+    const ve6 = new ViewElement(Point.random([-100, -100, 200, 200]), { type: ViewElementType.Operation, ...strokeFill("gray") });
+    const ve7 = new ViewElement(Point.origin(), { type: ViewElementType.None, ...strokeFill("black") });
 
     view.add(ve1, ve2, ve3, ve4, ve5, ve6, ve7);
     card.setTitle("View element events on SVG renderer");
@@ -102,10 +102,10 @@ Open the browser devtool and see the console.
     const ve1 = new ViewElement(Point.random([-100, -100, 200, 200]), { ...strokeFill("brown") });
     const ve2 = new ViewElement(Point.random([-100, -100, 200, 200]), { ...strokeFill("brown") });
     const ve3 = new ViewElement(Point.random([-100, -100, 200, 200]), { ...strokeFill("brown") });
-    const ve4 = new ViewElement(Point.random([-100, -100, 200, 200]), { interactMode: ViewElementInteractMode.Operation, ...strokeFill("gray") });
-    const ve5 = new ViewElement(Point.random([-100, -100, 200, 200]), { interactMode: ViewElementInteractMode.Operation, ...strokeFill("gray") });
-    const ve6 = new ViewElement(Point.random([-100, -100, 200, 200]), { interactMode: ViewElementInteractMode.Operation, ...strokeFill("gray") });
-    const ve7 = new ViewElement(Point.origin(), { interactMode: ViewElementInteractMode.None, ...strokeFill("black") });
+    const ve4 = new ViewElement(Point.random([-100, -100, 200, 200]), { type: ViewElementType.Operation, ...strokeFill("gray") });
+    const ve5 = new ViewElement(Point.random([-100, -100, 200, 200]), { type: ViewElementType.Operation, ...strokeFill("gray") });
+    const ve6 = new ViewElement(Point.random([-100, -100, 200, 200]), { type: ViewElementType.Operation, ...strokeFill("gray") });
+    const ve7 = new ViewElement(Point.origin(), { type: ViewElementType.None, ...strokeFill("black") });
 
     view.add(ve1, ve2, ve3, ve4, ve5, ve6, ve7);
     card.setTitle("View element events on Canvas renderer");

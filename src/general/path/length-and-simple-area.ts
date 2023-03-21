@@ -1,5 +1,5 @@
 import { Dynamic, Polygon } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, strokeFill } from "../../assets/scripts/common";
 import { appendSvgElement } from "../../assets/scripts/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -25,13 +25,14 @@ tpl.addSection("length");
     lengths.lengthBySvg = svgPolygon.getTotalLength();
 
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
 const polygon = Polygon.fromSVGString("50,0 21,90 98,35 2,35 79,90");
 const svgPolygon = appendSvgElement("polygon");
 svgPolygon.setAttribute("points", "50,0 21,90 98,35 2,35 79,90");
 lengths.lengthByGeomtoy = polygon.getLength()
 lengths.lengthBySvg= svgPolygon.getTotalLength()
-        `)
+        `
     );
 
     // #region Pane
@@ -41,7 +42,7 @@ lengths.lengthBySvg= svgPolygon.getTotalLength()
     lengthFolder.addMonitor(lengths, "lengthByGeomtoy", { label: " length by Geomtoy", format: (v: any) => v.toFixed(10) });
     lengthFolder.addMonitor(lengths, "lengthBySvg", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
     // #endregion
-    view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
+    view.add(new ViewElement(polygon, { ...strokeFill("brown") }));
 }
 
 tpl.addSection("area");
@@ -61,10 +62,11 @@ And the fill rule that affects the final graphics will also be processed in self
     const area = polygon.getArea();
 
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
 const polygon = Polygon.fromSVGString("50,0 0,50 -50,0 0,0");
 const area = polygon.getArea();
-        `)
+        `
     );
 
     // #region Pane
@@ -74,5 +76,5 @@ const area = polygon.getArea();
     areaFolder.addMonitor({ area }, "area");
     // #endregion
 
-    view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
+    view.add(new ViewElement(polygon, { ...strokeFill("brown") }));
 }

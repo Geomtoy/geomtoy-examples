@@ -1,6 +1,6 @@
 import { Arc, Dynamic, GeometryArray, LineSegment, Point, Rectangle } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -76,8 +76,8 @@ const boundingBoxRectangle = new Rectangle().bind([arc, "any"], function (e) {
     arcFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
-    view.add(new ViewElement(extremePoints, { interactMode: ViewElementInteractMode.None, zIndex: 2, ...lightStrokeFill("green") }));
-    view.add(new ViewElement(boundingBoxRectangle, { interactMode: ViewElementInteractMode.None, zIndex: 1, ...lightStrokeOnly("purple") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(arc, { type: ViewElementType.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(extremePoints, { type: ViewElementType.None, zIndex: 2, ...lightStrokeFill("green") }));
+    view.add(new ViewElement(boundingBoxRectangle, { type: ViewElementType.None, zIndex: 1, ...lightStrokeOnly("purple") }));
 }

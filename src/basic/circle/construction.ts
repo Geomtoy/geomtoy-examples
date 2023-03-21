@@ -1,5 +1,5 @@
 import { Circle, Dynamic, Point } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, strokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -38,8 +38,8 @@ const circle = new Circle().bind([centerPoint, "any"], [restParams, "any"], func
     circleFolder.addInput(restParams, "radius", { min: 0 });
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }
 
 tpl.addSection("fromTwoPoints", true);
@@ -67,9 +67,9 @@ const circle = new Circle().bind([centerPoint, "any"], [radiusControlPoint, "any
     `
     );
 
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(radiusControlPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(radiusControlPoint, { ...lightStrokeFill("brown") }));
 }
 
 tpl.addSection("fromThreePoints", true);
@@ -99,8 +99,8 @@ const circle = new Circle().bind([point1, "any"], [point2, "any"], [point3, "any
     `
     );
 
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point3, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point3, { ...lightStrokeFill("brown") }));
 }

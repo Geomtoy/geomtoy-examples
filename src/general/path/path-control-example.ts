@@ -1,5 +1,5 @@
 import { Line, LineSegment, Path, Point, SealedShapeArray, SealedShapeObject, Text, Anchor } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import color from "../../assets/scripts/color";
 import { fillOnly, markdownHtml, mathFont, strokeFill, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
 import { locateLabel } from "../../assets/scripts/general-construction";
@@ -52,8 +52,8 @@ To solve this problem, we invented a method that is quite effective so far, but 
         this.items.axes.items[0] = new Line(e1.target.coordinates, 0); // x-axis
         this.items.axes.items[1] = new Line(e1.target.coordinates, Infinity); // y-axis
 
-        this.items.projections.items[0].copyFrom(new LineSegment(this.items.axes.items[0].getClosestPointFrom(e2.target)[0], e2.target));
-        this.items.projections.items[1].copyFrom(new LineSegment(this.items.axes.items[1].getClosestPointFrom(e2.target)[0], e2.target));
+        this.items.projections.items[0].copyFrom(new LineSegment(this.items.axes.items[0].getClosestPointFromPoint(e2.target)[0], e2.target));
+        this.items.projections.items[1].copyFrom(new LineSegment(this.items.axes.items[1].getClosestPointFromPoint(e2.target)[0], e2.target));
 
         this.items.intros.items[4].point = this.items.projections.items[0].isValid() ? this.items.projections.items[0].getMiddlePoint() : new Point();
         this.items.intros.items[5].point = this.items.projections.items[1].isValid() ? this.items.projections.items[1].getMiddlePoint() : new Point();
@@ -92,12 +92,12 @@ But they are not independent, because they are built in the local coordinate sys
 `
     );
 
-    view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
-    view.add(new ViewElement(moveToLabel, { interactMode: ViewElementInteractMode.None, ...fillOnly("brown") }));
-    view.add(new ViewElement(arcToLabel, { interactMode: ViewElementInteractMode.None, ...fillOnly("brown") }));
-    view.add(new ViewElement(localCoordinateSystem.items.axes, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("black") }));
-    view.add(new ViewElement(localCoordinateSystem.items.projections, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("black") }));
-    view.add(new ViewElement(localCoordinateSystem.items.intros, { interactMode: ViewElementInteractMode.None, ...fillOnly("black") }));
+    view.add(new ViewElement(path, { type: ViewElementType.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(moveToLabel, { type: ViewElementType.None, ...fillOnly("brown") }));
+    view.add(new ViewElement(arcToLabel, { type: ViewElementType.None, ...fillOnly("brown") }));
+    view.add(new ViewElement(localCoordinateSystem.items.axes, { type: ViewElementType.None, ...thinStrokeOnly("black") }));
+    view.add(new ViewElement(localCoordinateSystem.items.projections, { type: ViewElementType.None, ...thinStrokeOnly("black") }));
+    view.add(new ViewElement(localCoordinateSystem.items.intros, { type: ViewElementType.None, ...fillOnly("black") }));
 }
 tpl.addNote(`
 According to the ellipse equation and Web specifications, the elliptical arc parametrized by the two endpoints has radii correction. 
@@ -134,5 +134,5 @@ tpl.addSection("Overall of path control");
 
     const { pathSubView, pathHelperSubView } = showCommands(path);
     view.addSubView(pathSubView, pathHelperSubView);
-    view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.None, ...strokeFill("brown") }));
+    view.add(new ViewElement(path, { type: ViewElementType.None, ...strokeFill("brown") }));
 }

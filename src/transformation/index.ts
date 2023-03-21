@@ -1,6 +1,6 @@
 import Geomtoy, { Arc, Transformation, Point, Arbitrary, Ellipse } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
-import { View, ViewElement, CanvasRenderer, ViewElementInteractMode } from "@geomtoy/view";
+import { View, ViewElement, CanvasRenderer, ViewElementType } from "@geomtoy/view";
 
 import color from "../assets/scripts/color";
 import { codeHtml, lightStrokeOnly, lightStrokeFill, strokeOnly } from "../assets/scripts/common";
@@ -85,6 +85,6 @@ console.log(tEllipse.toString());
     `
     );
 
-    view.add(new ViewElement(ellipse, { interactMode: ViewElementInteractMode.None, ...strokeOnly("red") }));
-    view.add(new ViewElement(tEllipse, { interactMode: ViewElementInteractMode.None, ...strokeOnly("blue") }));
+    view.add(new ViewElement(ellipse, { type: ViewElementType.None, ...strokeOnly("red") }));
+    view.add(new ViewElement(tEllipse, { type: ViewElementType.None, ...strokeOnly("blue") }));
 }

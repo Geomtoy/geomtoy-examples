@@ -1,5 +1,5 @@
 import { Anchor, EventObject, Image, Point, Text } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, fillOnly, lightStrokeFill, lightStrokeFillTrans, markdownHtml, normalFont, strokeFillTrans } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -36,8 +36,8 @@ const image2 = new Image(0, 0, 36, 36, 560, 540, 360, 360, imageUrl, false, Anch
 
     card.appendDescription("markdown", `See more info: [Image explanation](/basic/image/explanation.html)`);
 
-    view.add(new ViewElement(image1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
-    view.add(new ViewElement(image2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image1, { ...lightStrokeFillTrans("gray") }));
+    view.add(new ViewElement(image2, { ...lightStrokeFillTrans("gray") }));
 }
 
 tpl.addNote(`The emoji image is from [Vecteezy](https://www.vecteezy.com/vector-art/2209647-emoji-icons-set-flat-design).`);

@@ -16,8 +16,8 @@ tpl.addSection(`Get point at angle`);
     const angle = Maths.PI / 4;
     const point = ellipse.getPointAtAngle(angle);
 
-    view.add(new ViewElement(ellipse, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(ellipse, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point, { ...lightStrokeFill("brown") }));
 }
 
 tpl.addSection(`Get angle of point`);
@@ -99,10 +99,10 @@ tpl.addSection(`Get angle of point`);
     //         new LineSegment(e.target.controlPoint2, e.target.point2)
     //     ];
     // });
-    // view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    // view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    // view.add(new ViewElement(point3, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    // view.add(new ViewElement(point4, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    // view.add(new ViewGroupElement(shapeArray.items, { interactMode: ViewElementInteractMode.Activation, ...thinStroke("gray") }));
-    // view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.None, ...stroke("brown") }));
+    // view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    // view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    // view.add(new ViewElement(point3, { ...lightStrokeFill("brown") }));
+    // view.add(new ViewElement(point4, { ...lightStrokeFill("brown") }));
+    // view.add(new ViewGroupElement(shapeArray.items, { ...thinStroke("gray") }));
+    // view.add(new ViewElement(bezier, { type: ViewElementType.None, ...stroke("brown") }));
 }

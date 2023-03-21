@@ -1,4 +1,4 @@
-import { SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import tpl from "../assets/templates/tpl-renderer";
 
 import { Line, LineSegment, Point, Text, Vector } from "@geomtoy/core";
@@ -49,7 +49,7 @@ tpl.addMarkdown(`
             this.copyFrom(v.normalize().scalarMultiply(this.data("distToPointA")).point2);
         })
         .on("any", function () {
-            this.copyFrom(lineL.isValid() ? lineL.getClosestPointFrom(this)[0] : null);
+            this.copyFrom(lineL.isValid() ? lineL.getClosestPointFromPoint(this)[0] : null);
             const d = this.getDistanceBetweenPoint(pointA);
             const vectorAP = Vector.fromTwoPoints(pointA, this);
             const vectorAB = Vector.fromTwoPoints(pointA, pointB);
@@ -90,7 +90,7 @@ const pointP = new Point()
         this.copyFrom(v.normalize().scalarMultiply(this.data("distToPointA")).point2);
     })
     .on("any", function () {
-        this.copyFrom(lineL.isValid() ? lineL.getClosestPointFrom(this) : null);
+        this.copyFrom(lineL.isValid() ? lineL.getClosestPointFromPoint(this) : null);
         const d = this.getDistanceBetweenPoint(pointA);
         const vectorAP = Vector.fromTwoPoints(pointA, this);
         const vectorAB = Vector.fromTwoPoints(pointA, pointB);
@@ -100,13 +100,13 @@ const pointP = new Point()
     );
 
     view.add(
-        new ViewElement(pointA, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("orange") }),
-        new ViewElement(labelA, { interactMode: ViewElementInteractMode.None, ...fillOnly("orange") }),
-        new ViewElement(pointB, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("indigo") }),
-        new ViewElement(labelB, { interactMode: ViewElementInteractMode.None, ...fillOnly("indigo") }),
-        new ViewElement(pointP, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("green") }),
-        new ViewElement(labelP, { interactMode: ViewElementInteractMode.None, ...fillOnly("green") }),
-        new ViewElement(lineL, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }),
-        new ViewElement(labelL, { interactMode: ViewElementInteractMode.None, ...fillOnly("brown") })
+        new ViewElement(pointA, { ...strokeFill("orange") }),
+        new ViewElement(labelA, { type: ViewElementType.None, ...fillOnly("orange") }),
+        new ViewElement(pointB, { ...strokeFill("indigo") }),
+        new ViewElement(labelB, { type: ViewElementType.None, ...fillOnly("indigo") }),
+        new ViewElement(pointP, { ...strokeFill("green") }),
+        new ViewElement(labelP, { type: ViewElementType.None, ...fillOnly("green") }),
+        new ViewElement(lineL, { ...strokeOnly("brown") }),
+        new ViewElement(labelL, { type: ViewElementType.None, ...fillOnly("brown") })
     );
 }

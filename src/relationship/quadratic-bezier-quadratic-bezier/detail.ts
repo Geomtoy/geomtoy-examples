@@ -28,8 +28,8 @@ const rs = new Relationship();
         console.log(Polynomial.monic(quadraticBezier1.getImplicitFunctionCoefs()));
         console.log(quadraticBezier2.getPolynomial());
         console.log(Polynomial.monic(quadraticBezier2.getImplicitFunctionCoefs()));
-        view.add(new ViewElement(quadraticBezier1, { interactMode: ViewElementInteractMode.None, ...strokeOnly("red") }));
-        view.add(new ViewElement(quadraticBezier2, { interactMode: ViewElementInteractMode.None, ...strokeOnly("blue") }));
+        view.add(new ViewElement(quadraticBezier1, { type: ViewElementType.None, ...strokeOnly("red") }));
+        view.add(new ViewElement(quadraticBezier2, { type: ViewElementType.None, ...strokeOnly("blue") }));
         trileanResult(card, quadraticBezier1, quadraticBezier2, rs.equal(quadraticBezier1, quadraticBezier2));
     }
 }

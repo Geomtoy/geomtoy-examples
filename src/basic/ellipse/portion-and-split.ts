@@ -1,6 +1,6 @@
 import { Arc, Point, SealedShapeObject, ShapeArray } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -40,8 +40,8 @@ const arcPortion = new SealedShapeObject({
 });
     `
     );
-    view.add(new ViewElement(arcPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
-    view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
+    view.add(new ViewElement(arcPortion, { ...lightStrokeOnly("orange") }));
+    view.add(new ViewElement(arc, { ...strokeOnly("brown") }));
 }
 tpl.addSubSection("portionOfExtend");
 {
@@ -76,8 +76,8 @@ const arcPortion = new SealedShapeObject({
 });
     `
     );
-    view.add(new ViewElement(arcPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
-    view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
+    view.add(new ViewElement(arcPortion, { ...lightStrokeOnly("orange") }));
+    view.add(new ViewElement(arc, { ...strokeOnly("brown") }));
 }
 
 tpl.addSection("split");
@@ -141,9 +141,9 @@ const arcPortions = new SealedShapeObject({
     `
     );
 
-    view.add(new ViewElement(arcPortions.items.first, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("cyan") }));
-    view.add(new ViewElement(arcPortions.items.second, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("lime") }));
-    view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
+    view.add(new ViewElement(arcPortions.items.first, { ...lightStrokeOnly("cyan") }));
+    view.add(new ViewElement(arcPortions.items.second, { ...lightStrokeOnly("lime") }));
+    view.add(new ViewElement(arc, { ...strokeOnly("brown") }));
 }
 tpl.addSubSection("splitAtAngles");
 {
@@ -167,7 +167,7 @@ tpl.addSubSection("splitAtAngles");
             p1.appearance = "cross";
             const p2 = arc.point2;
             p2.appearance = "cross";
-            return new ViewElement(new ShapeArray([arc, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
+            return new ViewElement(new ShapeArray([arc, p1, p2]), { ...stylesFn(i) });
         });
     });
     card.setDescription(
@@ -188,11 +188,11 @@ arc.on("any", function (e) {
         p1.appearance = "cross";
         const p2 = arc.point2;
         p2.appearance = "cross";
-        return new ViewElement(new ShapeArray([arc, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
+        return new ViewElement(new ShapeArray([arc, p1, p2]), { ...stylesFn(i) });
     });
 });
     `
     );
     view.addSubView(arcPortionsSubView);
-    view.add(new ViewElement(arc, { zIndex: -1, interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
+    view.add(new ViewElement(arc, { zIndex: -1, ...strokeOnly("brown") }));
 }

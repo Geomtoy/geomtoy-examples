@@ -1,6 +1,6 @@
 import { Arc, Circle, Dynamic, Point, Vector } from "@geomtoy/core";
 import { Angle, Maths, Utility } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, lightStrokeOnly, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -54,8 +54,8 @@ tpl.title("Arc tangent, normal vector and curvature");
             nvs.push(this.getNormalVectorAtAngle(a).scalarMultiply(this.getCurvatureAtAngle(a) * 10));
         }
         tangentNormalSubView.elements = [
-            ...tvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("red") })),
-            ...nvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("blue") }))
+            ...tvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("red") })),
+            ...nvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("blue") }))
         ];
     });
 
@@ -108,8 +108,8 @@ arc.on("any", function () {
         nvs.push(this.getNormalVectorAtAngle(a).scalarMultiply(this.getCurvatureAtAngle(a) * 10));
     }
     tangentNormalSubView.elements = [
-        ...tvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("red") })),
-        ...nvs.map(v => new ViewElement(v, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("blue") }))
+        ...tvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("red") })),
+        ...nvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("blue") }))
     ];
 });
 
@@ -133,7 +133,7 @@ const osculatingCircle = new Circle().bind([arc, "any"], [stepParams, "step"], f
     stepFolder.addInput(stepParams, "step", { step: 1, min: 0, max: steps });
     // #endregion
     view.addSubView(tangentNormalSubView);
-    view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(osculatingCircle, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("orange") }));
+    view.add(new ViewElement(arc, { type: ViewElementType.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(osculatingCircle, { type: ViewElementType.None, ...lightStrokeOnly("orange") }));
 }

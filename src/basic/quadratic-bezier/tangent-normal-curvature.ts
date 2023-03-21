@@ -1,107 +1,110 @@
-// import Geomtoy from "@geomtoy/core";
-// import { View, ViewElement, CanvasRenderer } from "@geomtoy/view";
-// import color from "../../assets/scripts/color";
-// // import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/scripts/common";
-// import tpl from "../../assets/templates/simple-canvas-renderer";
+import { QuadraticBezier, Circle, Dynamic, LineSegment, Vector, Point } from "@geomtoy/core";
+import { Utility } from "@geomtoy/util";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
+import { dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly, thinStrokeOnly } from "../../assets/scripts/common";
+import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
+import tpl from "../../assets/templates/tpl-renderer";
 
-// const canvas = tpl.getCanvas();
-// tpl.setDescription(`
-// <strong>Interactables</strong>
-// <ul>
-//     <li>Points: styled as <span class="style-indicator" style="border-color:${interactableStyles.point[0].stroke};background-color:${interactableStyles.point[0].fill}"></span></li>
-// </ul>
-// <strong>Description</strong>
-// <ol>
-//     <li>Point P is constrained on line AB.</li>
-//     <li>Move point P to determine the distance between it and point A. The distance will be kept until you move point P.</li>
-//     <li>Point A and point B determine line AB.</li>
-//     <li>Point A, point B and point P will follow line AB to move.</li>
-//     <li>Move line AB or circle O to get the intersection points of them.</li>
-// </ol>
-// `);
-// const g = new Geomtoy();
+tpl.title("Quadratic bezier tangent, normal vector and curvature");
 
-// const canvasRenderer = new CanvasRenderer(canvas, g);
-// canvasRenderer.display.density = 10;
-// canvasRenderer.display.zoom = 0.5;
-// canvasRenderer.display.yAxisPositiveOnBottom = false;
-// canvasRenderer.display.xAxisPositiveOnRight = false;
+{
+    const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
+    const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
+    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startInteractive();
 
-// const view = new View(g, { hoverForemost: false }, canvasRenderer);
-// view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
-// view.startInteractive();
+    const point1 = new Point([-25, 0]);
+    const point2 = new Point([10, 10]);
+    const controlPoint = new Point([-10, 5]);
+    const quadraticBezier = new QuadraticBezier().bind([point1, "any"], [point2, "any"], [controlPoint, "any"], function (e1, e2, e3) {
+        this.copyFrom(new QuadraticBezier(e1.target, e2.target, e3.target));
+    });
 
-// const main = () => {
-//     const pA = g.Point(2, 4);
-//     const pB = g.Point(6, 12);
-//     const pC = g.Point(5, 10);
+    const steps = 100;
+    const deltaTime = 1 / steps;
+    const times = Utility.range(0, 100 + 1).map(n => deltaTime * n);
 
-//     const qb = g.QuadraticBezier().bind(
-//         [
-//             [pA, "any"],
-//             [pB, "any"],
-//             [pC, "any"]
-//         ],
-//         function ([e1, e2, e3]) {
-//             this.copyFrom(g.QuadraticBezier(e1.target, e2.target, e3.target));
-//         }
-//     );
+    const stepParams = new (new Dynamic().create({
+        step: 0
+    }))();
 
-//     const controlLineSegments = g.Group().bind([[qb, "any"]], function ([e]) {
-//         const cpc = e.target.controlPointCoordinates;
-//         const c1 = e.target.point1Coordinates;
-//         const c2 = e.target.point2Coordinates;
-//         this.items = [g.LineSegment(c1, cpc), g.LineSegment(c2, cpc)];
-//     });
+    const tangentNormalSubView = new SubView();
 
-//     const pP = g.Point()
-//         .data("time", 0.2)
-//         .bind([[qb, "any"]], function ([e]) {
-//             const time = this.data("time") as number;
-//             if (e.target.isValid()) this.copyFrom(e.target.getPointAtTime(time));
-//         })
-//         .on(
-//             "any",
-//             function () {
-//                 if (qb.isValid()) {
-//                     const pointClosest = qb.getClosestPointFrom(pP);
-//                     this.copyFrom(pointClosest);
-//                     console.log(qb.getTimeOfPointExtend(pointClosest))
-//                     this.data("time", qb.getTimeOfPoint(pointClosest));
-//                 }
-//             },
-//             { priority: 1001 }
-//         );
+    quadraticBezier.on("any", function () {
+        if (!quadraticBezier.isValid()) return (tangentNormalSubView.elements = []);
+        const tvs: Vector[] = [];
+        const nvs: Vector[] = [];
+        for (const t of times) {
+            tvs.push(this.getTangentVectorAtTime(t));
+            nvs.push(this.getNormalVectorAtTime(t).scalarMultiply(this.getCurvatureAtTime(t) * 10));
+        }
+        tangentNormalSubView.elements = [
+            ...tvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("red") })),
+            ...nvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("blue") }))
+        ];
+    });
 
-//     // const l = g.Line().bind([[pP, "any"]], function ([e]) {
-//     //     const time = e.target.data("time") as number;
-//     //     console.log(time)
-//     //     if (qb.isValid()) this.copyFrom(qb.getTangentLineAtTime(time));
-//     // });
+    const osculatingCircle = new Circle().bind([quadraticBezier, "any"], [stepParams, "step"], function (e1, e2) {
+        this.copyFrom(e1.target.isValid() ? e1.target.getOsculatingCircleAtTime(deltaTime * e2.target.step) : null);
+    });
 
-//     const vt = g.Vector().bind([[pP, "any"]], function ([e]) {
-//         const time = e.target.data("time") as number;
-//         if (qb.isValid()) this.copyFrom(qb.getTangentUnitVectorAtTime(time).scalarMultiply(20));
-//     });
-//     // const vn = g.Vector().bind([[pP, "any"]], function ([e]) {
-//     //     const time = e.target.data("time") as number;
-//     //     if (qb.isValid()) this.copyFrom(qb.getNormalUnitVectorAtTime(time).scalarMultiply(20));
-//     // });
-//     // const circle = g.Circle().bind([[pP, "any"]], function ([e]) {
-//     //     const time = e.target.data("time") as number;
-//     //     if (qb.isValid()) this.copyFrom(qb.getOsculatingCircleAtTime(time));
-//     // });
+    card.setDescription(
+        "code",
+        `
+const point1 = new Point([-25, 0]);
+const point2 = new Point([10, 10]);
+const controlPoint1 = new Point([-10, 5]);
+const controlPoint2 = new Point([10, -20]);
+const bezier = new QuadraticBezier().bind([point1, "any"], [point2, "any"], [controlPoint1, "any"], [controlPoint2, "any"], function (e1, e2, e3, e4) {
+    this.copyFrom(new QuadraticBezier(e1.target, e2.target, e3.target, e4.target));
+});
 
-//     view.add(new ViewElement(pP, true, ...interactableStyles.point))
-//         .add(new ViewElement(pA, true, ...interactableStyles.point))
-//         .add(new ViewElement(pB, true, ...interactableStyles.point))
-//         .add(new ViewElement(pC, true, ...interactableStyles.point))
+const steps = 100;
+const deltaTime = 1 / steps;
+const times = Utility.range(0, 100 + 1).map(n => deltaTime * n);
 
-//         .add(new ViewElement(qb, false, { stroke: color("red"), strokeWidth: 2 }))
-//         .add(new ViewElement(controlLineSegments, false, { stroke: color("gray"), strokeWidth: 2, strokeDash: [4, 4] }))
-//         // .add(new ViewElement(l, false, { stroke: color("gray"), strokeWidth: 2 }))
-//         // .add(new ViewElement(circle, false, { stroke: color("orange"), strokeWidth: 2 }))
-//         .add(new ViewElement(vt, false, { stroke: color("purple"), strokeWidth: 2 }))
-//     // .add(new ViewElement(vn, false, { stroke: color("blue"), strokeWidth: 2 }));
-// };
-// main();
+const stepParams = new (new Dynamic().create({
+    step: 0
+}))();
+
+const tangentNormalSubView = new SubView();
+
+bezier.on("any", function () {
+    if (!bezier.isValid()) return (tangentNormalSubView.elements = []);
+    const tvs: Vector[] = [];
+    const nvs: Vector[] = [];
+    for (const t of times) {
+        tvs.push(this.getTangentVectorAtTime(t));
+        nvs.push(this.getNormalVectorAtTime(t).scalarMultiply(this.getCurvatureAtTime(t) * 10));
+    }
+    tangentNormalSubView.elements = [
+        ...tvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("red") })),
+        ...nvs.map(v => new ViewElement(v, { type: ViewElementType.None, ...thinStrokeOnly("blue") }))
+    ];
+});
+
+const osculatingCircle = new Circle().bind([bezier, "any"], [stepParams, "step"], function (e1, e2) {
+    this.copyFrom(e1.target.isValid() ? e1.target.getOsculatingCircleAtTime(deltaTime * e2.target.step) : null);
+});
+        `
+    );
+
+    // #region Pane
+    // @ts-expect-error
+    const pane = new Tweakpane.Pane({ title: "Pane", container: card.pane });
+    const stepFolder = pane.addFolder({ title: "Osculating circle step" });
+    stepFolder.addInput(stepParams, "step", { step: 1, min: 0, max: steps });
+    // #endregion
+
+    const controlLineSegment1 = new LineSegment().bind([point1, "any"], [controlPoint, "any"], twoPointsLineSegment);
+    const controlLineSegment2 = new LineSegment().bind([controlPoint, "any"], [point2, "any"], twoPointsLineSegment);
+
+    view.addSubView(tangentNormalSubView);
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(controlLineSegment1, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(controlLineSegment2, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
+    view.add(new ViewElement(quadraticBezier, { type: ViewElementType.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(osculatingCircle, { type: ViewElementType.None, ...lightStrokeOnly("orange") }));
+}

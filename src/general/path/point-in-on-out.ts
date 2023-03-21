@@ -1,5 +1,5 @@
 import { Dynamic, FontConfig, Geomtoy, Point, Polygon, Text } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, fillOnly, mathFont, strokeFill } from "../../assets/scripts/common";
 import { locateLabel } from "../../assets/scripts/general-construction";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -27,7 +27,8 @@ tpl.title("Polygon point inside/on/outside");
     });
 
     card.appendDescription(
-        codeHtml(`
+        "code",
+        `
 const fillRule = new (new Dynamic().create({
     fillRule: "nonzero" as const
 }))();
@@ -42,7 +43,7 @@ const label = new Text(0, 0, 16, -10, "", { ...mathFont, fontSize: 16, fontItali
     if (polygon.isPointOutside(e1.target)) this.content = "OUT";
     if (polygon.isPointOn(e1.target)) this.content = "ON";
 });
-        `)
+        `
     );
 
     // #region Pane
@@ -53,7 +54,7 @@ const label = new Text(0, 0, 16, -10, "", { ...mathFont, fontSize: 16, fontItali
 
     // #endregion
 
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("pink") }));
-    view.add(new ViewElement(label, { interactMode: ViewElementInteractMode.None, ...fillOnly("pink") }));
-    view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.None, ...strokeFill("brown") }));
+    view.add(new ViewElement(point, { ...strokeFill("pink") }));
+    view.add(new ViewElement(label, { type: ViewElementType.None, ...fillOnly("pink") }));
+    view.add(new ViewElement(polygon, { type: ViewElementType.None, ...strokeFill("brown") }));
 }

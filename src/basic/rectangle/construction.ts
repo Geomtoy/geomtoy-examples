@@ -1,5 +1,5 @@
 import { Dynamic, Line, Point, Ray, Rectangle } from "@geomtoy/core";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -51,8 +51,8 @@ const rectangle = new Rectangle().bind([point, "any"], [restParams, "any"], func
     rectFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     // #endregion
 
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }
 
 tpl.addSection("fromTwoPointsAndRotation");
@@ -105,11 +105,11 @@ const point = new Point("cross").bind([rectangle, "any"], function (e) {
     const rectFolder = pane.addFolder({ title: "Rectangle" });
     rectFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     // #endregion
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("gray") }));
-    view.add(new ViewElement(ray, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("gray") }));
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point, { type: ViewElementType.None, ...lightStrokeOnly("gray") }));
+    view.add(new ViewElement(ray, { type: ViewElementType.None, ...lightStrokeOnly("gray") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }
 
 tpl.addSection("fromCenterPointEtc");
@@ -147,7 +147,7 @@ tpl.addSection("fromCenterPointEtc");
     rectFolder.addInput(restParams, "height", { min: 10, max: 100 });
     rectFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     // #endregion
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("gray") }));
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point, { type: ViewElementType.None, ...lightStrokeOnly("gray") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

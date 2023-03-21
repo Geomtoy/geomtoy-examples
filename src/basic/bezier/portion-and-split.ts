@@ -1,5 +1,5 @@
 import { Bezier, GeometryArray, Point, SealedShapeObject } from "@geomtoy/core";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -39,8 +39,8 @@ const bezierPortion = new SealedShapeObject({
 });
     `
     );
-    view.add(new ViewElement(bezierPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
-    view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
+    view.add(new ViewElement(bezierPortion, { ...lightStrokeOnly("orange") }));
+    view.add(new ViewElement(bezier, { ...strokeOnly("brown") }));
 }
 tpl.addSection("portionOfExtend", true);
 {
@@ -75,8 +75,8 @@ const bezierPortion = new SealedShapeObject({
 });
     `
     );
-    view.add(new ViewElement(bezierPortion, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("orange") }));
-    view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
+    view.add(new ViewElement(bezierPortion, { ...lightStrokeOnly("orange") }));
+    view.add(new ViewElement(bezier, { ...strokeOnly("brown") }));
 }
 
 tpl.addSection("Split");
@@ -138,9 +138,9 @@ const bezierPortions = new SealedShapeObject({
     `
     );
 
-    view.add(new ViewElement(bezierPortions.items.first, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("cyan") }));
-    view.add(new ViewElement(bezierPortions.items.second, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeOnly("lime") }));
-    view.add(new ViewElement(bezier, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
+    view.add(new ViewElement(bezierPortions.items.first, { ...lightStrokeOnly("cyan") }));
+    view.add(new ViewElement(bezierPortions.items.second, { ...lightStrokeOnly("lime") }));
+    view.add(new ViewElement(bezier, { ...strokeOnly("brown") }));
 }
 tpl.addSubSection("splitAtTimes", true);
 {
@@ -164,7 +164,7 @@ tpl.addSubSection("splitAtTimes", true);
             p1.appearance = "cross";
             const p2 = bezier.point2;
             p2.appearance = "cross";
-            return new ViewElement(new GeometryArray([bezier, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
+            return new ViewElement(new GeometryArray([bezier, p1, p2]), { ...stylesFn(i) });
         });
     });
     card.setDescription(
@@ -185,11 +185,11 @@ bezier.on("any", function (e) {
         p1.appearance = "cross";
         const p2 = bezier.point2;
         p2.appearance = "cross";
-        return new ViewElement(new GeometryArray([bezier, p1, p2]), { interactMode: ViewElementInteractMode.Activation, ...stylesFn(i) });
+        return new ViewElement(new GeometryArray([bezier, p1, p2]), { ...stylesFn(i) });
     });
 });
     `
     );
     view.addSubView(bezierPortionsSubView);
-    view.add(new ViewElement(bezier, { zIndex: -1, interactMode: ViewElementInteractMode.Activation, ...strokeOnly("brown") }));
+    view.add(new ViewElement(bezier, { zIndex: -1, ...strokeOnly("brown") }));
 }

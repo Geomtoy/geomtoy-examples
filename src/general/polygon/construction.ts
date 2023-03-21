@@ -1,6 +1,6 @@
 import { Point, Polygon, ShapeArray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, markdownHtml, strokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -33,7 +33,7 @@ const polygon = new Polygon([
 ], true);
         `
     );
-    view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
+    view.add(new ViewElement(polygon, { ...strokeFill("brown") }));
 }
 {
     const card = tpl.addCard({ aspectRatio: "1:1", className: "col-6" });
@@ -62,7 +62,7 @@ const polygon = new Polygon([
 ], false);
         `
     );
-    view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
+    view.add(new ViewElement(polygon, { ...strokeFill("brown") }));
 }
 
 tpl.addSection("fromSVGString");
@@ -82,7 +82,7 @@ const polygon = Polygon.fromSVGString("0,100 50,25 50,7 100,0", true);
         `
     );
 
-    view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
+    view.add(new ViewElement(polygon, { ...strokeFill("brown") }));
 }
 
 tpl.addSection("fromPoints");
@@ -109,8 +109,8 @@ const polygon = new Polygon(false).bind(...points.map(p => [p, "any"] as [Point,
 });
         `
     );
-    view.add(...points.map(p => new ViewElement(p, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") })));
-    view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(...points.map(p => new ViewElement(p, { ...strokeFill("brown") })));
+    view.add(new ViewElement(polygon, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }
 
 tpl.addSection("fromPointsConvexHull");
@@ -136,6 +136,6 @@ const polygon = new Polygon().bind(...points.map(p => [p, "any"] as [Point, stri
 });
         `
     );
-    view.add(...points.map(p => new ViewElement(p, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") })));
-    view.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.None, ...strokeFill("brown") }));
+    view.add(...points.map(p => new ViewElement(p, { ...strokeFill("brown") })));
+    view.add(new ViewElement(polygon, { type: ViewElementType.None, ...strokeFill("brown") }));
 }

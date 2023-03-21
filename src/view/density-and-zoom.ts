@@ -1,5 +1,5 @@
 import { Circle } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -23,7 +23,7 @@ tpl.addCode(`
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1 }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "It actually has a radius of 160(px) on you screen.");
     card.appendDescription(
         "code",
@@ -31,7 +31,7 @@ tpl.addCode(`
 const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1 }));
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
-view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeFill("blue") }));
     `
     );
 }
@@ -40,7 +40,7 @@ view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, .
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 1 }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "It looks like what it should be.");
     card.appendDescription(
         "code",
@@ -48,7 +48,7 @@ view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, .
 const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 1  }));
 view.startResponsive(() => {});
 view.startInteractive();
-view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeFill("blue") }));
         `
     );
 }
@@ -57,7 +57,7 @@ view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, .
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1 }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "The density and zoom cancel each other out. It still looks like what it should be.");
     card.appendDescription(
         "code",
@@ -65,7 +65,7 @@ view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, .
 const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1 }));
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
-view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeFill("blue") }));
         `
     );
 }
@@ -74,7 +74,7 @@ view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, .
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 0.1 }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "Oops!");
     card.appendDescription(
         "code",
@@ -82,7 +82,7 @@ view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, .
 const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 0.1 }));
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
-view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeFill("blue") }));
         `
     );
 }

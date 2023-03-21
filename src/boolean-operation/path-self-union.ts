@@ -1,6 +1,6 @@
 import { BooleanOperation, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand } from "./_common";
@@ -32,16 +32,16 @@ const bo = new BooleanOperation();
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(path, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(path, { type: ViewElementType.None, ...strokeFill("red") }));
 
     // selected.annotations.forEach(item=>{
-    //     view2.add(new ViewElement(item.segment, { interactMode: ViewElementInteractMode.None, ...stroke("teal")}));
-    //     view2.add(new ViewElement(item.segment.point1, { interactMode: ViewElementInteractMode.None, ...stroke("black")}));
-    //     view2.add(new ViewElement(item.segment.point2, { interactMode: ViewElementInteractMode.None, ...stroke("green")}));
+    //     view2.add(new ViewElement(item.segment, { type: ViewElementType.None, ...stroke("teal")}));
+    //     view2.add(new ViewElement(item.segment.point1, { type: ViewElementType.None, ...stroke("black")}));
+    //     view2.add(new ViewElement(item.segment.point2, { type: ViewElementType.None, ...stroke("green")}));
     // })
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
 
     // compound.items.forEach((item, index) => {
-    //     view2.add(new ViewElement(item, { interactMode: ViewElementInteractMode.None, ...strokeFillByIndex(index) }));
+    //     view2.add(new ViewElement(item, { type: ViewElementType.None, ...strokeFillByIndex(index) }));
     // });
 }

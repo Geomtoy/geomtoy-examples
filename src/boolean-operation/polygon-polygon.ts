@@ -1,6 +1,6 @@
 import { BooleanOperation, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPolygonVertex, strokeFillByIndex } from "./_common";
@@ -88,12 +88,12 @@ const description = bo.describe(polygon1, polygon2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    // view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    // view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 
     compound.items.forEach((item, index) => {
-        view2.add(new ViewElement(item, { interactMode: ViewElementInteractMode.None, ...strokeFillByIndex(index) }));
+        view2.add(new ViewElement(item, { type: ViewElementType.None, ...strokeFillByIndex(index) }));
     });
 }
 {
@@ -111,9 +111,9 @@ const description = bo.describe(polygon1, polygon2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -132,9 +132,9 @@ const description = bo.describe(polygon1, polygon2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -153,9 +153,9 @@ const description = bo.describe(polygon1, polygon2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -174,7 +174,7 @@ const description = bo.describe(polygon1, polygon2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }

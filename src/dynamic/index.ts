@@ -1,5 +1,5 @@
 import { Rectangle } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -19,7 +19,7 @@ tpl.addCode(`
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: true, yAxisPositiveOnBottom: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
-    view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+    view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "Commonly used in mathematic, a right-handed coordinate system");
     card.appendDescription(
         "code",
@@ -27,7 +27,7 @@ tpl.addCode(`
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: true, yAxisPositiveOnBottom: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
-    view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+    view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
     `
     );
 }
@@ -36,7 +36,7 @@ tpl.addCode(`
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: true, yAxisPositiveOnBottom: true }));
     view.startResponsive(() => {});
     view.startInteractive();
-    view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+    view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "Commonly used in computer graphics, a left-handed coordinate system");
     card.appendDescription(
         "code",
@@ -44,7 +44,7 @@ tpl.addCode(`
         const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: true, yAxisPositiveOnBottom: true }));
         view.startResponsive(() => {});
         view.startInteractive();
-        view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+        view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
         `
     );
 }
@@ -53,7 +53,7 @@ tpl.addCode(`
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: false, yAxisPositiveOnBottom: false, origin: [50, 50] }));
     view.startResponsive(() => {});
     view.startInteractive();
-    view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+    view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "Not commonly used, a left-handed coordinate system");
     card.appendDescription(
         "code",
@@ -61,7 +61,7 @@ tpl.addCode(`
         const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: false, yAxisPositiveOnBottom: false, origin: [50, 50] }));
         view.startResponsive(() => {});
         view.startInteractive();
-        view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+        view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
         `
     );
 }
@@ -70,7 +70,7 @@ tpl.addCode(`
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: false, yAxisPositiveOnBottom: true, origin: [100, 0] }));
     view.startResponsive(() => {});
     view.startInteractive();
-    view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+    view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "Not commonly used, a right-handed coordinate system");
     card.appendDescription(
         "code",
@@ -78,7 +78,7 @@ tpl.addCode(`
         const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: false, yAxisPositiveOnBottom: false, origin: [100, 0] }));
         view.startResponsive(() => {});
         view.startInteractive();
-        view.add(new ViewElement(rectangle, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
+        view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
         `
     );
 }

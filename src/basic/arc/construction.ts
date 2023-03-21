@@ -1,6 +1,6 @@
 import { Arc, Dynamic, Point } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -70,9 +70,9 @@ const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"]
     arcFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     // #endregion
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(arc, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }
 
 tpl.addSection("fromCenterPointAndStartEndAnglesEtc", true);
@@ -130,8 +130,8 @@ const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (
     arcFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(arc, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }
 
 tpl.addSection("fromThreePointsCircular", true);
@@ -162,8 +162,8 @@ const arc = new Arc().bind([point1, "any"], [point2, "any"], [radiusControlPoint
     `
     );
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(radiusControlPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(arc, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(radiusControlPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(arc, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

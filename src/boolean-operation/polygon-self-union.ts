@@ -1,5 +1,5 @@
 import { BooleanOperation, Geomtoy, Polygon } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -70,8 +70,8 @@ const bo = new BooleanOperation();
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("brown") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("brown") }));
+    view1.add(new ViewElement(polygon, { type: ViewElementType.None, ...lightStrokeFill("brown") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("brown") }));
 }
 {
     tpl.addSection("Polygon has coincident segments");
@@ -129,8 +129,8 @@ const bo = new BooleanOperation();
         view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
         view2.startInteractive();
 
-        view1.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("brown") }));
-        view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("brown") }));
+        view1.add(new ViewElement(polygon, { type: ViewElementType.None, ...lightStrokeFill("brown") }));
+        view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("brown") }));
     }
     {
         const polygon = new Polygon([
@@ -193,8 +193,8 @@ const bo = new BooleanOperation();
         view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
         view2.startInteractive();
 
-        view1.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("brown") }));
-        view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("brown") }));
+        view1.add(new ViewElement(polygon, { type: ViewElementType.None, ...lightStrokeFill("brown") }));
+        view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("brown") }));
     }
     {
         const polygon = new Polygon([
@@ -249,8 +249,8 @@ const bo = new BooleanOperation();
         view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
         view2.startInteractive();
 
-        view1.add(new ViewElement(polygon, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("brown") }));
-        view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("brown") }));
+        view1.add(new ViewElement(polygon, { type: ViewElementType.None, ...lightStrokeFill("brown") }));
+        view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("brown") }));
     }
 }
 {
@@ -319,10 +319,10 @@ const bo = new BooleanOperation();
     view2.startResponsive(() => {});
     view2.startInteractive();
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
-    view2.add(new ViewElement(compound1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view2.add(new ViewElement(compound2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view2.add(new ViewElement(compound2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
 }
 {
     tpl.addSection("Special case about fill rule");
@@ -371,11 +371,11 @@ const bo = new BooleanOperation();
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(polygon1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(polygon2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
 
-    view2.add(new ViewElement(compound1, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view2.add(new ViewElement(compound2, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
+    view2.add(new ViewElement(compound1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view2.add(new ViewElement(compound2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
 
     card1.setDescription(
         "code",

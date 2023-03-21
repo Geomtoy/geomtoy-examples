@@ -1,5 +1,5 @@
 import { Circle, GeometryArray, Line, Point, SealedGeometryArray } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -42,9 +42,9 @@ const twoLines = new SealedGeometryArray([new Line(), new Line()]).bind([circle,
     `
     );
 
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(radiusControlPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(twoLines, { interactMode: ViewElementInteractMode.None, ...lightStrokeOnly("teal") }));
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("teal") }));
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("brown") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(radiusControlPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(twoLines, { type: ViewElementType.None, ...lightStrokeOnly("teal") }));
+    view.add(new ViewElement(point, { ...lightStrokeFill("teal") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

@@ -1,6 +1,6 @@
 import { Path, Point, Polygon, ShapeArray } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, markdownHtml, strokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -38,7 +38,7 @@ const path = new Path([
 ], true);
         `
     );
-    view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
+    view.add(new ViewElement(path, { ...strokeFill("brown") }));
 }
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-6" });
@@ -67,7 +67,7 @@ const path = new Path([
 ], false);
         `
     );
-    view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
+    view.add(new ViewElement(path, { ...strokeFill("brown") }));
 }
 
 tpl.addSection("fromSVGString");
@@ -87,5 +87,5 @@ const polygon = Polygon.fromSVGString("0,100 50,25 50,7 100,0", true);
         `
     );
 
-    view.add(new ViewElement(path, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
+    view.add(new ViewElement(path, { ...strokeFill("brown") }));
 }

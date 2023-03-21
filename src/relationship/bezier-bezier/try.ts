@@ -1,5 +1,5 @@
 import { Bezier, Dynamic, Geomtoy, Point, Relationship, ShapeArray, Trilean } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import color from "../../assets/scripts/color";
 import { lightStrokeFill, lightStrokeFillTrans, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
@@ -113,12 +113,12 @@ relObject.bind([bezier1Bundle.bezier.shape as Bezier, "any"], [bezier2Bundle.bez
         </ul>
         `);
 });
-view.add(new ViewElement(relObject.intersect, { interactMode: ViewElementInteractMode.None, ...strokeOnly("amber") }));
-view.add(new ViewElement(relObject.strike, { interactMode: ViewElementInteractMode.None, ...strokeOnly("green") }));
-view.add(new ViewElement(relObject.contact, { interactMode: ViewElementInteractMode.None, ...strokeOnly("orange") }));
-view.add(new ViewElement(relObject.cross, { interactMode: ViewElementInteractMode.None, ...strokeOnly("lime") }));
-view.add(new ViewElement(relObject.touch, { interactMode: ViewElementInteractMode.None, ...strokeOnly("pink") }));
-view.add(new ViewElement(relObject.block, { interactMode: ViewElementInteractMode.None, ...strokeOnly("lightBlue") }));
-view.add(new ViewElement(relObject.blockedBy, { interactMode: ViewElementInteractMode.None, ...strokeOnly("teal") }));
-view.add(new ViewElement(relObject.connect, { interactMode: ViewElementInteractMode.None, ...strokeOnly("cyan") }));
-view.add(new ViewElement(relObject.coincide, { interactMode: ViewElementInteractMode.None, ...strokeOnly("purple") }));
+view.add(new ViewElement(relObject.intersect, { type: ViewElementType.None, ...strokeOnly("amber") }));
+view.add(new ViewElement(relObject.strike, { type: ViewElementType.None, ...strokeOnly("green") }));
+view.add(new ViewElement(relObject.contact, { type: ViewElementType.None, ...strokeOnly("orange") }));
+view.add(new ViewElement(relObject.cross, { type: ViewElementType.None, ...strokeOnly("lime") }));
+view.add(new ViewElement(relObject.touch, { type: ViewElementType.None, ...strokeOnly("pink") }));
+view.add(new ViewElement(relObject.block, { type: ViewElementType.None, ...strokeOnly("lightBlue") }));
+view.add(new ViewElement(relObject.blockedBy, { type: ViewElementType.None, ...strokeOnly("teal") }));
+view.add(new ViewElement(relObject.connect, { type: ViewElementType.None, ...strokeOnly("cyan") }));
+view.add(new ViewElement(relObject.coincide, { type: ViewElementType.None, ...strokeOnly("purple") }));

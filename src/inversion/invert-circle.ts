@@ -1,6 +1,6 @@
 import { Arbitrary, Circle, Dynamic, Geomtoy, Inversion, Point } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, strokeOnly, strokeFill, thinStrokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -75,8 +75,8 @@ tpl.title("Inversion: inverse of circle");
     folderPoint.addInput(radiusParam, "radius", { min: epsilon, max: 500, step: 0.01 });
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("teal") }));
-    view.add(new ViewElement(circle, { interactMode: ViewElementInteractMode.None, ...strokeOnly("teal") }));
-    view.add(new ViewElement(inversionCenterPoint, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(circleInverse, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("gray") }));
+    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("teal") }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeOnly("teal") }));
+    view.add(new ViewElement(inversionCenterPoint, { ...strokeFill("brown") }));
+    view.add(new ViewElement(circleInverse, { type: ViewElementType.None, ...thinStrokeOnly("gray") }));
 }

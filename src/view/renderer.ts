@@ -1,5 +1,5 @@
 import { Line, Point, Relationship } from "@geomtoy/core";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, strokeOnly, strokeFill, strokeFillTrans } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -37,9 +37,9 @@ const point = new Point().bind([line1, "any"], [line2, "any"], function (e1, e2)
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
-    view.add(new ViewElement(line1, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("red") }));
-    view.add(new ViewElement(line2, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("blue") }));
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("gray") }));
+    view.add(new ViewElement(line1, { ...strokeOnly("red") }));
+    view.add(new ViewElement(line2, { ...strokeOnly("blue") }));
+    view.add(new ViewElement(point, { ...strokeFill("gray") }));
     card.setTitle("SVG renderer");
     card.setDescription(
         "code",
@@ -48,9 +48,9 @@ const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 1,
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
 
-view.add(new ViewElement(line1, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("red") }));
-view.add(new ViewElement(line2, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("blue") }));
-view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("gray") }));
+view.add(new ViewElement(line1, { ...strokeOnly("red") }));
+view.add(new ViewElement(line2, { ...strokeOnly("blue") }));
+view.add(new ViewElement(point, { ...strokeFill("gray") }));
     `
     );
 }
@@ -60,9 +60,9 @@ view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activati
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
-    view.add(new ViewElement(line1, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("red") }));
-    view.add(new ViewElement(line2, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("blue") }));
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("gray") }));
+    view.add(new ViewElement(line1, { ...strokeOnly("red") }));
+    view.add(new ViewElement(line2, { ...strokeOnly("blue") }));
+    view.add(new ViewElement(point, { ...strokeFill("gray") }));
     card.setTitle("Canvas renderer");
 
     card.setDescription(
@@ -72,9 +72,9 @@ const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zo
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
 
-view.add(new ViewElement(line1, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("red") }));
-view.add(new ViewElement(line2, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("blue") }));
-view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("gray") }));
+view.add(new ViewElement(line1, { ...strokeOnly("red") }));
+view.add(new ViewElement(line2, { ...strokeOnly("blue") }));
+view.add(new ViewElement(point, { ...strokeFill("gray") }));
     `
     );
 }
@@ -85,9 +85,9 @@ view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activati
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
-    view.add(new ViewElement(line1, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("red") }));
-    view.add(new ViewElement(line2, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("blue") }));
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("gray") }));
+    view.add(new ViewElement(line1, { ...strokeOnly("red") }));
+    view.add(new ViewElement(line2, { ...strokeOnly("blue") }));
+    view.add(new ViewElement(point, { ...strokeFill("gray") }));
     card.setTitle("SVG renderer 2");
     card.setDescription(
         "code",
@@ -96,9 +96,9 @@ const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 0.
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
 
-view.add(new ViewElement(line1, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("red") }));
-view.add(new ViewElement(line2, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("blue") }));
-view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("gray") }));
+view.add(new ViewElement(line1, { ...strokeOnly("red") }));
+view.add(new ViewElement(line2, { ...strokeOnly("blue") }));
+view.add(new ViewElement(point, { ...strokeFill("gray") }));
     `
     );
 }
@@ -109,9 +109,9 @@ view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activati
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
-    view.add(new ViewElement(line1, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("red") }));
-    view.add(new ViewElement(line2, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("blue") }));
-    view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("gray") }));
+    view.add(new ViewElement(line1, { ...strokeOnly("red") }));
+    view.add(new ViewElement(line2, { ...strokeOnly("blue") }));
+    view.add(new ViewElement(point, { ...strokeFill("gray") }));
     card.setTitle("Canvas renderer 2");
     card.setDescription(
         "code",
@@ -120,9 +120,9 @@ const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zo
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
 
-view.add(new ViewElement(line1, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("red") }));
-view.add(new ViewElement(line2, { interactMode: ViewElementInteractMode.Activation, ...strokeOnly("blue") }));
-view.add(new ViewElement(point, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("gray") }));
+view.add(new ViewElement(line1, { ...strokeOnly("red") }));
+view.add(new ViewElement(line2, { ...strokeOnly("blue") }));
+view.add(new ViewElement(point, { ...strokeFill("gray") }));
     `
     );
 }

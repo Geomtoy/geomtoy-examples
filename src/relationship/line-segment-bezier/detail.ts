@@ -8,7 +8,7 @@
 // {
 
 // }
-  
+
 //     const pA = g.Point(-80, 8);
 //     const pB = g.Point(58, 29);
 
@@ -24,16 +24,16 @@
 //     const l = g.Line.fromTwoPoints(pA, pB)!;
 
 //     pC.on("any", function () {
-//         this.copyFrom(l.getClosestPointFrom(this));
+//         this.copyFrom(l.Point(this));
 //     });
 //     pD.on("any", function () {
-//         this.copyFrom(l.getClosestPointFrom(this));
+//         this.copyFrom(l.getClosestPointFromPoint(this));
 //     });
 //     pE.on("any", function () {
-//         this.copyFrom(l.getClosestPointFrom(this));
+//         this.copyFrom(l.getClosestPointFromPoint(this));
 //     });
 //     pF.on("any", function () {
-//         this.copyFrom(l.getClosestPointFrom(this));
+//         this.copyFrom(l.getClosestPointFromPoint(this));
 //     });
 
 //     const ls1 = g
@@ -48,8 +48,8 @@
 //         .on(
 //             "any",
 //             function () {
-//                 this.point1 = l.getClosestPointFrom(this.point1Coordinates);
-//                 this.point2 = l.getClosestPointFrom(this.point2Coordinates);
+//                 this.point1 = l.getClosestPointFromPoint(this.point1Coordinates);
+//                 this.point2 = l.getClosestPointFromPoint(this.point2Coordinates);
 //                 pC.copyFrom(this.point1);
 //                 pD.copyFrom(this.point2);
 //             },
@@ -68,8 +68,8 @@
 //         .on(
 //             "any",
 //             function () {
-//                 this.point1 = l.getClosestPointFrom(this.point1Coordinates);
-//                 this.point2 = l.getClosestPointFrom(this.point2Coordinates);
+//                 this.point1 = l.getClosestPointFromPoint(this.point1Coordinates);
+//                 this.point2 = l.getClosestPointFromPoint(this.point2Coordinates);
 //                 pE.copyFrom(this.point1);
 //                 pF.copyFrom(this.point2);
 //             },
@@ -105,4 +105,3 @@
 //         .add(new ViewElement(l, false, { stroke: color("gray"), strokeWidth: 2 }, hoverStyle, activeStyle))
 //         .add(overlap);
 //     view.foremost(overlap);
- 

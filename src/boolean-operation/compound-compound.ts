@@ -1,5 +1,5 @@
 import { BooleanOperation, Compound } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -109,9 +109,9 @@ const description = bo.describe(compound1, compound2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(compound1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(compound2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -130,9 +130,9 @@ const description = bo.describe(compound1, compound2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(compound1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(compound2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -151,9 +151,9 @@ const description = bo.describe(compound1, compound2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(compound1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(compound2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -172,9 +172,9 @@ const description = bo.describe(compound1, compound2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(compound1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(compound2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }
 
 {
@@ -193,7 +193,7 @@ const description = bo.describe(compound1, compound2);
     view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
     view2.startInteractive();
 
-    view1.add(new ViewElement(compound1, { interactMode: ViewElementInteractMode.None, ...strokeFill("red") }));
-    view1.add(new ViewElement(compound2, { interactMode: ViewElementInteractMode.None, ...strokeFill("blue") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...strokeFill("purple") }));
+    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...strokeFill("red") }));
+    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...strokeFill("blue") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...strokeFill("purple") }));
 }

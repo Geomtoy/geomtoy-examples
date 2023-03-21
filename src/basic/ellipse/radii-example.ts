@@ -1,6 +1,6 @@
 import Geomtoy, { type EventObject, type Text, Point, type Arc, Ellipse, Dynamic, Circle } from "@geomtoy/core";
 import { Maths, Polynomial, Utility } from "@geomtoy/util";
-import { View, ViewElement, CanvasRenderer, SvgRenderer, ViewElementInteractMode } from "@geomtoy/view";
+import { View, ViewElement, CanvasRenderer, SvgRenderer, ViewElementType } from "@geomtoy/view";
 import color from "../../assets/scripts/color";
 import { dashedThinStroke, strokeFill, strokeOnly } from "../../assets/scripts/common";
 // import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/common";
@@ -40,8 +40,8 @@ tpl.title("Ellipse radiusX and radiusY explanation");
     restParamsFolder.addInput(restParams, "radiusX", { min: 0 });
     restParamsFolder.addInput(restParams, "radiusY", { min: 0 });
     // #endregion
-    view.add(new ViewElement(circle1, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("red") }));
-    view.add(new ViewElement(circle2, { interactMode: ViewElementInteractMode.None, ...dashedThinStroke("blue") }));
-    view.add(new ViewElement(centerPoint, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(ellipse, { interactMode: ViewElementInteractMode.None, ...strokeFill("brown") }));
+    view.add(new ViewElement(circle1, { type: ViewElementType.None, ...dashedThinStroke("red") }));
+    view.add(new ViewElement(circle2, { type: ViewElementType.None, ...dashedThinStroke("blue") }));
+    view.add(new ViewElement(centerPoint, { ...strokeFill("brown") }));
+    view.add(new ViewElement(ellipse, { type: ViewElementType.None, ...strokeFill("brown") }));
 }

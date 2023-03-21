@@ -1,6 +1,6 @@
 import { BooleanOperation, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand, strokeFillByIndex } from "./_common";
@@ -30,10 +30,10 @@ tpl.addMarkdown("Refresh to random");
     view3.startResponsive((width, height) => (view3.renderer.display.origin = [width / 2, height / 2]));
     view3.startInteractive();
 
-    view1.add(new ViewElement(path, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("red") }));
-    view2.add(new ViewElement(compound, { interactMode: ViewElementInteractMode.None, ...lightStrokeFill("blue") }));
+    view1.add(new ViewElement(path, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
 
     compound.items.forEach((item, index) => {
-        view3.add(new ViewElement(item, { interactMode: ViewElementInteractMode.None, ...strokeFillByIndex(index) }));
+        view3.add(new ViewElement(item, { type: ViewElementType.None, ...strokeFillByIndex(index) }));
     });
 }

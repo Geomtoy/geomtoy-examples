@@ -1,6 +1,6 @@
 import { Arbitrary, Dynamic, Inversion, Line, Point } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
-import { CanvasRenderer, View, ViewElement, ViewElementInteractMode } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, lightStrokeFillTrans, strokeOnly, strokeFill, thinStrokeOnly } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -73,9 +73,9 @@ tpl.title("Inversion: inverse of line");
     point2.on("any", () => inputPoint2.refresh());
     // #endregion
 
-    view.add(new ViewElement(point1, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("teal") }));
-    view.add(new ViewElement(point2, { interactMode: ViewElementInteractMode.Activation, ...lightStrokeFill("teal") }));
-    view.add(new ViewElement(line, { interactMode: ViewElementInteractMode.None, ...strokeOnly("teal") }));
-    view.add(new ViewElement(inversionCenterPoint, { interactMode: ViewElementInteractMode.Activation, ...strokeFill("brown") }));
-    view.add(new ViewElement(lineInverse, { interactMode: ViewElementInteractMode.None, ...thinStrokeOnly("gray") }));
+    view.add(new ViewElement(point1, { ...lightStrokeFill("teal") }));
+    view.add(new ViewElement(point2, { ...lightStrokeFill("teal") }));
+    view.add(new ViewElement(line, { type: ViewElementType.None, ...strokeOnly("teal") }));
+    view.add(new ViewElement(inversionCenterPoint, { ...strokeFill("brown") }));
+    view.add(new ViewElement(lineInverse, { type: ViewElementType.None, ...thinStrokeOnly("gray") }));
 }
