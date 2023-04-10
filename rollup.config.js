@@ -87,10 +87,10 @@ module.exports = {
                         <head>
                             <meta charset="UTF-8">
                             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                            ${process.env.GENERATE === "true" ? "<base href='/geomtoy-examples/' />" : "<base href='/' />"}
+                            <base href="/" />
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                             <title>${"Geomtoy examples-" + (item.fileSubDir === "." ? "" : posixDirPath(item.fileSubDir)) + item.fileName}</title>
-                            <link rel="canonical" href="https://geomtoy.github.io/" />
+                            <link rel="canonical" href="https://examples.geomtoy.com" />
 
                             <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
                             <link rel="icon" sizes="32x32" href="assets/img/favicon-32x32.png" type="image/png">
