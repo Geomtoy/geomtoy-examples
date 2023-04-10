@@ -137,7 +137,7 @@ module.exports = {
                                     a.children.push({ type: "file", name: fileName, url: `${posixDirPath(fileSubDir) + fileName}.html` });
                                 } else {
                                     const parent = fileSubDir.split(path.sep).reduce((a, c) => {
-                                        const index = a.children.findIndex(item => item.name === c);
+                                        const index = a.children.findIndex(item => item.name === c && item.type === "dir");
                                         if (index !== -1) {
                                             return a.children[index];
                                         } else {
