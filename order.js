@@ -1,14 +1,18 @@
 const path = require("path");
 
 const orderDict = Object.entries([
+    "index",
+    "about",
+
     "quick-start",
+    "view",
     "basic",
     "dynamic",
     "event-system",
     "general",
     "inversion",
     "transform",
-    "relationship",
+    "intersection",
     "view",
     "about",
 
@@ -34,7 +38,10 @@ const orderDict = Object.entries([
     "portion-and-split",
     "tangent-normal-curvature",
     "tangent-normal",
-    "closest-point"
+    "closest-point",
+
+    "common-boolean-operation",
+    "self-union"
 ]).reduce((acc, [index, word]) => {
     acc[word] = index;
     return acc;
