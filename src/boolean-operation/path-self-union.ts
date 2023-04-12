@@ -5,7 +5,7 @@ import { lightStrokeFill, strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 import { randomPathCommand } from "./_common";
 
-tpl.title("Path self-union");
+tpl.title("Path self union");
 
 const bo = new BooleanOperation();
 {
@@ -23,7 +23,7 @@ const bo = new BooleanOperation();
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "self-union", className: "col-6" });
+    const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));

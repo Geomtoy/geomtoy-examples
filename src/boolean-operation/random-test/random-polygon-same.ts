@@ -1,26 +1,29 @@
 import { BooleanOperation, Geomtoy, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
-import { newElement, lightStrokeFill } from "../assets/scripts/common";
-import tpl from "../assets/templates/tpl-renderer";
-import { randomPolygonVertex } from "./_common";
+import { lightStrokeFill, newElement } from "../../assets/scripts/common";
+import tpl from "../../assets/templates/tpl-renderer";
+import { randomPolygonVertex } from "../_common";
 
-tpl.title("Random polygon-polygon boolean operation");
+tpl.title("Same random polygon-polygon test");
 
 const bo = new BooleanOperation("sweep-line");
-
 const polygon1 = new Polygon(Utility.range(0, 10).map(_ => randomPolygonVertex()));
-const polygon2 = new Polygon(Utility.range(0, 10).map(_ => randomPolygonVertex()));
+const polygon2 = polygon1.clone();
 const description = bo.describe(polygon1, polygon2);
 
 const viewCollection: View[] = [];
+
+tpl.addMarkdown(`
+Refresh to random. The two polygon are exactly the same.(One is a clone of the other.)
+Each of the two polygon contains 10 identical random vertices.
+`);
 {
     const checkWrapper = newElement(`
-    <p>
-        Refresh to random. Each of the two polygons contain 10 random vertices. 
+    <div class="mt-0"> 
         <input class="form-check-input" type="checkbox" id="check">
         <label class="form-check-label" for="check">Show winding</label>
-    </p>
+    </div>
     `);
     const checkbox = checkWrapper.querySelector("input[type=checkbox]")!;
     checkbox.addEventListener("change", function (this: HTMLInputElement) {
@@ -29,7 +32,7 @@ const viewCollection: View[] = [];
                 polygonSegmentArrow: this.checked
             }
         });
-        viewCollection.forEach(view => view.render());
+        viewCollection.forEach(view => view.requestRender());
     });
     tpl.addHtmlElement(checkWrapper);
 }
@@ -40,7 +43,7 @@ const viewCollection: View[] = [];
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -60,7 +63,7 @@ const viewCollection: View[] = [];
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "intersection", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -82,7 +85,7 @@ const viewCollection: View[] = [];
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "difference", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -98,13 +101,13 @@ const viewCollection: View[] = [];
 }
 
 {
-    tpl.addSection("DifferenceRev");
-    const compound = bo.chain(bo.selectDifferenceRev(description));
+    tpl.addSection("DifferenceReverse");
+    const compound = bo.chain(bo.selectDifferenceReverse(description));
 
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "difference reverse", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -126,7 +129,7 @@ const viewCollection: View[] = [];
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "exclusion", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));

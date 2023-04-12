@@ -1,34 +1,40 @@
-import { BooleanOperation, Compound, Geomtoy, Path } from "@geomtoy/core";
+import { BooleanOperation, Geomtoy, Polygon } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
-import { newElement, lightStrokeFill } from "../assets/scripts/common";
-import tpl from "../assets/templates/tpl-renderer";
-import { randomPathCommand } from "./_common";
+import { lightStrokeFill, newElement } from "../../assets/scripts/common";
+import tpl from "../../assets/templates/tpl-renderer";
+import { randomPolygonVertex } from "../_common";
 
-tpl.title("Random compound-compound boolean operation");
+tpl.title("Random polygon-polygon test with naive strategy");
 
-const bo = new BooleanOperation();
-const compound1 = new Compound([new Path(Utility.range(0, 5).map(_ => randomPathCommand())), new Path(Utility.range(0, 5).map(_ => randomPathCommand()))]);
-const compound2 = new Compound([new Path(Utility.range(0, 5).map(_ => randomPathCommand())), new Path(Utility.range(0, 5).map(_ => randomPathCommand()))]);
-const description = bo.describe(compound1, compound2);
+const bo = new BooleanOperation("naive");
+tpl.addCode(`
+const bo = new BooleanOperation("naive");
+`);
+const polygon1 = new Polygon(Utility.range(0, 5).map(_ => randomPolygonVertex()));
+const polygon2 = new Polygon(Utility.range(0, 5).map(_ => randomPolygonVertex()));
+const description = bo.describe(polygon1, polygon2);
 
 const viewCollection: View[] = [];
+
+tpl.addMarkdown(`
+Refresh to random. Each of the two polygons contain 5 random vertices. 
+`);
 {
     const checkWrapper = newElement(`
-    <p>
-        Refresh to random. Each of the two compounds contain 2 paths with 5 random commands. 
+    <div class="mt-0">
         <input class="form-check-input" type="checkbox" id="check">
         <label class="form-check-label" for="check">Show winding</label>
-    </p>
+    </div>
     `);
     const checkbox = checkWrapper.querySelector("input[type=checkbox]")!;
     checkbox.addEventListener("change", function (this: HTMLInputElement) {
         Geomtoy.setOptions({
             graphics: {
-                pathSegmentArrow: this.checked
+                polygonSegmentArrow: this.checked
             }
         });
-        viewCollection.forEach(view => view.render());
+        viewCollection.forEach(view => view.requestRender());
     });
     tpl.addHtmlElement(checkWrapper);
 }
@@ -39,7 +45,7 @@ const viewCollection: View[] = [];
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -49,8 +55,8 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
     view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 {
@@ -59,7 +65,7 @@ const viewCollection: View[] = [];
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "intersection", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -69,8 +75,8 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
     view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 
@@ -81,7 +87,7 @@ const viewCollection: View[] = [];
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "difference", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -91,19 +97,19 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
     view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 
 {
-    tpl.addSection("DifferenceRev");
-    const compound = bo.chain(bo.selectDifferenceRev(description));
+    tpl.addSection("DifferenceReverse");
+    const compound = bo.chain(bo.selectDifferenceReverse(description));
 
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "difference reverse", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -113,8 +119,8 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
     view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }
 
@@ -125,7 +131,7 @@ const viewCollection: View[] = [];
     const card1 = tpl.addCard({ title: "original", className: "col-6" });
     const view1 = new View({}, new CanvasRenderer(card1.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card2 = tpl.addCard({ title: "boolean", className: "col-6" });
+    const card2 = tpl.addCard({ title: "exclusion", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -135,7 +141,7 @@ const viewCollection: View[] = [];
     view2.startInteractive();
     viewCollection.push(view1, view2);
 
-    view1.add(new ViewElement(compound1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
-    view1.add(new ViewElement(compound2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
+    view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("red") }));
+    view1.add(new ViewElement(polygon2, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
     view2.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("purple") }));
 }

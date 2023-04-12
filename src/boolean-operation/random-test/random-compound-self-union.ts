@@ -1,12 +1,13 @@
 import { BooleanOperation, Compound, Path } from "@geomtoy/core";
 import { Utility } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
-import { lightStrokeFill } from "../assets/scripts/common";
-import tpl from "../assets/templates/tpl-renderer";
-import { randomPathCommand, strokeFillByIndex } from "./_common";
+import { lightStrokeFill } from "../../assets/scripts/common";
+import tpl from "../../assets/templates/tpl-renderer";
+import { randomPathCommand, strokeFillByIndex } from "../_common";
 
-tpl.title("Random compound self-union");
-tpl.addMarkdown("Refresh to random");
+tpl.title("Random compound self union test");
+
+tpl.addMarkdown("Refresh to random. The compound contains 2 paths, each with 10 random commands.");
 {
     const bo = new BooleanOperation();
     const path1 = new Path(Utility.range(0, 10).map(_ => randomPathCommand()));
@@ -20,10 +21,10 @@ tpl.addMarkdown("Refresh to random");
     const card2 = tpl.addCard({ title: "original compound items", className: "col-6", aspectRatio: "1:1" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card3 = tpl.addCard({ title: "self-union compound", className: "col-6", aspectRatio: "1:1" });
+    const card3 = tpl.addCard({ title: "self union compound", className: "col-6", aspectRatio: "1:1" });
     const view3 = new View({}, new CanvasRenderer(card3.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    const card4 = tpl.addCard({ title: "self-union compound items", className: "col-6", aspectRatio: "1:1" });
+    const card4 = tpl.addCard({ title: "self union compound items", className: "col-6", aspectRatio: "1:1" });
     const view4 = new View({}, new CanvasRenderer(card4.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
     view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
@@ -42,9 +43,7 @@ tpl.addMarkdown("Refresh to random");
     origCompound.items.forEach((item, index) => {
         view2.add(new ViewElement(item, { type: ViewElementType.None, ...strokeFillByIndex(index) }));
     });
-
     view3.add(new ViewElement(compound, { type: ViewElementType.None, ...lightStrokeFill("blue") }));
-
     compound.items.forEach((item, index) => {
         view4.add(new ViewElement(item, { type: ViewElementType.None, ...strokeFillByIndex(index) }));
     });
