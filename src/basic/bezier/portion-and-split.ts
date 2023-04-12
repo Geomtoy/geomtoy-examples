@@ -1,5 +1,5 @@
 import { Bezier, GeometryArray, Point, SealedShapeObject } from "@geomtoy/core";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
+import { CanvasRenderer, SubView, View, ViewElement } from "@geomtoy/view";
 import { lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 

@@ -47,8 +47,8 @@ lengths.lengthBySvg= svgPolygon.getTotalLength()
 tpl.addSection("area");
 tpl.addMarkdown(
     "\
-For simple(non-self-intersecting) polygons, `getArea` returns correct results, but for complex(​​self-intersecting) polygons, `getArea` cannot be directly used, but perform a self-union boolean operation first. \
-And the fill rule that affects the final graphics will also be processed in self-union.\
+For simple(non-self-intersecting) polygons, `getArea` returns correct results, but for complex(​​self-intersecting) polygons, `getArea` cannot be directly used, but perform a self union boolean operation first. \
+And the fill rule that affects the final graphics will also be processed in self union.\
 "
 );
 {

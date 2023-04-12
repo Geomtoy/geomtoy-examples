@@ -1,4 +1,4 @@
-import { Line, Point, Relationship } from "@geomtoy/core";
+import { Line, Point, Intersection } from "@geomtoy/core";
 import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, strokeOnly, strokeFill, strokeFillTrans } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
@@ -12,9 +12,9 @@ tpl.addMarkdown(`
 
 const line1 = Line.fromTwoPoints([10, 10], [50, 4])!;
 const line2 = Line.fromTwoPoints([10, 20], [22, 2])!;
-const rs = new Relationship();
+const inter = new Intersection();
 const point = new Point().bind([line1, "any"], [line2, "any"], function (e1, e2) {
-    this.copyFrom(rs.intersect(e1.target, e2.target)[0]);
+    this.copyFrom(inter.intersect(e1.target, e2.target)[0]);
 });
 
 tpl.addMarkdown(`
@@ -25,9 +25,9 @@ tpl.addMarkdown(`
 tpl.addCode(`
 const line1 = Line.fromTwoPoints([10, 10], [50, 4])!;
 const line2 = Line.fromTwoPoints([10, 20], [22, 2])!;
-const rs = new Relationship();
+const inter = new Intersection();
 const point = new Point().bind([line1, "any"], [line2, "any"], function (e1, e2) {
-    this.copyFrom(rs.intersect(e1.target, e2.target)[0]);
+    this.copyFrom(inter.intersect(e1.target, e2.target)[0]);
 });
 `);
 

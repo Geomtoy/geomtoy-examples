@@ -10,7 +10,7 @@ For example, a circle can be easily specified by its center and radius, but the 
 I'm afraid you can only describe what the each arcs of the union looks like.
 `);
 tpl.addMarkdown(`
-Just like the browser SVG or Canvas drawing commands, the general geometry tries to describe a figure by only 1, 2, 3 degree bezier curves and elliptical arcs, which may involves curve fitting.
+Just like the browser SVG or Canvas drawing commands, the general geometry tries to describe a figure by only 1, 2, 3 degree bezier curves and elliptical arcs, which may involves curve approximation.
 `);
 
 tpl.addSection("Difference between Geomtoy and Web standard");

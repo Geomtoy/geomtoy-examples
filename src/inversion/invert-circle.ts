@@ -67,12 +67,12 @@ tpl.title("Inversion: inverse of circle");
     const folderInversion = pane.addFolder({ title: "Inversion" });
     const inputInversionCenterPoint = folderInversion.addInput({ inversionCenterPoint }, "inversionCenterPoint", { y: { inverted: true } });
     inversionCenterPoint.on("any", () => inputInversionCenterPoint.refresh());
-    folderInversion.addInput(inversionPowerParam, "power", { min: epsilon, max: 10000 });
+    folderInversion.addInput(inversionPowerParam, "power", { min: 1, max: 10000, step: 10 });
 
     const folderPoint = pane.addFolder({ title: "Circle" });
     const inputCenterPoint = folderPoint.addInput({ centerPoint }, "centerPoint", { y: { inverted: true } });
     centerPoint.on("any", () => inputCenterPoint.refresh());
-    folderPoint.addInput(radiusParam, "radius", { min: epsilon, max: 500, step: 0.01 });
+    folderPoint.addInput(radiusParam, "radius", { min: 10, max: 500, step: 1 });
     // #endregion
 
     view.add(new ViewElement(centerPoint, { ...lightStrokeFill("teal") }));
