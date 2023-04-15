@@ -11,11 +11,10 @@ This repo is the examples of Geomtoy.
 
 
 ## Notice
-It is best NOT to commit the submodule Geomtoy in this repo. If you need to modify the code of Geomtoy during debugging, then please migrate the modified code to Geomtoy for commit if debugging is successful.
+It is best NOT to commit code to Geomtoy from this repo.
+If you really want to do it, remember to pull first and check out a branch before coding.
 
-If you really want to commit code to Geomtoy from here, remember to pull first and check out a branch before coding.
-
-If code has already been accidentally committed to a detached HEAD, you could try to execute:
+If code has already been accidentally committed to a `detached HEAD`, you could try to execute:
 ```
 git submodule foreach 'git switch -c tmp'
 git submodule foreach 'git switch master'
@@ -24,8 +23,7 @@ git submodule foreach 'git branch -d tmp'
 ```
 
 ## Debugging & Maintaining
-- Run the corresponding `npm run build-****` after modifying the Geomtoy packages.
+- Run the corresponding `npm run build-****` after modifying Geomtoy packages.
 - If you change the static content (not `.ts`), you need to re-serve, add or delete `.ts` files, you also need to re-serve.
-- When Geomtoy is updated, run `git submodule update --remote` to update Geomtoy, more info on how to use [git-submodule](https://git-scm.com/docs/git-submodule).
-- Run `npm run commit` to commit **IMPORTANT**!, leave the scope to be empty.
-- Sometimes pull or commit Geomtoy code may cause symlinks to disappear, we can re-run `node create-link`.
+- Run `npm run commit` to commit **IMPORTANT**!.
+- Sometimes symlinks may disappear, we can re-run `node create-link`.
