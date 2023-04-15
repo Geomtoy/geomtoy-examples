@@ -92,11 +92,11 @@ module.exports = {
                             <title>${"Geomtoy examples-" + (item.fileSubDir === "." ? "" : posixDirPath(item.fileSubDir)) + item.fileName}</title>
                             <link rel="canonical" href="https://examples.geomtoy.com" />
 
-                            <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-                            <link rel="icon" sizes="32x32" href="assets/img/favicon-32x32.png" type="image/png">
-                            <link rel="icon" sizes="16x16" href="assets/img/favicon-16x16.png" type="image/png">
-                            <link rel="mask-icon" href="assets/img/safari-pinned-tab.svg" color="#333333">
-                            <link rel="icon" href="assets/img/favicon.ico">
+                            <link rel="apple-touch-icon" sizes="180x180" href="https://assets.geomtoy.com/icons/apple-touch-icon.png">
+                            <link rel="icon" sizes="32x32" href="https://assets.geomtoy.com/icons/favicon-32x32.png" type="image/png">
+                            <link rel="icon" sizes="16x16" href="https://assets.geomtoy.com/icons/favicon-16x16.png" type="image/png">
+                            <link rel="mask-icon" href="https://assets.geomtoy.com/icons/safari-pinned-tab.svg" color="#333333">
+                            <link rel="icon" href="https://assets.geomtoy.com/icons/favicon.ico">
                             <meta name="theme-color" content="#ffffff" /> 
                             <meta name="author" content="Fish Eleven">
                             <meta name="description" content="Geomtoy is a 2D geometry responsive computing, visualizing and interacting library.">
