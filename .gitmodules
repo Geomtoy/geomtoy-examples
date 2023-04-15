@@ -1,4 +1,5 @@
 [submodule "geomtoy"]
 	path = geomtoy
 	url = https://github.com/Geomtoy/geomtoy.git
+	branch = master
 	ignore = dirty
