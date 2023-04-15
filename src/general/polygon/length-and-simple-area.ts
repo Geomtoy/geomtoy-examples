@@ -1,7 +1,7 @@
 import { Dynamic, Polygon } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, strokeFill } from "../../assets/scripts/common";
-import { appendSvgElement } from "../../assets/scripts/svg-append";
+import { appendSVGElement } from "../../assets/scripts/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Polygon length and simple area");
@@ -15,22 +15,22 @@ tpl.addSection("length");
 
     const lengths = {
         lengthByGeomtoy: 0,
-        lengthBySvg: 0
+        lengthBySVG: 0
     };
 
     const polygon = Polygon.fromSVGString("50,0 21,90 98,35 2,35 79,90");
-    const svgPolygon = appendSvgElement("polygon");
+    const svgPolygon = appendSVGElement("polygon");
     svgPolygon.setAttribute("points", "50,0 21,90 98,35 2,35 79,90");
     lengths.lengthByGeomtoy = polygon.getLength();
-    lengths.lengthBySvg = svgPolygon.getTotalLength();
+    lengths.lengthBySVG = svgPolygon.getTotalLength();
 
     card.appendDescription(
         codeHtml(`
 const polygon = Polygon.fromSVGString("50,0 21,90 98,35 2,35 79,90");
-const svgPolygon = appendSvgElement("polygon");
+const svgPolygon = appendSVGElement("polygon");
 svgPolygon.setAttribute("points", "50,0 21,90 98,35 2,35 79,90");
 lengths.lengthByGeomtoy = polygon.getLength()
-lengths.lengthBySvg= svgPolygon.getTotalLength()
+lengths.lengthBySVG= svgPolygon.getTotalLength()
         `)
     );
 
@@ -39,7 +39,7 @@ lengths.lengthBySvg= svgPolygon.getTotalLength()
     const pane = new Tweakpane.Pane({ title: "Pane", container: card.pane });
     const lengthFolder = pane.addFolder({ title: "Length" });
     lengthFolder.addMonitor(lengths, "lengthByGeomtoy", { label: " length by Geomtoy", format: (v: any) => v.toFixed(10) });
-    lengthFolder.addMonitor(lengths, "lengthBySvg", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
+    lengthFolder.addMonitor(lengths, "lengthBySVG", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
     // #endregion
     view.add(new ViewElement(polygon, { ...strokeFill("brown") }));
 }

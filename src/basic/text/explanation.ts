@@ -1,5 +1,5 @@
 import { Anchor, Image } from "@geomtoy/core";
-import { SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
+import { SVGRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFillTrans, markdownHtml } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -97,7 +97,7 @@ const imageUrl = "assets/img/emoji-icons-set-flat-design-free-vector.jpg";
 
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", rendererType: "svg", withPane: true });
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 1, zoom: 0.5, yAxisPositiveOnBottom: false }));
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 0.5, yAxisPositiveOnBottom: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 

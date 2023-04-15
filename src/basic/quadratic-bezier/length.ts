@@ -19,14 +19,14 @@ tpl.title("Quadratic bezier length");
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     const lengths = {
         lengthByGeomtoy: 0,
-        lengthBySvg: 0
+        lengthBySVG: 0
     };
 
     const quadraticBezier = new QuadraticBezier().bind([point1, "any"], [point2, "any"], [controlPoint, "any"], function (e1, e2, e3) {
         this.copyFrom(new QuadraticBezier(e1.target, e2.target, e3.target));
         lengths.lengthByGeomtoy = this.getLength();
         path.setAttribute("d", `M${e1.target.x},${e1.target.y}Q${e3.target.x},${e3.target.y} ${e2.target.x},${e2.target.y}`);
-        lengths.lengthBySvg = path.getTotalLength();
+        lengths.lengthBySVG = path.getTotalLength();
     });
 
     card.setDescription(
@@ -39,7 +39,7 @@ tpl.title("Quadratic bezier length");
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     const lengths = {
         lengthByGeomtoy: 0,
-        lengthBySvg: 0
+        lengthBySVG: 0
     };
 
     const quadraticBezier = new QuadraticBezier().bind(
@@ -52,7 +52,7 @@ tpl.title("Quadratic bezier length");
             this.copyFrom(new QuadraticBezier(e1.target, e2.target, e3.target));
             lengths.lengthByGeomtoy = this.getLength();
             path.setAttribute("d", \`M\${e1.target.x},\${e1.target.y}Q\${e3.target.x},\${e3.target.y} \${e2.target.x},\${e2.target.y}\`);
-            lengths.lengthBySvg = path.getTotalLength();
+            lengths.lengthBySVG = path.getTotalLength();
         }
     );
     `
@@ -65,7 +65,7 @@ tpl.title("Quadratic bezier length");
     // @ts-expect-error
     const pane = new Tweakpane.Pane({ title: "Length", container: card.pane });
     pane.addMonitor(lengths, "lengthByGeomtoy", { label: " length by Geomtoy", format: (v: any) => v.toFixed(10) });
-    pane.addMonitor(lengths, "lengthBySvg", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
+    pane.addMonitor(lengths, "lengthBySVG", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
     // #endregion
 
     view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));

@@ -26,7 +26,7 @@
 // g.yAxisPositiveOnBottom = false;
 // g.scale = 10;
 
-// const renderer = new Geomtoy.adapters.VanillaSvg(svg, g);
+// const renderer = new Geomtoy.adapters.VanillaSVG(svg, g);
 // renderer.lineJoin("round");
 // const collection = new Collection();
 // const interact = new Interact(renderer, collection);

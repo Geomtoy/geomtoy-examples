@@ -1,6 +1,6 @@
 import { Arc, Dynamic, Point } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
+import { CanvasRenderer, SVGRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -79,7 +79,7 @@ tpl.addSection("fromCenterPointAndStartEndAnglesEtc", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "svg", className: "col-12", withPane: true });
     card.setTitle("This is the way Canvas describe an arc.");
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 

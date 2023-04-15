@@ -21,7 +21,7 @@ tpl.title("Bezier extrema and bounding box");
     });
 
     const extremePoints = new GeometryArray().bind([bezier, "any"], function (e) {
-        this.items = e.target.isValid() ? e.target.extrema().map(([p]) => ((p.appearance = "cross"), p)) : [];
+        this.items = e.target.isValid() ? e.target.extrema().map(t => new Point(e.target.getParametricEquation()(t), "cross")) : [];
     });
     const boundingBoxRectangle = new Rectangle().bind([bezier, "any"], function (e) {
         const dg = e.target.degenerate(false);
@@ -43,7 +43,7 @@ const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint
 });
 
 const extremePoints = new GeometryArray().bind([bezier, "any"], function (e) {
-    this.items = e.target.isValid() ? e.target.extrema().map(([p]) => ((p.appearance = "cross"), p)) : [];
+    this.items = e.target.isValid() ? e.target.extrema().map(t => new Point(e.target.getParametricEquation()(t), "cross")) : [];
 });
 const boundingBoxRectangle = new Rectangle().bind([bezier, "any"], function (e) {
     const dg = e.target.degenerate(false);

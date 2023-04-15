@@ -6,16 +6,16 @@ import { fillTransOnly, thinStrokeOnly } from "../assets/scripts/common";
 
 export class TransformOperation {
     private _iconUrls = {
-        iconHUrl: "assets/img/icons/h.svg",
-        iconNeSwUrl: "assets/img/icons/ne-sw.svg",
-        iconNwSeUrl: "assets/img/icons/nw-se.svg",
-        iconVUrl: "assets/img/icons/v.svg",
-        iconCUrl: "assets/img/icons/c.svg",
-        iconDotUrl: "assets/img/icons/dot.svg",
-        iconNeUrl: "assets/img/icons/ne.svg",
-        iconNwUrl: "assets/img/icons/nw.svg",
-        iconSeUrl: "assets/img/icons/se.svg",
-        iconSwUrl: "assets/img/icons/sw.svg"
+        iconHUrl: "assets/img/h.svg",
+        iconNeSwUrl: "assets/img/ne-sw.svg",
+        iconNwSeUrl: "assets/img/nw-se.svg",
+        iconVUrl: "assets/img/v.svg",
+        iconCUrl: "assets/img/c.svg",
+        iconDotUrl: "assets/img/dot.svg",
+        iconNeUrl: "assets/img/ne.svg",
+        iconNwUrl: "assets/img/nw.svg",
+        iconSeUrl: "assets/img/se.svg",
+        iconSwUrl: "assets/img/sw.svg"
     };
     constructor(public view: View) {
         this._preloadIconImages();

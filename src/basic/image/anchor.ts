@@ -1,5 +1,5 @@
 import { Anchor, EventObject, Image, Point } from "@geomtoy/core";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
+import { CanvasRenderer, SVGRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, lightStrokeFill, lightStrokeFillTrans, markdownHtml } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
@@ -40,8 +40,8 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     `);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-6", rendererType: "svg", withPane: true });
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: true, xAxisPositiveOnRight: true }));
-    view.activeMode = "numerous";
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: true, xAxisPositiveOnRight: true }));
+    view.activationMode = "numerous";
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
@@ -70,8 +70,8 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
 
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-6", rendererType: "svg", withPane: true });
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: true, xAxisPositiveOnRight: false }));
-    view.activeMode = "numerous";
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: true, xAxisPositiveOnRight: false }));
+    view.activationMode = "numerous";
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
@@ -99,8 +99,8 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
 
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-6", rendererType: "svg", withPane: true });
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: false, xAxisPositiveOnRight: true }));
-    view.activeMode = "numerous";
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: false, xAxisPositiveOnRight: true }));
+    view.activationMode = "numerous";
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
@@ -128,8 +128,8 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
 
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-6", rendererType: "svg", withPane: true });
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: false, xAxisPositiveOnRight: false }));
-    view.activeMode = "numerous";
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: false, xAxisPositiveOnRight: false }));
+    view.activationMode = "numerous";
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 

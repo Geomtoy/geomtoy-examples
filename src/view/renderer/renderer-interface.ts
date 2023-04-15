@@ -1,7 +1,7 @@
 import { Rectangle } from "@geomtoy/core";
 import { CanvasRenderer, Renderer, View, ViewElement } from "@geomtoy/view";
-import { strokeFill } from "../assets/scripts/common";
-import tpl from "../assets/templates/tpl-renderer";
+import { strokeFill } from "../../assets/scripts/common";
+import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Renderer interface");
 
@@ -13,7 +13,7 @@ tpl.addSubSection("API");
 tpl.addCode(`
 // initialization 
 const CanvasRenderer = new CanvasRenderer(canvas, Partial&lt;InterfaceSettings&gt;)
-const SvgRenderer = new SvgRenderer(svg, Partial&lt;InterfaceSettings&gt;)
+const SVGRenderer = new SVGRenderer(svg, Partial&lt;InterfaceSettings&gt;)
 
 // runtime modification
 renderer.interface.&lt;keyof InterfaceSettings&gt; = &lt;value&gt;;

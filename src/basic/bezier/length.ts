@@ -2,7 +2,7 @@ import { Bezier, LineSegment, Point } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { dashedThinStroke, lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
 import { twoPointsLineSegment } from "../../assets/scripts/general-construction";
-import { appendSvgElement } from "../../assets/scripts/svg-append";
+import { appendSVGElement } from "../../assets/scripts/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Bezier length");
@@ -23,10 +23,10 @@ tpl.addMarkdown(`
     const controlPoint1 = new Point([30, 70]);
     const controlPoint2 = new Point([40, 20]);
 
-    const svgPath = appendSvgElement("path");
+    const svgPath = appendSVGElement("path");
     const lengths = {
         lengthByGeomtoy: 0,
-        lengthBySvg: 0
+        lengthBySVG: 0
     };
 
     const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint1, "any"], [controlPoint2, "any"], function (e1, e2, e3, e4) {
@@ -34,7 +34,7 @@ tpl.addMarkdown(`
         if (this.isValid()) {
             lengths.lengthByGeomtoy = this.getLength();
             svgPath.setAttribute("d", `M${e1.target.x},${e1.target.y}C${e3.target.x},${e3.target.y} ${e4.target.x},${e4.target.y} ${e2.target.x},${e2.target.y}`);
-            lengths.lengthBySvg = svgPath.getTotalLength();
+            lengths.lengthBySVG = svgPath.getTotalLength();
         }
     });
 
@@ -46,17 +46,17 @@ const point2 = new Point([10, 20]);
 const controlPoint1 = new Point([30, 70]);
 const controlPoint2 = new Point([40, 20]);
 
-const svgPath = appendSvgElement("path");
+const svgPath = appendSVGElement("path");
 const lengths = {
     lengthByGeomtoy: 0,
-    lengthBySvg: 0
+    lengthBySVG: 0
 };
 
 const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint1, "any"], [controlPoint2, "any"], function (e1, e2, e3, e4) {
     this.copyFrom(new Bezier(e1.target, e2.target, e3.target, e4.target));
     lengths.lengthByGeomtoy = this.getLength();
     svgPath.setAttribute("d", \`M\${e1.target.x},\${e1.target.y}C\${e3.target.x},\${e3.target.y} \${e4.target.x},\${e4.target.y} \${e2.target.x},\${e2.target.y}\`);
-    lengths.lengthBySvg = svgPath.getTotalLength();
+    lengths.lengthBySVG = svgPath.getTotalLength();
 });
     `
     );
@@ -70,7 +70,7 @@ const bezier = new Bezier().bind([point1, "any"], [point2, "any"], [controlPoint
     const pane = new Tweakpane.Pane({ title: "Length", container: card.pane });
     const lengthFolder = pane.addFolder({ title: "Length" });
     lengthFolder.addMonitor(lengths, "lengthByGeomtoy", { label: " length by Geomtoy", format: (v: any) => v.toFixed(10) });
-    lengthFolder.addMonitor(lengths, "lengthBySvg", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
+    lengthFolder.addMonitor(lengths, "lengthBySVG", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
     // #endregion
 
     view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));

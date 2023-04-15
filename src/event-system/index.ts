@@ -1,4 +1,4 @@
-import { SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
+import { SVGRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import tpl from "../assets/templates/tpl-renderer";
 
 import { Line, LineSegment, Point, Text, Vector } from "@geomtoy/core";
@@ -21,7 +21,7 @@ tpl.addMarkdown(`
 `);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "svg", className: "col-12", withPane: true });
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: true, xAxisPositiveOnRight: false }));
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: true, xAxisPositiveOnRight: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 

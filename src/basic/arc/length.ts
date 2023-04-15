@@ -2,7 +2,7 @@ import { Arc, Dynamic, Point } from "@geomtoy/core";
 import { Angle } from "@geomtoy/util";
 import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { lightStrokeFill, strokeOnly } from "../../assets/scripts/common";
-import { appendSvgElement } from "../../assets/scripts/svg-append";
+import { appendSVGElement } from "../../assets/scripts/svg-append";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc length");
@@ -27,10 +27,10 @@ tpl.addMarkdown(`
         rotation: 0
     }))();
 
-    const svgPath = appendSvgElement("path");
+    const svgPath = appendSVGElement("path");
     const lengths = {
         lengthByGeomtoy: 0,
-        lengthBySvg: 0
+        lengthBySVG: 0
     };
 
     const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"], function (e1, e2, e3) {
@@ -43,7 +43,7 @@ tpl.addMarkdown(`
                 "d",
                 `M${e1.target.x},${e1.target.y}A${correctedRadiusX} ${correctedRadiusY} ${Angle.radianToDegree(rotation)} ${largeArc ? "1" : "0"} ${positive ? "1" : "0"} ${e2.target.x},${e2.target.y}`
             );
-            lengths.lengthBySvg = svgPath.getTotalLength();
+            lengths.lengthBySVG = svgPath.getTotalLength();
         }
     });
 
@@ -60,10 +60,10 @@ const restParams = new (new Dynamic().create({
     rotation: 0
 }))();
 
-const svgPath = appendSvgElement("path");
+const svgPath = appendSVGElement("path");
 const lengths = {
     lengthByGeomtoy: 0,
-    lengthBySvg: 0
+    lengthBySVG: 0
 };
 
 const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"], function (e1, e2, e3) {
@@ -76,7 +76,7 @@ const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"]
             "d",
             \`M\${e1.target.x},\${e1.target.y}A\${correctedRadiusX} \${correctedRadiusY} \${Angle.radianToDegree(rotation)} \${largeArc ? "1" : "0"} \${positive ? "1" : "0"} \${e2.target.x},\${e2.target.y}\`
         );
-        lengths.lengthBySvg = svgPath.getTotalLength();
+        lengths.lengthBySVG = svgPath.getTotalLength();
     }
 });
     `
@@ -101,7 +101,7 @@ const arc = new Arc().bind([point1, "any"], [point2, "any"], [restParams, "any"]
     arcFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     const lengthFolder = pane.addFolder({ title: "Length" });
     lengthFolder.addMonitor(lengths, "lengthByGeomtoy", { label: " length by Geomtoy", format: (v: any) => v.toFixed(10) });
-    lengthFolder.addMonitor(lengths, "lengthBySvg", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
+    lengthFolder.addMonitor(lengths, "lengthBySVG", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
     // #endregion
 
     view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));

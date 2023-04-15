@@ -10,10 +10,7 @@ tpl.title("Random path-path test");
 const bo = new BooleanOperation();
 const path1 = new Path(Utility.range(0, 10).map(_ => randomPathCommand()));
 const path2 = new Path(Utility.range(0, 10).map(_ => randomPathCommand()));
-
-console.time("describe");
 const description = bo.describe(path1, path2);
-console.timeEnd("describe");
 
 const viewCollection: View[] = [];
 tpl.addMarkdown(`

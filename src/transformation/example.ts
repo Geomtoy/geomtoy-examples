@@ -39,19 +39,19 @@ The \`activationMode\` of the view of the example is **"numerous"**. See more in
 - There are two sets of operation UI, click on any active geometry to switch UI.
 - The first set of UI is **Translate** and **Scale**:
     - The transform origin will auto assigned.
-    - Drag <img src="assets/img/icons/c.svg" width="20" height="20"> icon to translate.
-    - Drag <img src="assets/img/icons/h.svg" width="20" height="20"> icon to scale horizontally.
-    - Drag <img src="assets/img/icons/v.svg" width="20" height="20"> icon to scale vertically.
-    - Drag <img src="assets/img/icons/ne-sw.svg" width="20" height="20">, <img src="assets/img/icons/nw-se.svg" width="20" height="20"> icons to scale.
+    - Drag <img src="assets/img/c.svg" width="20" height="20"> icon to translate.
+    - Drag <img src="assets/img/h.svg" width="20" height="20"> icon to scale horizontally.
+    - Drag <img src="assets/img/v.svg" width="20" height="20"> icon to scale vertically.
+    - Drag <img src="assets/img/ne-sw.svg" width="20" height="20">, <img src="assets/img/nw-se.svg" width="20" height="20"> icons to scale.
 - The second set of UI is **Rotate** and **Skew(Shear)**:
-    - Drag <img src="assets/img/icons/dot.svg" width="20" height="20"> icon to locate the transform origin.
-    - Click <img src="assets/img/icons/dot.svg" width="20" height="20"> icon to bring the transform origin back to the center.
-    - Drag <img src="assets/img/icons/ne.svg" width="20" height="20">, 
-    <img src="assets/img/icons/nw.svg" width="20" height="20">, 
-    <img src="assets/img/icons/se.svg" width="20" height="20">,
-    <img src="assets/img/icons/sw.svg" width="20" height="20"> icons to rotate.
-    - Drag <img src="assets/img/icons/h.svg" width="20" height="20"> icon to skew horizontally.
-    - Drag <img src="assets/img/icons/v.svg" width="20" height="20"> icon to skew vertically.
+    - Drag <img src="assets/img/dot.svg" width="20" height="20"> icon to locate the transform origin.
+    - Click <img src="assets/img/dot.svg" width="20" height="20"> icon to bring the transform origin back to the center.
+    - Drag <img src="assets/img/ne.svg" width="20" height="20">, 
+    <img src="assets/img/nw.svg" width="20" height="20">, 
+    <img src="assets/img/se.svg" width="20" height="20">,
+    <img src="assets/img/sw.svg" width="20" height="20"> icons to rotate.
+    - Drag <img src="assets/img/h.svg" width="20" height="20"> icon to skew horizontally.
+    - Drag <img src="assets/img/v.svg" width="20" height="20"> icon to skew vertically.
      
 
 

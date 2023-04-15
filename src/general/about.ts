@@ -62,4 +62,4 @@ tpl.addCode(
 );
 
 tpl.addMarkdown(`
-Such an architecture makes the call of method \`fromSvgString\` rather strange, so you must be careful when using.`);
+Such an architecture makes the call of method \`fromSVGString\` rather strange, so you must be careful when using.`);

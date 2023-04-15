@@ -26,7 +26,7 @@ tpl.title("Arc extrema and bounding box");
         this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
     });
     const extremePoints = new GeometryArray().bind([arc, "any"], function (e) {
-        this.items = e.target.isValid() ? e.target.extrema().map(([p]) => ((p.appearance = "cross"), p)) : [];
+        this.items = e.target.isValid() ? e.target.extrema().map(a => new Point(e.target.getParametricEquation()(a), "cross")) : [];
     });
     const boundingBoxRectangle = new Rectangle().bind([arc, "any"], function (e) {
         const dg = e.target.degenerate(false);
@@ -53,7 +53,7 @@ const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (
     this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
 });
 const extremePoints = new GeometryArray().bind([arc, "any"], function (e) {
-    this.items = e.target.isValid() ? e.target.extrema().map(([p]) => ((p.appearance = "cross"), p)) : [];
+    this.items = e.target.isValid() ? e.target.extrema().map(a => new Point(e.target.getParametricEquation()(a), "cross")) : [];
 });
 const boundingBoxRectangle = new Rectangle().bind([arc, "any"], function (e) {
     const dg = e.target.degenerate(false);

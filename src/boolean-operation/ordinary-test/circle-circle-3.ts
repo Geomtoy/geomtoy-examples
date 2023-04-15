@@ -10,7 +10,7 @@ const circle2 = new Circle(20, 20, 20);
 
 const bo = new BooleanOperation();
 
-const description = bo.describe(circle1.toPath2(), circle2.toPath2());
+const description = bo.describe(circle1.toPath(), circle2.toPath());
 {
     tpl.addSection("Union");
     const compound = bo.chain(bo.selectUnion(description));

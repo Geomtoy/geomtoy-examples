@@ -19,6 +19,7 @@ tpl.addCode(`
     view.startInteractive();
     view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "Commonly used in mathematic, a right-handed coordinate system");
+    card.appendDescription("markdown", `![](https://raw.githubusercontent.com/Geomtoy/geomtoy-assets/master/images/positive-rotation-mathematic.png)`);
     card.appendDescription(
         "code",
         `
@@ -36,6 +37,7 @@ tpl.addCode(`
     view.startInteractive();
     view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "Commonly used in computer graphics, a left-handed coordinate system");
+    card.setDescription("markdown", ` ![](https://raw.githubusercontent.com/Geomtoy/geomtoy-assets/master/images/positive-rotation-computer.png)`);
     card.appendDescription(
         "code",
         `

@@ -1,5 +1,5 @@
 import { Line, Point, Intersection } from "@geomtoy/core";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
+import { CanvasRenderer, SVGRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { codeHtml, strokeOnly, strokeFill, strokeFillTrans } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -33,7 +33,7 @@ const point = new Point().bind([line1, "any"], [line2, "any"], function (e1, e2)
 
 {
     const card = tpl.addCard({ aspectRatio: "1:1", rendererType: "svg", className: "col-6", withPane: true });
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
@@ -44,7 +44,7 @@ const point = new Point().bind([line1, "any"], [line2, "any"], function (e1, e2)
     card.setDescription(
         "code",
         `
-const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
+const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
 
@@ -81,7 +81,7 @@ view.add(new ViewElement(point, { ...strokeFill("gray") }));
 
 {
     const card = tpl.addCard({ aspectRatio: "1:1", rendererType: "svg", className: "col-6", withPane: true });
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 0.2, xAxisPositiveOnRight: false }));
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 0.2, xAxisPositiveOnRight: false }));
     view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
     view.startInteractive();
 
@@ -92,7 +92,7 @@ view.add(new ViewElement(point, { ...strokeFill("gray") }));
     card.setDescription(
         "code",
         `
-const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
+const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
 view.startInteractive();
 

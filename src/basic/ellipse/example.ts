@@ -1,6 +1,6 @@
 import Geomtoy, { type EventObject, type Text, Point, type Arc, Ellipse, Dynamic } from "@geomtoy/core";
 import { Maths, Polynomial, Utility } from "@geomtoy/util";
-import { View, ViewElement, CanvasRenderer, SvgRenderer } from "@geomtoy/view";
+import { View, ViewElement, CanvasRenderer, SVGRenderer } from "@geomtoy/view";
 import color from "../../assets/scripts/color";
 // import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";

@@ -16,14 +16,14 @@ tpl.title("Line segment length");
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     const lengths = {
         lengthByGeomtoy: 0,
-        lengthBySvg: 0
+        lengthBySVG: 0
     };
 
     const lineSegment = new LineSegment().bind([point1, "any"], [point2, "any"], function (e1, e2) {
         this.copyFrom(new LineSegment(e1.target, e2.target));
         lengths.lengthByGeomtoy = this.getLength();
         path.setAttribute("d", `M${e1.target.x},${e1.target.y}L${e2.target.x},${e2.target.y}`);
-        lengths.lengthBySvg = path.getTotalLength();
+        lengths.lengthBySVG = path.getTotalLength();
     });
 
     card.setDescription(
@@ -35,7 +35,7 @@ tpl.title("Line segment length");
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     const lengths = {
         lengthByGeomtoy: 0,
-        lengthBySvg: 0
+        lengthBySVG: 0
     };
 
     const lineSegment = new LineSegment().bind(
@@ -47,7 +47,7 @@ tpl.title("Line segment length");
             this.copyFrom(new LineSegment(e1.target, e2.target));
             lengths.lengthByGeomtoy = this.getLength();
             path.setAttribute("d", \`M\${e1.target.x},\${e1.target.y}L\${e2.target.x},\${e2.target.y}\`);
-            lengths.lengthBySvg = path.getTotalLength();
+            lengths.lengthBySVG = path.getTotalLength();
         }
     );
     `
@@ -57,7 +57,7 @@ tpl.title("Line segment length");
     // @ts-expect-error
     const pane = new Tweakpane.Pane({ title: "Length", container: card.pane });
     pane.addMonitor(lengths, "lengthByGeomtoy", { label: " length by Geomtoy", format: (v: any) => v.toFixed(10) });
-    pane.addMonitor(lengths, "lengthBySvg", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
+    pane.addMonitor(lengths, "lengthBySVG", { label: " length by SVG", format: (v: any) => v.toFixed(10) });
     // #endregion
 
     view.add(new ViewElement(point1, { ...lightStrokeFill("brown") }));

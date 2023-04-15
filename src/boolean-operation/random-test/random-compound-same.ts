@@ -9,7 +9,7 @@ tpl.title("Same random compound-compound test");
 
 const bo = new BooleanOperation();
 const compound1 = new Compound([new Path(Utility.range(0, 5).map(_ => randomPathCommand())), new Path(Utility.range(0, 5).map(_ => randomPathCommand()))]);
-const compound2 = compound1.clone();
+const compound2 = compound1.deepClone();
 const description = bo.describe(compound1, compound2);
 
 const viewCollection: View[] = [];
