@@ -10,7 +10,7 @@ tpl.addSection("portionOf", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const bezier = new Bezier([-10, -10], [20, 10], [-5, 3], [10, -2]);
@@ -46,7 +46,7 @@ tpl.addSection("portionOfExtend", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const bezier = new Bezier([-10, -10], [20, 10], [-5, 3], [10, -2]);
@@ -84,7 +84,7 @@ tpl.addSubSection("splitAtTime", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const bezier = new Bezier([-10, -10], [20, 10], [-5, 3], [10, -2]);
@@ -146,7 +146,7 @@ tpl.addSubSection("splitAtTimes", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const bezier = new Bezier([-10, -10], [20, 10], [-5, 3], [10, -2]);

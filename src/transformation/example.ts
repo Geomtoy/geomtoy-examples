@@ -64,7 +64,7 @@ The summary below will display the original geometry, the transformation generat
 {
     const card = tpl.addCard({ aspectRatio: "1.5:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1 }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.activationMode = "numerous";
 

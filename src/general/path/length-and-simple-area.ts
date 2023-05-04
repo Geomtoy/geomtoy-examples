@@ -10,7 +10,7 @@ tpl.addSection("length");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.25, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const lengths = {
@@ -55,7 +55,7 @@ And the fill rule that affects the final graphics will also be processed in self
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.25, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const polygon = Polygon.fromSVGString("50,0 0,50 -50,0 0,0");

@@ -17,7 +17,7 @@ tpl.addCode(`
 {
     const card = tpl.addCard({ title: "x-axis positive on right, y-axis positive on top, origin initially at center", className: "col-12", aspectRatio: "3:1" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: true, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
     card.setDescription("markdown", "Commonly used in mathematic, a right-handed coordinate system");
@@ -25,7 +25,7 @@ tpl.addCode(`
         "code",
         `
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { xAxisPositiveOnRight: true, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeFill("blue") }));
     `

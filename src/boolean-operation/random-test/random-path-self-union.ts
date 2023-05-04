@@ -20,11 +20,11 @@ tpl.addMarkdown("Refresh to random. The path contains 20 random commands.");
     const card3 = tpl.addCard({ title: "self union compound items", className: "col-6", aspectRatio: "1:1" });
     const view3 = new View({}, new CanvasRenderer(card3.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
-    view3.startResponsive((width, height) => (view3.renderer.display.origin = [width / 2, height / 2]));
+    view3.startResponsive(View.centerOrigin);
     view3.startInteractive();
 
     view1.add(new ViewElement(path, { type: ViewElementType.None, ...lightStrokeFill("red") }));

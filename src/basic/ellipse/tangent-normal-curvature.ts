@@ -14,7 +14,7 @@
 
 // const view = new View(g, { hoverForemost: false }, new CanvasRenderer(canvas, g, {}, { density: 10, yAxisPositiveOnBottom: false }));
 // view.defaultStyle = { strokeLineCap: "round" };
-// view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+// view.startResponsive(View.centerOrigin);
 // view.startInteractive();
 
 // {

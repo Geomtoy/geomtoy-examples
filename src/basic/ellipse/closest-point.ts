@@ -4,14 +4,14 @@ import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/vie
 import { codeHtml, dashedThinStroke, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
-tpl.title("Arc closest point");
+tpl.title("Ellipse closest point");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
-    const centerPoint = new Point([0, 0]);
+    const center = new Point([0, 0]);
     const point = new Point([10, 15]);
     const restParams = new (new Dynamic().create({
         radiusX: 20,
@@ -22,9 +22,9 @@ tpl.title("Arc closest point");
         rotation: 0
     }))();
 
-    const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+    const arc = new Arc().bind([center, "any"], [restParams, "any"], function (e1, e2) {
         const { radiusX, radiusY, startAngle, endAngle, positive, rotation } = e2.target;
-        this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
+        this.copyFrom(Arc.fromCenterAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
     });
 
     const closestPointLineSegment = new SealedShapeObject({
@@ -38,7 +38,7 @@ tpl.title("Arc closest point");
     card.setDescription(
         "code",
         ` 
-const centerPoint = new Point([0, 0]);
+const center = new Point([0, 0]);
 const point = new Point([10, 15]);
 const restParams = new (new Dynamic().create({
     radiusX: 20,
@@ -49,9 +49,9 @@ const restParams = new (new Dynamic().create({
     rotation: 0
 }))();
 
-const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+const arc = new Arc().bind([center, "any"], [restParams, "any"], function (e1, e2) {
     const { radiusX, radiusY, startAngle, endAngle, positive, rotation } = e2.target;
-    this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
+    this.copyFrom(Arc.fromCenterAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
 });
 
 const closestPointLineSegment = new SealedShapeObject({
@@ -80,6 +80,6 @@ const closestPointLineSegment = new SealedShapeObject({
     view.add(new ViewElement(point, { ...lightStrokeFill("pink") }));
     view.add(new ViewElement(closestPointLineSegment.items.point, { type: ViewElementType.None, ...lightStrokeOnly("pink") }));
     view.add(new ViewElement(closestPointLineSegment.items.lineSegment, { type: ViewElementType.None, ...dashedThinStroke("gray") }));
-    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(center, { ...lightStrokeFill("brown") }));
     view.add(new ViewElement(arc, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

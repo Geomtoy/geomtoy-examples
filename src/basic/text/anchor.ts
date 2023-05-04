@@ -42,7 +42,7 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-6", rendererType: "svg", withPane: true });
     const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: true, xAxisPositiveOnRight: true }));
     view.activeMode = "numerous";
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     view.add(new ViewElement(point1, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
@@ -72,7 +72,7 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-6", rendererType: "svg", withPane: true });
     const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: true, xAxisPositiveOnRight: false }));
     view.activeMode = "numerous";
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     view.add(new ViewElement(point1, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
@@ -101,7 +101,7 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-6", rendererType: "svg", withPane: true });
     const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: false, xAxisPositiveOnRight: true }));
     view.activeMode = "numerous";
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     view.add(new ViewElement(point1, { type: ViewElementType.None, ...lightStrokeFill("gray") }));
@@ -130,7 +130,7 @@ const image9 = new Image(-50, -50, 36, 36, 1440, 1500, 360, 360, imageUrl, true,
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-6", rendererType: "svg", withPane: true });
     const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 1, yAxisPositiveOnBottom: false, xAxisPositiveOnRight: false }));
     view.activeMode = "numerous";
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     view.add(new ViewElement(point1, { type: ViewElementType.None, ...lightStrokeFill("gray") }));

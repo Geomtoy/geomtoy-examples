@@ -12,7 +12,7 @@ See the [original image](assets/img/emoji-icons-set-flat-design-free-vector.jpg)
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 1 }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const image1 = new Image(0, 0, 36, 36, 560, 540, 360, 360, imageUrl, true, Anchor.RightCenter);

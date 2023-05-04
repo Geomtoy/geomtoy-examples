@@ -87,7 +87,7 @@ const wait = (wait: number) => {
 
 const card = tpl.addCard({ aspectRatio: "1:1", className: "col-12", withIntroduction: true });
 const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
-view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+view.startResponsive(View.centerOrigin);
 view.startInteractive();
 card.setIntroduction(`
 <div class="card">
@@ -114,7 +114,7 @@ Geomtoy.setOptions({
 
 let data = {} as {
     initCircle: Circle;
-    centerPoint: Point;
+    center: Point;
     heptagonPoints: Point[];
     heptagonOffsetPoints: Point[];
     heptagonPQuarterPoints: Point[];
@@ -173,12 +173,12 @@ const inter = new Intersection();
 function play() {
     return (
         Promise.resolve("Let's begin")
-            // centerPoint, initCircle
+            // center, initCircle
             .then(async () => {
-                data.centerPoint = Point.origin();
-                view.add(new ViewElement(data.centerPoint, sketchStyle));
+                data.center = Point.origin();
+                view.add(new ViewElement(data.center, sketchStyle));
 
-                data.initCircle = new Circle(data.centerPoint, radius);
+                data.initCircle = new Circle(data.center, radius);
                 view.add(new ViewElement(data.initCircle, sketchDashStyle));
 
                 await wait(100 * speed);
@@ -191,12 +191,12 @@ function play() {
                 data.heptagonNQuarterPoints = [];
                 data.heptagonPEighthPoints = [];
                 data.heptagonNEighthPoints = [];
-                const heptagon = new RegularPolygon(data.centerPoint, radius, seven, -Math.PI / 2);
-                const heptagonOffset = new RegularPolygon(data.centerPoint, radius, seven, Math.PI / seven - Math.PI / 2);
-                const heptagonPQuarter = new RegularPolygon(data.centerPoint, radius, seven, Math.PI / seven / 2 - Math.PI / 2);
-                const heptagonNQuarter = new RegularPolygon(data.centerPoint, radius, seven, -Math.PI / seven / 2 - Math.PI / 2);
-                const heptagonPEighth = new RegularPolygon(data.centerPoint, radius, seven, Math.PI / seven / 4 - Math.PI / 2);
-                const heptagonNEighth = new RegularPolygon(data.centerPoint, radius, seven, -Math.PI / seven / 4 - Math.PI / 2);
+                const heptagon = new RegularPolygon(data.center, radius, seven, -Math.PI / 2);
+                const heptagonOffset = new RegularPolygon(data.center, radius, seven, Math.PI / seven - Math.PI / 2);
+                const heptagonPQuarter = new RegularPolygon(data.center, radius, seven, Math.PI / seven / 2 - Math.PI / 2);
+                const heptagonNQuarter = new RegularPolygon(data.center, radius, seven, -Math.PI / seven / 2 - Math.PI / 2);
+                const heptagonPEighth = new RegularPolygon(data.center, radius, seven, Math.PI / seven / 4 - Math.PI / 2);
+                const heptagonNEighth = new RegularPolygon(data.center, radius, seven, -Math.PI / seven / 4 - Math.PI / 2);
 
                 data.heptagonPoints = heptagon.getVertices();
                 data.heptagonOffsetPoints = heptagonOffset.getVertices();
@@ -211,27 +211,27 @@ function play() {
                 await Promise.all(
                     Utility.range(0, seven).map(async index => {
                         view.add(new ViewElement(data.heptagonPoints[index], sketchStyle));
-                        view.add(new ViewElement(new LineSegment(data.centerPoint, data.heptagonPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonPoints[index]), sketchDashStyle));
                         await wait(50 * speed);
 
                         view.add(new ViewElement(data.heptagonOffsetPoints[index], sketchStyle));
-                        view.add(new ViewElement(new LineSegment(data.centerPoint, data.heptagonOffsetPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonOffsetPoints[index]), sketchDashStyle));
                         await wait(50 * speed);
 
                         view.add(new ViewElement(data.heptagonPQuarterPoints[index], sketchStyle));
                         view.add(new ViewElement(data.heptagonNQuarterPoints[index], sketchStyle));
                         await wait(50 * speed);
 
-                        view.add(new ViewElement(new LineSegment(data.centerPoint, data.heptagonPQuarterPoints[index]), sketchDashStyle));
-                        view.add(new ViewElement(new LineSegment(data.centerPoint, data.heptagonNQuarterPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonPQuarterPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonNQuarterPoints[index]), sketchDashStyle));
                         await wait(50 * speed);
 
                         view.add(new ViewElement(data.heptagonPEighthPoints[index], sketchStyle));
                         view.add(new ViewElement(data.heptagonNEighthPoints[index], sketchStyle));
                         await wait(50 * speed);
 
-                        view.add(new ViewElement(new LineSegment(data.centerPoint, data.heptagonPEighthPoints[index]), sketchDashStyle));
-                        view.add(new ViewElement(new LineSegment(data.centerPoint, data.heptagonNEighthPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonPEighthPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonNEighthPoints[index]), sketchDashStyle));
                         await wait(50 * speed);
                     })
                 );
@@ -244,12 +244,12 @@ function play() {
                 };
                 await Promise.all(
                     Utility.range(0, seven).map(async index => {
-                        const lA = Line.fromTwoPoints(Utility.nth(data.heptagonOffsetPoints, index - 1)!, data.centerPoint)!; //use nth to get index -1
-                        const lB = Line.fromTwoPoints(Utility.nth(data.heptagonOffsetPoints, index)!, data.centerPoint)!;
+                        const lA = Line.fromTwoPoints(Utility.nth(data.heptagonOffsetPoints, index - 1)!, data.center)!; //use nth to get index -1
+                        const lB = Line.fromTwoPoints(Utility.nth(data.heptagonOffsetPoints, index)!, data.center)!;
                         const lC = data.initCircle.getTangentVectorAtAngle(data.initCircle.getAngleOfPoint(Utility.nth(data.heptagonPoints, index)!)).toLine()!;
                         const pA = inter.intersect(lA, lC)[0];
                         const pB = inter.intersect(lB, lC)[0];
-                        const triangle = new Triangle(pA, pB, data.centerPoint);
+                        const triangle = new Triangle(pA, pB, data.center);
                         const circle = triangle.getInscribedCircle();
                         data.heptagonC1.circles[index] = circle;
 
@@ -257,7 +257,7 @@ function play() {
                         view.add(new ViewElement(circle, sketchStyle));
                         await wait(20 * speed);
 
-                        const lD = Line.fromTwoPoints(Utility.nth(data.heptagonPoints, index)!, data.centerPoint)!;
+                        const lD = Line.fromTwoPoints(Utility.nth(data.heptagonPoints, index)!, data.center)!;
                         const ps = inter.intersect(lD, circle);
 
                         data.heptagonC1.intPoints[index] = ps.filter(p => !p.equalTo(Utility.nth(data.heptagonPoints, index)!))[0];
@@ -275,12 +275,12 @@ function play() {
                 };
                 await Promise.all(
                     Utility.range(0, seven).map(async index => {
-                        const lA = Line.fromTwoPoints(data.heptagonPEighthPoints[index], data.centerPoint)!;
-                        const lB = Line.fromTwoPoints(data.heptagonNEighthPoints[index], data.centerPoint)!;
+                        const lA = Line.fromTwoPoints(data.heptagonPEighthPoints[index], data.center)!;
+                        const lB = Line.fromTwoPoints(data.heptagonNEighthPoints[index], data.center)!;
                         const lC = data.initCircle.getTangentVectorAtAngle(data.initCircle.getAngleOfPoint(Utility.nth(data.heptagonPoints, index)!)).toLine()!;
                         const pA = inter.intersect(lA, lC)[0];
                         const pB = inter.intersect(lB, lC)[0];
-                        const triangle = new Triangle(pA, pB, data.centerPoint);
+                        const triangle = new Triangle(pA, pB, data.center);
                         const circle = triangle.getInscribedCircle();
                         data.heptagonC2.circles[index] = circle;
 
@@ -288,7 +288,7 @@ function play() {
                         view.add(new ViewElement(circle, sketchStyle));
                         await wait(20 * speed);
 
-                        const lD = Line.fromTwoPoints(Utility.nth(data.heptagonPoints, index)!, data.centerPoint)!;
+                        const lD = Line.fromTwoPoints(Utility.nth(data.heptagonPoints, index)!, data.center)!;
                         const ps = inter.intersect(lD, circle);
                         data.heptagonC2.intPoints[index] = ps.filter(p => !p.equalTo(Utility.nth(data.heptagonPoints, index)!))[0];
 
@@ -305,14 +305,14 @@ function play() {
                 };
                 await Promise.all(
                     Utility.range(0, seven).map(async index => {
-                        const lA = Line.fromTwoPoints(data.heptagonPQuarterPoints[index], data.centerPoint)!;
-                        const lB = Line.fromTwoPoints(data.heptagonNQuarterPoints[index], data.centerPoint)!;
+                        const lA = Line.fromTwoPoints(data.heptagonPQuarterPoints[index], data.center)!;
+                        const lB = Line.fromTwoPoints(data.heptagonNQuarterPoints[index], data.center)!;
                         const cC2 = data.heptagonC2.circles[index];
 
                         const lC = cC2.getTangentVectorAtAngle(cC2.getAngleOfPoint(data.heptagonC2.intPoints[index])).toLine()!;
                         const pA = inter.intersect(lA, lC)[0];
                         const pB = inter.intersect(lB, lC)[0];
-                        const triangle = new Triangle(pA, pB, data.centerPoint);
+                        const triangle = new Triangle(pA, pB, data.center);
                         const circle = triangle.getInscribedCircle();
                         data.heptagonC3.circles[index] = circle;
 
@@ -320,7 +320,7 @@ function play() {
                         view.add(new ViewElement(circle, sketchStyle));
                         await wait(20 * speed);
 
-                        const lD = Line.fromTwoPoints(data.heptagonC2.intPoints[index], data.centerPoint)!;
+                        const lD = Line.fromTwoPoints(data.heptagonC2.intPoints[index], data.center)!;
                         const ps = inter.intersect(lD, circle);
                         data.heptagonC3.intPoints[index] = ps.filter(p => !p.equalTo(data.heptagonC2.intPoints[index]))[0];
 
@@ -337,11 +337,11 @@ function play() {
                 };
                 await Promise.all(
                     Utility.range(0, seven).map(async index => {
-                        const p = data.heptagonC3.circles[index].centerPoint;
+                        const p = data.heptagonC3.circles[index].center;
                         const c = new Circle(p, data.heptagonC2.circles[index].radius);
-                        const l = Line.fromTwoPoints(data.centerPoint, data.heptagonPoints[index])!;
+                        const l = Line.fromTwoPoints(data.center, data.heptagonPoints[index])!;
                         const ps = inter.intersect(l, c);
-                        Utility.sortBy(ps, [p => p.getDistanceBetweenPoint(data.centerPoint)]); //ascending order
+                        Utility.sortBy(ps, [p => p.getDistanceBetweenPoint(data.center)]); //ascending order
                         data.heptagonC4.circles[index] = c;
                         data.heptagonC4.intPointLists[index] = ps;
 
@@ -403,12 +403,12 @@ function play() {
                     Utility.range(0, seven).map(async index => {
                         const p = data.heptagonOffsetPoints[index];
                         const r = data.heptagonC5.circles[index].radius;
-                        const l = Line.fromTwoPoints(p, data.centerPoint)!;
+                        const l = Line.fromTwoPoints(p, data.center)!;
                         const ps1 = inter.intersect(l, new Circle(p, r));
                         const ps2 = inter.intersect(l, new Circle(p, 2 * r));
 
-                        Utility.sortBy(ps1, [p => p.getDistanceBetweenPoint(data.centerPoint)]); //ascending order
-                        Utility.sortBy(ps2, [p => p.getDistanceBetweenPoint(data.centerPoint)]); //ascending order
+                        Utility.sortBy(ps1, [p => p.getDistanceBetweenPoint(data.center)]); //ascending order
+                        Utility.sortBy(ps2, [p => p.getDistanceBetweenPoint(data.center)]); //ascending order
 
                         const center = ps1[0];
                         const c = new Circle(center, r);
@@ -424,8 +424,8 @@ function play() {
             .then(async () => {
                 const r1 = radius - data.heptagonC1.circles[0].radius * 2;
                 const r2 = r1 - data.gap;
-                const c1 = new Circle(data.centerPoint, r1);
-                const c2 = new Circle(data.centerPoint, r2);
+                const c1 = new Circle(data.center, r1);
+                const c2 = new Circle(data.center, r2);
                 data.innerBorderC1 = c1;
                 data.innerBorderC2 = c2;
 
@@ -437,8 +437,8 @@ function play() {
             .then(async () => {
                 const r1 = radius + data.gap;
                 const r2 = r1 + data.gap;
-                const c1 = new Circle(data.centerPoint, r1);
-                const c2 = new Circle(data.centerPoint, r2);
+                const c1 = new Circle(data.center, r1);
+                const c2 = new Circle(data.center, r2);
                 data.outerBorderC1 = c1;
                 data.outerBorderC2 = c2;
 
@@ -469,16 +469,16 @@ function play() {
                         view.add(new ViewElement(data.trianglePoints[index], sketchStyle));
                         await wait(50 * speed);
 
-                        const l = Line.fromTwoPoints(data.trianglePoints[index], data.centerPoint)!;
+                        const l = Line.fromTwoPoints(data.trianglePoints[index], data.center)!;
                         const psWithIBC1 = inter.intersect(l, data.innerBorderC1);
                         Utility.sortBy(psWithIBC1, [p => p.getDistanceBetweenPoint(data.trianglePoints[index])]);
 
                         view.add(new ViewElement(psWithIBC1[0], sketchStyle));
                         await wait(50 * speed);
 
-                        const c = new Circle(new LineSegment(psWithIBC1[0], data.centerPoint).getMiddlePoint(), psWithIBC1[0].getDistanceBetweenPoint(data.centerPoint) / 2);
+                        const c = new Circle(new LineSegment(psWithIBC1[0], data.center).getMiddlePoint(), psWithIBC1[0].getDistanceBetweenPoint(data.center) / 2);
                         view.add(new ViewElement(c, sketchStyle));
-                        view.add(new ViewElement(c.centerPoint, sketchStyle));
+                        view.add(new ViewElement(c.center, sketchStyle));
                         await wait(50 * speed);
 
                         const ps = inter.intersect(c, data.innerBorderC2);
@@ -504,7 +504,7 @@ function play() {
                         view.add(new ViewElement(circle, sketchStyle));
                         await wait(50 * speed);
 
-                        const ray = Ray.fromTwoPoints(circle.centerPoint, Utility.nth(data.triangleC1.circles, index - 2)!.centerPoint)!;
+                        const ray = Ray.fromTwoPoints(circle.center, Utility.nth(data.triangleC1.circles, index - 2)!.center)!;
                         data.triangleC2.tanPoints[index] = inter.intersect(ray, circle)[0];
 
                         view.add(new ViewElement(data.triangleC2.tanPoints[index], sketchStyle));
@@ -520,7 +520,7 @@ function play() {
                     int2Points: []
                 };
 
-                const quadrilateral = new RegularPolygon(data.centerPoint, radius + data.gap * 2, four, Math.PI / 2);
+                const quadrilateral = new RegularPolygon(data.center, radius + data.gap * 2, four, Math.PI / 2);
 
                 view.add(new ViewElement(quadrilateral, sketchColoredStyle(2)));
                 await wait(100);
@@ -530,7 +530,7 @@ function play() {
                 await Promise.all(
                     Utility.range(0, four).map(async index => {
                         const ps = inter.intersect(ls[index].toLine(), data.outerBorderC1);
-                        Utility.sortBy(ps, [p => (new Vector(data.centerPoint, p).angle + 1.5 * Math.PI) % (2 * Math.PI)]);
+                        Utility.sortBy(ps, [p => (new Vector(data.center, p).angle + 1.5 * Math.PI) % (2 * Math.PI)]);
                         data.quadrilateral.int1Points.push(...ps);
 
                         view.add(new ViewElement(ps[0], sketchStyle));
@@ -549,7 +549,7 @@ function play() {
                         }
                         const l = Line.fromTwoPoints(Utility.nth(data.quadrilateral.int1Points, index)!, Utility.nth(data.quadrilateral.int1Points, toIndex)!)!;
                         const ps = inter.intersect(l, data.outerBorderC2);
-                        Utility.sortBy(ps, [p => (new Vector(data.centerPoint, p).angle + 1.5 * Math.PI) % (2 * Math.PI)]);
+                        Utility.sortBy(ps, [p => (new Vector(data.center, p).angle + 1.5 * Math.PI) % (2 * Math.PI)]);
 
                         view.add(new ViewElement(ps[0], sketchStyle));
                         view.add(new ViewElement(ps[1], sketchStyle));

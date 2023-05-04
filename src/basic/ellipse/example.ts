@@ -1,13 +1,13 @@
-import Geomtoy, { type EventObject, type Text, Point, type Arc, Ellipse, Dynamic } from "@geomtoy/core";
+import Geomtoy, { type EventObject, type Text, Point, type Arc, Ellipse, Dynamic, Circle } from "@geomtoy/core";
 import { Maths, Polynomial, Utility } from "@geomtoy/util";
-import { View, ViewElement, CanvasRenderer, SVGRenderer } from "@geomtoy/view";
+import { View, ViewElement, CanvasRenderer, SVGRenderer, ViewElementType } from "@geomtoy/view";
 import color from "../../assets/scripts/color";
+import { lightStrokeFill } from "../../assets/scripts/common";
 // import { mathFont, hoverStyle, activeStyle, interactableStyles } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
-tpl.title("Ellipse radiusX and radiusY explanation");
+tpl.title("Ellipse radii explanation");
 
-tpl.addSection(`Ellipse radiusX and radiusY explanation`);
 {
     const card = tpl.addCard({
         aspectRatio: "3:1",
@@ -15,63 +15,40 @@ tpl.addSection(`Ellipse radiusX and radiusY explanation`);
         withPane: true
     });
 
-    const view = new View({}, new CanvasRenderer(card.canvas, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
-    const centerPoint = new Point(0, 0);
+    const center = new Point(0, 0);
 
-    const dynamic = new Dynamic();
-    const restParams = dynamic.create({
+    const restParams = new (new Dynamic().create({
         radiusX: 10,
         radiusY: 20,
         on: "1"
+    }))();
+
+    const ellipse = new Ellipse().bind([center, "any"], [restParams, "any"], function (e1, e2) {
+        const { radiusX, radiusY } = e2.target;
+        this.copyFrom(new Ellipse(e1.target, radiusX, radiusY));
     });
-
-    const ellipse = g.Ellipse().bind(
-        [
-            [centerPoint, "any"],
-            [restParams, "any"]
-        ],
-        function ([e1, e2]) {
-            const { radiusX, radiusY } = e2.target;
-            this.copyFrom(g.Ellipse(e1.target, radiusX, radiusY));
-        }
-    );
-    const circle1 = g.Circle().bind(
-        [
-            [centerPoint, "any"],
-            [restParams, "radiusX"]
-        ],
-        function ([e1, e2]) {
-            const { radiusX } = e2.target;
-            this.copyFrom(g.Circle(e1.target, radiusX));
-        }
-    );
-
-    restParams.on("radiusX", function () {
-        console.log(this);
+    const circle1 = new Circle().bind([center, "any"], [restParams, "radiusX"], function (e1, e2) {
+        const { radiusX } = e2.target;
+        this.copyFrom(new Circle(e1.target, radiusX));
     });
-
-    const circle2 = g.Circle().bind(
-        [
-            [centerPoint, "any"],
-            [restParams, "radiusY"]
-        ],
-        function ([e1, e2]) {
-            const { radiusY } = e2.target;
-            this.copyFrom(g.Circle(e1.target, radiusY));
-        }
-    );
+    const circle2 = new Circle().bind([center, "any"], [restParams, "radiusY"], function (e1, e2) {
+        const { radiusY } = e2.target;
+        this.copyFrom(new Circle(e1.target, radiusY));
+    });
 
     // #region Pane
-    const pane = new Pane({ title: "Arc", container: card.pane! });
-    const restParamsFolder = pane.addFolder({ title: "Rest parameters" });
-    restParamsFolder.addInput(restParams, "radiusX", { min: Number.EPSILON });
-    restParamsFolder.addInput(restParams, "radiusY", { min: Number.EPSILON });
+    // @ts-expect-error
+    const pane = new Tweakpane.Pane({ title: "Ellipse", container: card.pane! });
+    const restParamsFolder = pane.addFolder({ title: "radii" });
+    restParamsFolder.addInput(restParams, "radiusX");
+    restParamsFolder.addInput(restParams, "radiusY");
     // #endregion
 
-    view.add(new ViewElement(centerPoint, true, true, interactableStyles.point))
-        .add(new ViewElement(circle1, false, true, { style: { stroke: color("red"), strokeWidth: 4 } }))
-        .add(new ViewElement(circle2, false, true, { style: { stroke: color("blue"), strokeWidth: 4 } }))
-        .add(new ViewElement(ellipse, false, true, { style: { stroke: color("purple"), strokeWidth: 4 } }));
+    view.add(new ViewElement(center, { ...lightStrokeFill("green") }));
+    view.add(new ViewElement(circle1, { type: ViewElementType.None, ...lightStrokeFill("lime") }));
+    view.add(new ViewElement(circle2, { type: ViewElementType.None, ...lightStrokeFill("green") }));
+    view.add(new ViewElement(ellipse, { type: ViewElementType.None, ...lightStrokeFill("green") }));
 }

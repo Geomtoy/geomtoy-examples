@@ -14,7 +14,7 @@ tpl.addSection("Resize only");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     // This image is not cropped, but scaled to 240 x 240, `consistent` is false - follow the `zoom`.
@@ -33,7 +33,7 @@ tpl.addSection("Crop only");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     // This image is cropped, but not scaled(the size is still the original 360 x 360), `consistent` is false - follow the `zoom`.
@@ -52,7 +52,7 @@ tpl.addSection("Crop and resize");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 1, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     // This image is cropped, and scaled to 84 x 80, `consistent` is false - follow the `zoom`.

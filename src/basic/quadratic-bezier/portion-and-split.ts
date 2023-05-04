@@ -28,7 +28,7 @@
 // canvasRenderer.display.xAxisPositiveOnRight = false;
 
 // const view = new View(g, { hoverForemost: false }, canvasRenderer);
-// view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+// view.startResponsive(View.centerOrigin);
 // view.startInteractive();
 
 // const main = () => {

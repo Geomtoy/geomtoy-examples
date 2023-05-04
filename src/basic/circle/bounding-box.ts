@@ -7,13 +7,13 @@ tpl.title("Circle bounding box");
 {
     const card = tpl.addCard({ className: "col-12", aspectRatio: "2:1", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const restParams = new (new Dynamic().create({ radius: 10 }))();
 
-    const centerPoint = new Point(10, 0);
-    const circle = new Circle().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+    const center = new Point(10, 0);
+    const circle = new Circle().bind([center, "any"], [restParams, "any"], function (e1, e2) {
         this.copyFrom(new Circle(e1.target, e2.target.radius));
     });
 
@@ -44,7 +44,7 @@ const boundingBoxRectangle = new Rectangle().bind([lineSegment, "any"], function
     circleFolder.addInput(restParams, "radius", { min: 0 });
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(center, { ...lightStrokeFill("brown") }));
     view.add(new ViewElement(boundingBoxRectangle, { type: ViewElementType.None, ...lightStrokeOnly("purple") }));
     view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

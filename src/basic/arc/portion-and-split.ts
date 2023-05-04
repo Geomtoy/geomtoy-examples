@@ -1,7 +1,7 @@
-import { Arc, Point, SealedShapeObject, GeometryArray } from "@geomtoy/core";
+import { Arc, GeometryArray, Point, SealedShapeObject } from "@geomtoy/core";
 import { Maths } from "@geomtoy/util";
-import { CanvasRenderer, SubView, View, ViewElement, ViewElementType } from "@geomtoy/view";
-import { codeHtml, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
+import { CanvasRenderer, SubView, View, ViewElement } from "@geomtoy/view";
+import { lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Arc portion and split");
@@ -11,10 +11,10 @@ tpl.addSubSection("portionOf", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
-    const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
+    const arc = Arc.fromCenterAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
     const arcPortion = new SealedShapeObject({
         arc: new Arc(),
         arcPoint1: new Point("cross"),
@@ -28,7 +28,7 @@ tpl.addSubSection("portionOf", true);
     card.setDescription(
         "code",
         ` 
-const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
+const arc = Arc.fromCenterAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 const arcPortion = new SealedShapeObject({
     arc: new Arc(),
     arcPoint1: new Point("cross"),
@@ -47,10 +47,10 @@ tpl.addSubSection("portionOfExtend", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
-    const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
+    const arc = Arc.fromCenterAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
     const arcPortion = new SealedShapeObject({
         arc: new Arc(),
         arcPoint1: new Point("cross"),
@@ -64,7 +64,7 @@ tpl.addSubSection("portionOfExtend", true);
     card.setDescription(
         "code",
         ` 
-const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
+const arc = Arc.fromCenterAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 const arcPortion = new SealedShapeObject({
     arc: new Arc(),
     arcPoint1: new Point("cross"),
@@ -85,10 +85,10 @@ tpl.addSubSection("splitAtAngle", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
-    const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
+    const arc = Arc.fromCenterAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 
     const arcPortions = new SealedShapeObject({
         first: new SealedShapeObject({
@@ -115,7 +115,7 @@ tpl.addSubSection("splitAtAngle", true);
     card.setDescription(
         "code",
         ` 
-const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
+const arc = Arc.fromCenterAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 
 const arcPortions = new SealedShapeObject({
     first: new SealedShapeObject({
@@ -149,10 +149,10 @@ tpl.addSubSection("splitAtAngles", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
-    const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
+    const arc = Arc.fromCenterAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 
     const stylesFn = (index: number) => {
         const colors = ["cyan", "lime"];
@@ -173,7 +173,7 @@ tpl.addSubSection("splitAtAngles", true);
     card.setDescription(
         "code",
         ` 
-const arc = Arc.fromCenterPointAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
+const arc = Arc.fromCenterAndStartEndAnglesEtc([0, 0], 20, 10, 0, (3 * Maths.PI) / 2, true, Maths.PI / 4);
 
 const stylesFn = (index: number) => {
     const colors = ["lime", "green"];

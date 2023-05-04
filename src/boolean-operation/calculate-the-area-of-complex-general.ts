@@ -75,10 +75,10 @@ tpl.addSection("Example 1: Ordinary self-intersecting");
     const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(polygon, { type: ViewElementType.None, ...lightStrokeFill("indigo") }));
@@ -134,10 +134,10 @@ tpl.addSection("Example 2: Self-intersecting having hole NOT BY fill rule");
     const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, pan: [-100, 0], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("indigo") }));
@@ -200,10 +200,10 @@ tpl.addSection("Example 3: Self-intersecting having hole BY fill rule");
     const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, pan: [-100, 0], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("indigo") }));
@@ -258,10 +258,10 @@ tpl.addSection("Example 4: Ordinary coincident");
     const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, pan: [-100, 0], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(polygon, { type: ViewElementType.None, ...lightStrokeFill("indigo") }));
@@ -313,10 +313,10 @@ tpl.addSection("Example 5: Coincident having hole NOT BY fill rule");
     const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("indigo") }));
@@ -377,10 +377,10 @@ tpl.addSection("Example 6: Coincident having hole BY fill rule");
     const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, pan: [-100, 0], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(polygon1, { type: ViewElementType.None, ...lightStrokeFill("indigo") }));
@@ -443,10 +443,10 @@ tpl.addSection("Example 7: Compound hole NOT BY fill rule");
     const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, pan: [-100, 0], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(origCompound1, { type: ViewElementType.None, ...lightStrokeFill("indigo") }));
@@ -509,10 +509,10 @@ tpl.addSection("Example 8: Compound hole BY fill rule");
     const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, pan: [-100, 0], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(origCompound1, { type: ViewElementType.None, ...lightStrokeFill("indigo") }));
@@ -578,10 +578,10 @@ tpl.addSection("Example 9: Compound island");
     const card2 = tpl.addCard({ title: "self union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(origCompound, { type: ViewElementType.None, ...lightStrokeFill("indigo") }));

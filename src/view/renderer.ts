@@ -34,7 +34,7 @@ const point = new Point().bind([line1, "any"], [line2, "any"], function (e1, e2)
 {
     const card = tpl.addCard({ aspectRatio: "1:1", rendererType: "svg", className: "col-6", withPane: true });
     const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     view.add(new ViewElement(line1, { ...strokeOnly("red") }));
@@ -45,7 +45,7 @@ const point = new Point().bind([line1, "any"], [line2, "any"], function (e1, e2)
         "code",
         `
 const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+view.startResponsive(View.centerOrigin);
 view.startInteractive();
 
 view.add(new ViewElement(line1, { ...strokeOnly("red") }));
@@ -57,7 +57,7 @@ view.add(new ViewElement(point, { ...strokeFill("gray") }));
 {
     const card = tpl.addCard({ aspectRatio: "1:1", rendererType: "canvas", className: "col-6", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     view.add(new ViewElement(line1, { ...strokeOnly("red") }));
@@ -69,7 +69,7 @@ view.add(new ViewElement(point, { ...strokeFill("gray") }));
         "code",
         `
 const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+view.startResponsive(View.centerOrigin);
 view.startInteractive();
 
 view.add(new ViewElement(line1, { ...strokeOnly("red") }));
@@ -82,7 +82,7 @@ view.add(new ViewElement(point, { ...strokeFill("gray") }));
 {
     const card = tpl.addCard({ aspectRatio: "1:1", rendererType: "svg", className: "col-6", withPane: true });
     const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 0.2, xAxisPositiveOnRight: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     view.add(new ViewElement(line1, { ...strokeOnly("red") }));
@@ -93,7 +93,7 @@ view.add(new ViewElement(point, { ...strokeFill("gray") }));
         "code",
         `
 const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
-view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+view.startResponsive(View.centerOrigin);
 view.startInteractive();
 
 view.add(new ViewElement(line1, { ...strokeOnly("red") }));
@@ -106,7 +106,7 @@ view.add(new ViewElement(point, { ...strokeFill("gray") }));
 {
     const card = tpl.addCard({ aspectRatio: "1:1", rendererType: "canvas", className: "col-6", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: true }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     view.add(new ViewElement(line1, { ...strokeOnly("red") }));
@@ -117,7 +117,7 @@ view.add(new ViewElement(point, { ...strokeFill("gray") }));
         "code",
         `
 const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+view.startResponsive(View.centerOrigin);
 view.startInteractive();
 
 view.add(new ViewElement(line1, { ...strokeOnly("red") }));

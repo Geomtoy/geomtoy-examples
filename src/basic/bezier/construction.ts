@@ -10,7 +10,7 @@ tpl.addSection("constructor", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const point1 = new Point([-20, 20]);
@@ -52,7 +52,7 @@ tpl.addSection("fromFourPointsAndTimes", true);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const point1 = new Point(-80, -80);

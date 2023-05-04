@@ -1,79 +1,153 @@
 import { Point } from "@geomtoy/core";
-import { CanvasRenderer, SvgRenderer, View, ViewElement, ViewElementEventType, ViewElementType } from "@geomtoy/view";
+import { CanvasRenderer, SVGRenderer, View, ViewElement, ViewElementEventType, ViewElementType } from "@geomtoy/view";
 import color from "../assets/scripts/color";
 import { strokeFill } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
-tpl.title("View element events");
+tpl.title("View scope events and view element scope events");
 
 tpl.addMarkdown(`
-To simplify \`View\` handling, \`ViewElement\` only supports the following transient events:
-- \`ViewElementEventType.DragStart\` = "dragStart", 
-- \`ViewElementEventType.DragEnd\` = "dragEnd", 
-- \`ViewElementEventType.Activate\` = "activate",
-- \`ViewElementEventType.Deactivate\` = "deactivate",
-- \`ViewElementEventType.Click\` = "click",
-- \`ViewElementEventType.Hover\` = "hover",
-- \`ViewElementEventType.Unhover\` = "unhover"
-
-For \`ViewElement\` with  interactMode = \`ViewElementType.None\`, all events above will not be triggered because it is not interactable.
-
-For \`ViewElement\` with  interactMode = \`ViewElementType.Activation\`, **dragStart**, **dragEnd**, **activate**, **deactivate**, **hover**, **unhover** will be triggered when it should.
-
-For \`ViewElement\` with  interactMode = \`ViewElementType.Operation\`, **dragStart**, **dragEnd**, **click**, **hover**, **unhover** will be triggered when it should.
-
-
+There are two scopes of event handling, one for the view scope and one for the view element scope.
+\n
+The view scope events are emitted for all interactions on the view, regardless of whether the interaction is with a view element.
+The view element scope, of course, responds to the interaction with a view element.
+\n
+Both \`View\` and \`ViewElement\` provide \`on\` API to attach event callback.
+An event callback looks like this:
+`);
+tpl.addCode(`
+(this: this, e: ViewEventObject) => void
 `);
 
-function activationEvents(ve: ViewElement) {
-    ve.on(ViewElementEventType.Activate, function (e) {
-        console.log("activationActivate");
-    })
-        .on(ViewElementEventType.Deactivate, function (e) {
-            console.log("activationDeactivate");
-        })
-        .on(ViewElementEventType.DragEnd, function (e) {
-            console.log("activationDragEnd");
-        })
-        .on(ViewElementEventType.DragStart, function (e) {
-            console.log("activationDragStart");
-        })
-        .on(ViewElementEventType.Hover, function (e) {
-            console.log("activationHover");
-        })
-        .on(ViewElementEventType.Unhover, function (e) {
-            console.log("activationUnhover");
-        });
+tpl.addMarkdown(`
+In the view's event callback, \`this\` points to the view itself.
+In the view element's event callback, \`this\` points to the view element itself.
+\n
+And \`ViewEventObject\` looks like this:
+`);
+
+tpl.addCode(`
+export interface ViewEventObject {
+    isTouch: boolean;  // Indicates whether the interaction is currently on the touch device.
+    viewportX: number; // The x coordinate where the event occurred, in the screen coordinate system.
+    viewportY: number; // The y coordinate where the event occurred, in the screen coordinate system.
+    x: number; // The x coordinate where the event occurred, in the view coordinate system.
+    y: number; // The y coordinate where the event occurred, in the view coordinate system.
+    currentElement?: ViewElement | null; // see below
 }
-function operationEvents(ve: ViewElement) {
-    ve.on(ViewElementEventType.Click, function (e) {
-        console.log("operationClick");
+`);
+tpl.addMarkdown(`
+If the event is a view scope event, then the \`currentElement\` is always \`undefined\` because we don't provide.
+If the event is a view element scope event, then the \`currentElement\` is typed \`ViewElement | null\`. **Note**: The \`currentElement\` 
+is not necessarily the view element itself, and may not even exist. It is only used to indicate whether the interaction involves a view element, 
+and if so, which one is it.
+`);
+
+tpl.addNote(`
+The event callbacks will be invoked according to the order in which they were added, without prioritization.
+`);
+
+tpl.addSection("View scope event types");
+
+tpl.addCode(`
+view.on(eventType: ViewEventType, callback: (this: this, e: ViewEventObject) => void)
+
+export const enum ViewEventType {
+    PointerEnter = "pointerEnter",
+    PointerLeave = "pointerLeave",
+    PointerMove = "pointerMove",
+    PointerDown = "pointerDown",
+    PointerUp = "pointerUp",
+    PointerCancel = "pointerCancel",
+    Wheel = "wheel",
+
+    DragStart = "dragStart",
+    Dragging = "dragging",
+    DragEnd = "dragEnd",
+    PanStart = "panStart",
+    Panning = "panning",
+    PanEnd = "panEnd",
+    ZoomStart = "zoomStart",
+    Zooming = "zooming",
+    ZoomEnd = "zoomEnd",
+
+    Activate = "activate",
+    Deactivate = "deactivate",
+    Click = "click",
+    Hover = "hover",
+    Unhover = "unhover"
+}
+`);
+tpl.addSection("View element scope event types");
+tpl.addCode(`
+viewElement.on(eventType: ViewElementEventType, callback: (this: this, e: ViewEventObject) => void)  
+
+export const enum ViewElementEventType {
+    DragStart = "dragStart",
+    DragEnd = "dragEnd",
+    Activate = "activate",
+    Deactivate = "deactivate",
+    Click = "click",
+    Hover = "hover",
+    Unhover = "unhover"
+}
+`);
+
+tpl.addMarkdown(`
+In order to simplify the event handling of view elements, we only provide the above transient events.
+You must be wondering, where is **dragging**. When you drag a view element to move its shape, the \`Shape.prototype.move\` method is invoked, 
+so you should follow the event system in Geomtoy core.
+`);
+
+tpl.addMarkdown(`
+You should also note that not all view elements have all the events:
+- For \`ViewElement\` with type \`ViewElementType.None\`, all events above will **NOT** be emitted because it is not interactable.
+- For \`ViewElement\` with type \`ViewElementType.Operation\`, **dragStart**, **dragEnd**, **click**, **hover**, **unhover** will be emitted when it should.
+- For \`ViewElement\` with type \`ViewElementType.Activation\`, all events above will be emitted when it should.
+`);
+
+tpl.addSection("Example");
+
+function showType(type: ViewElementType) {
+    return type === 0 ? "None" : type === 1 ? "Activation" : type === 2 ? "Operation" : "";
+}
+
+function attachViewElementEvents(ve: ViewElement) {
+    ve.on(ViewElementEventType.DragStart, function (e) {
+        console.log(showType(this.type), "dragStart");
     })
         .on(ViewElementEventType.DragEnd, function (e) {
-            console.log("operationDragEnd");
+            console.log(showType(this.type), "dragEnd");
         })
-        .on(ViewElementEventType.DragStart, function (e) {
-            console.log("operationDragStart");
+        .on(ViewElementEventType.Activate, function (e) {
+            console.log(showType(this.type), "activate");
+        })
+        .on(ViewElementEventType.Deactivate, function (e) {
+            console.log(showType(this.type), "deactivate");
+        })
+
+        .on(ViewElementEventType.Click, function (e) {
+            console.log(showType(this.type), "click");
         })
         .on(ViewElementEventType.Hover, function (e) {
-            console.log("operationHover");
+            console.log(showType(this.type), "hover");
         })
         .on(ViewElementEventType.Unhover, function (e) {
-            console.log("operationUnhover");
+            console.log(showType(this.type), "unhover");
         });
 }
 
 tpl.addMarkdown(`
 Open the browser devtool and see the console. 
 
-<span style="color:${color("brown")};">&#9635;</span> interactMode: \`ViewElementType.Activation\`<br>
-<span style="color:${color("gray")};">&#9635;</span> interactMode: \`ViewElementType.Operation\`<br>
-<span style="color:${color("black")};">&#9635;</span> interactMode: \`ViewElementType.None\` 
+<span style="color:${color("brown")};">&#9635;</span> Type \`ViewElementType.Activation\`<br>
+<span style="color:${color("gray")};">&#9635;</span> Type \`ViewElementType.Operation\`<br>
+<span style="color:${color("black")};">&#9635;</span> Type \`ViewElementType.None\` 
 `);
 {
     const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "svg", className: "col-12" });
-    const view = new View({}, new SvgRenderer(card.svg!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const ve1 = new ViewElement(Point.random([-100, -100, 200, 200]), { ...strokeFill("brown") });
@@ -86,17 +160,18 @@ Open the browser devtool and see the console.
 
     view.add(ve1, ve2, ve3, ve4, ve5, ve6, ve7);
     card.setTitle("View element events on SVG renderer");
-    activationEvents(ve1);
-    activationEvents(ve2);
-    activationEvents(ve3);
-    operationEvents(ve4);
-    operationEvents(ve5);
-    operationEvents(ve6);
+    attachViewElementEvents(ve1);
+    attachViewElementEvents(ve2);
+    attachViewElementEvents(ve3);
+    attachViewElementEvents(ve4);
+    attachViewElementEvents(ve5);
+    attachViewElementEvents(ve6);
+    attachViewElementEvents(ve7);
 }
 {
     const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "canvas", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const ve1 = new ViewElement(Point.random([-100, -100, 200, 200]), { ...strokeFill("brown") });
@@ -109,10 +184,11 @@ Open the browser devtool and see the console.
 
     view.add(ve1, ve2, ve3, ve4, ve5, ve6, ve7);
     card.setTitle("View element events on Canvas renderer");
-    activationEvents(ve1);
-    activationEvents(ve2);
-    activationEvents(ve3);
-    operationEvents(ve4);
-    operationEvents(ve5);
-    operationEvents(ve6);
+    attachViewElementEvents(ve1);
+    attachViewElementEvents(ve2);
+    attachViewElementEvents(ve3);
+    attachViewElementEvents(ve4);
+    attachViewElementEvents(ve5);
+    attachViewElementEvents(ve6);
+    attachViewElementEvents(ve7);
 }

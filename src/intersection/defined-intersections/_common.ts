@@ -26,7 +26,7 @@ export function samePointsOffset(epsilon: number) {
 }
 export function trileanResult(card: ReturnType<typeof tpl.addCard>, g1: Geometry, g2: Geometry, result: Trilean) {
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(g2, { type: ViewElementType.None, ...lightStrokeOnly("blue") }));
     view.add(new ViewElement(g1, { type: ViewElementType.None, ...strokeOnly("red") }));
@@ -35,7 +35,7 @@ export function trileanResult(card: ReturnType<typeof tpl.addCard>, g1: Geometry
 }
 export function arrayResult(card: ReturnType<typeof tpl.addCard>, g1: Geometry, g2: Geometry, result: Geometry[]) {
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     const resultSubView = new SubView();
     for (const g of result) {

@@ -8,10 +8,10 @@ tpl.title("Arc extrema and bounding box");
 {
     const card = tpl.addCard({ className: "col-12", aspectRatio: "2:1", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
-    const centerPoint = new Point([0, 0]);
+    const center = new Point([0, 0]);
     const restParams = new (new Dynamic().create({
         radiusX: 20,
         radiusY: 10,
@@ -21,9 +21,9 @@ tpl.title("Arc extrema and bounding box");
         rotation: 0
     }))();
 
-    const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+    const arc = new Arc().bind([center, "any"], [restParams, "any"], function (e1, e2) {
         const { radiusX, radiusY, startAngle, endAngle, positive, rotation } = e2.target;
-        this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
+        this.copyFrom(Arc.fromCenterAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
     });
     const extremePoints = new GeometryArray().bind([arc, "any"], function (e) {
         this.items = e.target.isValid() ? e.target.extrema().map(a => new Point(e.target.getParametricEquation()(a), "cross")) : [];
@@ -38,7 +38,7 @@ tpl.title("Arc extrema and bounding box");
     card.setDescription(
         "code",
         ` 
-const centerPoint = new Point([0, 0]);
+const center = new Point([0, 0]);
 const restParams = new (new Dynamic().create({
     radiusX: 20,
     radiusY: 10,
@@ -48,9 +48,9 @@ const restParams = new (new Dynamic().create({
     rotation: 0
 }))();
 
-const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+const arc = new Arc().bind([center, "any"], [restParams, "any"], function (e1, e2) {
     const { radiusX, radiusY, startAngle, endAngle, positive, rotation } = e2.target;
-    this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
+    this.copyFrom(Arc.fromCenterAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
 });
 const extremePoints = new GeometryArray().bind([arc, "any"], function (e) {
     this.items = e.target.isValid() ? e.target.extrema().map(a => new Point(e.target.getParametricEquation()(a), "cross")) : [];
@@ -76,7 +76,7 @@ const boundingBoxRectangle = new Rectangle().bind([arc, "any"], function (e) {
     arcFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(center, { ...lightStrokeFill("brown") }));
     view.add(new ViewElement(arc, { type: ViewElementType.None, ...strokeOnly("brown") }));
     view.add(new ViewElement(extremePoints, { type: ViewElementType.None, zIndex: 2, ...lightStrokeFill("green") }));
     view.add(new ViewElement(boundingBoxRectangle, { type: ViewElementType.None, zIndex: 1, ...lightStrokeOnly("purple") }));

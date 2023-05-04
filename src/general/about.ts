@@ -13,7 +13,7 @@ tpl.addMarkdown(`
 Just like the browser SVG or Canvas drawing commands, the general geometry tries to describe a figure by only 1, 2, 3 degree bezier curves and elliptical arcs, which may involves curve approximation.
 `);
 
-tpl.addSection("Difference between Geomtoy and Web standard");
+tpl.addSection("Difference between Geomtoy and web standard");
 tpl.addMarkdown(`
 Geomtoy uses a completely different architecture than the browser standards (SVG and Canvas).
 Here we will mainly use SVG as an example to illustrate:

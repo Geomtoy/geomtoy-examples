@@ -2,6 +2,7 @@ import { FontConfig } from "@geomtoy/core";
 import { InteractiveStyle, Style } from "@geomtoy/view";
 import "https://cdn.jsdelivr.net/npm/marked@4.1.0/marked.min.js";
 import "https://cdn.jsdelivr.net/npm/prismjs@1.28.0/prism.min.js";
+import "https://cdn.jsdelivr.net/npm/prismjs@1.28.0/components/prism-typescript.min.js";
 import color from "./color";
 
 export var mathFont: FontConfig = {

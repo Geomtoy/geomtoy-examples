@@ -8,7 +8,7 @@ tpl.title("Circle length and area");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const restParams = new (new Dynamic().create({ radius: 10 }))();
@@ -17,8 +17,8 @@ tpl.title("Circle length and area");
         area: 0
     };
 
-    const centerPoint = new Point(10, 0);
-    const circle = new Circle().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+    const center = new Point(10, 0);
+    const circle = new Circle().bind([center, "any"], [restParams, "any"], function (e1, e2) {
         this.copyFrom(new Circle(e1.target, e2.target.radius));
         if (this.isValid()) {
             lengthAndArea.length = this.getLength();
@@ -35,8 +35,8 @@ const lengthAndArea = {
     area: 0
 };
 
-const centerPoint = new Point(10, 0);
-const circle = new Circle().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+const center = new Point(10, 0);
+const circle = new Circle().bind([center, "any"], [restParams, "any"], function (e1, e2) {
     this.copyFrom(new Circle(e1.target, e2.target.radius));
     if (this.isValid()) {
         lengthAndArea.length = this.getLength();
@@ -57,6 +57,6 @@ const circle = new Circle().bind([centerPoint, "any"], [restParams, "any"], func
     lengthFolder.addMonitor(lengthAndArea, "area", { format: (v: any) => v.toFixed(10) });
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(center, { ...lightStrokeFill("brown") }));
     view.add(new ViewElement(circle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

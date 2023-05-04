@@ -8,14 +8,14 @@ tpl.title("Circle closest point");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const point = new Point([-10, 5]);
     const restParams = new (new Dynamic().create({ radius: 10 }))();
 
-    const centerPoint = new Point(10, 0);
-    const circle = new Circle().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+    const center = new Point(10, 0);
+    const circle = new Circle().bind([center, "any"], [restParams, "any"], function (e1, e2) {
         this.copyFrom(new Circle(e1.target, e2.target.radius));
     });
 
@@ -59,7 +59,7 @@ const closestPointLineSegment = new SealedShapeObject({
     closestPointFolder.addMonitor(closestPointLineSegment.items.point, "y");
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(center, { ...lightStrokeFill("brown") }));
     view.add(new ViewElement(point, { ...lightStrokeFill("pink") }));
     view.add(new ViewElement(closestPointLineSegment.items.point, { type: ViewElementType.None, ...lightStrokeOnly("pink") }));
     view.add(new ViewElement(closestPointLineSegment.items.lineSegment, { type: ViewElementType.None, ...dashedThinStroke("gray") }));

@@ -25,7 +25,7 @@ To solve this problem, we invented a method that is quite effective so far, but 
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, pan: [-100, 100], yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const path = new Path([Path.moveTo([-10, -10]), Path.arcTo(10, 10, 0, true, true, [30, 30])], false);
@@ -109,7 +109,7 @@ tpl.addSection("Overall of path control");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.75, pan: [0, 150], yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     // prettier-ignore

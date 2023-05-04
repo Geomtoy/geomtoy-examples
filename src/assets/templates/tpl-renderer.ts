@@ -84,6 +84,7 @@ export default {
         const svg = document.querySelector<SVGSVGElement>(`#svg-${id}`);
         return {
             id,
+            card: card,
             canvas: canvas,
             svg: svg,
             pane: card.querySelector("div.card-pane"),

@@ -21,9 +21,9 @@ Union boolean operation is defined as \`A or B\`, to get the total filling regio
 
     const card2 = tpl.addCard({ title: "union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
     card2.appendDescription(
         "code",
@@ -48,9 +48,9 @@ Intersection boolean operation is defined as \`A and B\`, to get the common/over
 
     const card2 = tpl.addCard({ title: "intersection", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
     card2.appendDescription(
         "code",
@@ -75,9 +75,9 @@ Difference boolean operation is defined as \`A not B\`, to get the filling regio
 
     const card2 = tpl.addCard({ title: "difference", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
     card2.appendDescription(
         "code",
@@ -102,9 +102,9 @@ Difference reverse boolean operation is defined as \`B not A\`, to get the filli
 
     const card2 = tpl.addCard({ title: "difference reverse", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
     card2.appendDescription(
         "code",
@@ -130,9 +130,9 @@ the filling region that belongs to \`A\` and also belongs to \`B\`.
 
     const card2 = tpl.addCard({ title: "exclusion", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
     card2.appendDescription(
         "code",

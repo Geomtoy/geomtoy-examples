@@ -9,7 +9,7 @@ tpl.addSection("constructor");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const point = new Point([0, 0]);
@@ -59,7 +59,7 @@ tpl.addSection("fromTwoPointsAndRotation");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", rendererType: "svg", className: "col-12", withPane: true });
     const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const point1 = new Point([0, 0]);
@@ -112,22 +112,22 @@ const point = new Point("cross").bind([rectangle, "any"], function (e) {
     view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }
 
-tpl.addSection("fromCenterPointEtc");
+tpl.addSection("fromCenterEtc");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
-    const centerPoint = new Point([20, 5]);
+    const center = new Point([20, 5]);
     const restParams = new (new Dynamic().create({
         width: 20,
         height: 20,
         rotation: 0
     }))();
-    const rectangle = new Rectangle().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+    const rectangle = new Rectangle().bind([center, "any"], [restParams, "any"], function (e1, e2) {
         const { width, height, rotation } = e2.target;
-        this.copyFrom(Rectangle.fromCenterPointEtc(e1.target, width, height, rotation));
+        this.copyFrom(Rectangle.fromCenterEtc(e1.target, width, height, rotation));
     });
     const point = new Point("cross").bind([rectangle, "any"], function (e) {
         this.copyFrom(e.target.point);
@@ -148,6 +148,6 @@ tpl.addSection("fromCenterPointEtc");
     rectFolder.addInput(restParams, "rotation", { min: 0, max: 2 * Math.PI });
     // #endregion
     view.add(new ViewElement(point, { type: ViewElementType.None, ...lightStrokeOnly("gray") }));
-    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(center, { ...lightStrokeFill("brown") }));
     view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

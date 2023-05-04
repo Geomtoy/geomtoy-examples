@@ -9,10 +9,10 @@ tpl.title("Arc tangent, normal vector and curvature");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
-    const centerPoint = new Point([0, 0]);
+    const center = new Point([0, 0]);
     const dynamic = new Dynamic();
     const restParams = new (dynamic.create({
         radiusX: 40,
@@ -37,9 +37,9 @@ tpl.title("Arc tangent, normal vector and curvature");
         this.angles = p ? angles : angles.reverse();
     });
 
-    const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+    const arc = new Arc().bind([center, "any"], [restParams, "any"], function (e1, e2) {
         const { radiusX, radiusY, positive, rotation, startAngle, endAngle } = e2.target;
-        this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
+        this.copyFrom(Arc.fromCenterAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
     });
 
     const tangentNormalSubView = new SubView();
@@ -66,7 +66,7 @@ tpl.title("Arc tangent, normal vector and curvature");
     card.setDescription(
         "code",
         ` 
-const centerPoint = new Point([0, 0]);
+const center = new Point([0, 0]);
 const dynamic = new Dynamic();
 const restParams = new (dynamic.create({
     radiusX: 40,
@@ -91,9 +91,9 @@ const stepParams = new (dynamic.create({
     this.angles = p ? angles : angles.reverse();
 });
 
-const arc = new Arc().bind([centerPoint, "any"], [restParams, "any"], function (e1, e2) {
+const arc = new Arc().bind([center, "any"], [restParams, "any"], function (e1, e2) {
     const { radiusX, radiusY, positive, rotation, startAngle, endAngle } = e2.target;
-    this.copyFrom(Arc.fromCenterPointAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
+    this.copyFrom(Arc.fromCenterAndStartEndAnglesEtc(e1.target, radiusX, radiusY, startAngle, endAngle, positive, rotation));
 });
 
 const tangentNormalSubView = new SubView();
@@ -134,6 +134,6 @@ const osculatingCircle = new Circle().bind([arc, "any"], [stepParams, "step"], f
     // #endregion
     view.addSubView(tangentNormalSubView);
     view.add(new ViewElement(arc, { type: ViewElementType.None, ...strokeOnly("brown") }));
-    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(center, { ...lightStrokeFill("brown") }));
     view.add(new ViewElement(osculatingCircle, { type: ViewElementType.None, ...lightStrokeOnly("orange") }));
 }

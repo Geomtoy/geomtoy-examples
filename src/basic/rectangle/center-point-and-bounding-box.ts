@@ -1,13 +1,13 @@
 import { Dynamic, Point, Rectangle } from "@geomtoy/core";
 import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
-import { codeHtml, lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
+import { lightStrokeFill, lightStrokeOnly, strokeOnly } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Rectangle center point and bounding box");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const point = new Point([0, 0]);
@@ -21,8 +21,8 @@ tpl.title("Rectangle center point and bounding box");
         this.copyFrom(new Rectangle(e1.target, width, height, rotation));
     });
 
-    const centerPoint = new Point().bind([rectangle, "any"], function (e) {
-        this.copyFrom(e.target.isValid() ? e.target.getCenterPoint() : null);
+    const center = new Point().bind([rectangle, "any"], function (e) {
+        this.copyFrom(e.target.isValid() ? e.target.getCenter() : null);
     });
 
     const boundingBox = new Rectangle().bind([rectangle, "any"], function (e) {
@@ -43,8 +43,8 @@ const rectangle = new Rectangle().bind([point, "any"], [restParams, "any"], func
     this.copyFrom(new Rectangle(e1.target, width, height, rotation));
 });
 
-const centerPoint = new Point().bind([rectangle, "any"], function (e) {
-    this.copyFrom(e.target.isValid() ? e.target.getCenterPoint() : null);
+const center = new Point().bind([rectangle, "any"], function (e) {
+    this.copyFrom(e.target.isValid() ? e.target.getCenter() : null);
 });
 
 const boundingBox = new Rectangle().bind([rectangle, "any"], function (e) {
@@ -63,7 +63,7 @@ const boundingBox = new Rectangle().bind([rectangle, "any"], function (e) {
     // #endregion
 
     view.add(new ViewElement(point, { ...lightStrokeFill("brown") }));
-    view.add(new ViewElement(centerPoint, { type: ViewElementType.None, ...lightStrokeFill("pink") }));
+    view.add(new ViewElement(center, { type: ViewElementType.None, ...lightStrokeFill("pink") }));
     view.add(new ViewElement(boundingBox, { type: ViewElementType.None, ...lightStrokeOnly("purple") }));
     view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

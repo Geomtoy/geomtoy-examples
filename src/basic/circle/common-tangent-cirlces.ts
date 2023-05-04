@@ -8,19 +8,19 @@ tpl.title("Common tangent circles of two circles through a point");
 {
     const card = tpl.addCard({ aspectRatio: "1.5:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
-    const centerPoint1 = new Point([-20, 20]);
+    const center1 = new Point([-20, 20]);
     const radiusControlPoint1 = new Point([0, 0]);
-    const centerPoint2 = new Point([10, 20]);
+    const center2 = new Point([10, 20]);
     const radiusControlPoint2 = new Point([10, 5]);
     const point = new Point([0, 50]);
 
-    const circle1 = new Circle().bind([centerPoint1, "any"], [radiusControlPoint1, "any"], function (e1, e2) {
+    const circle1 = new Circle().bind([center1, "any"], [radiusControlPoint1, "any"], function (e1, e2) {
         this.copyFrom(Circle.fromTwoPoints(e1.target, e2.target));
     });
-    const circle2 = new Circle().bind([centerPoint2, "any"], [radiusControlPoint2, "any"], function (e1, e2) {
+    const circle2 = new Circle().bind([center2, "any"], [radiusControlPoint2, "any"], function (e1, e2) {
         this.copyFrom(Circle.fromTwoPoints(e1.target, e2.target));
     });
 
@@ -31,16 +31,16 @@ tpl.title("Common tangent circles of two circles through a point");
     card.setDescription(
         "code",
         ` 
-    const centerPoint1 = new Point([-20, 20]);
+    const center1 = new Point([-20, 20]);
     const radiusControlPoint1 = new Point([0, 0]);
-    const centerPoint2 = new Point([10, 20]);
+    const center2 = new Point([10, 20]);
     const radiusControlPoint2 = new Point([10, 5]);
     const point = new Point([0, 50]);
 
-    const circle1 = new Circle().bind([centerPoint1, "any"], [radiusControlPoint1, "any"], function (e1, e2) {
+    const circle1 = new Circle().bind([center1, "any"], [radiusControlPoint1, "any"], function (e1, e2) {
         this.copyFrom(Circle.fromTwoPoints(e1.target, e2.target));
     });
-    const circle2 = new Circle().bind([centerPoint2, "any"], [radiusControlPoint2, "any"], function (e1, e2) {
+    const circle2 = new Circle().bind([center2, "any"], [radiusControlPoint2, "any"], function (e1, e2) {
         this.copyFrom(Circle.fromTwoPoints(e1.target, e2.target));
     });
 
@@ -50,9 +50,9 @@ tpl.title("Common tangent circles of two circles through a point");
     `
     );
 
-    view.add(new ViewElement(centerPoint1, { ...lightStrokeFill("red") }));
+    view.add(new ViewElement(center1, { ...lightStrokeFill("red") }));
     view.add(new ViewElement(radiusControlPoint1, { ...lightStrokeFill("red") }));
-    view.add(new ViewElement(centerPoint2, { ...lightStrokeFill("blue") }));
+    view.add(new ViewElement(center2, { ...lightStrokeFill("blue") }));
     view.add(new ViewElement(radiusControlPoint2, { ...lightStrokeFill("blue") }));
     view.add(new ViewElement(point, { ...lightStrokeFill("teal") }));
 

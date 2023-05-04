@@ -21,10 +21,10 @@ const description = bo.describe(path, rectangle.toPath());
     const card2 = tpl.addCard({ title: "union", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.05, pan: [-100, 50], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(path, { type: ViewElementType.None, ...lightStrokeFill("red") }));
@@ -40,10 +40,10 @@ const description = bo.describe(path, rectangle.toPath());
     const card2 = tpl.addCard({ title: "intersection", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.05, pan: [-100, 50], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(path, { type: ViewElementType.None, ...lightStrokeFill("red") }));
@@ -60,10 +60,10 @@ const description = bo.describe(path, rectangle.toPath());
     const card2 = tpl.addCard({ title: "difference", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.05, pan: [-100, 50], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(path, { type: ViewElementType.None, ...lightStrokeFill("red") }));
@@ -81,10 +81,10 @@ const description = bo.describe(path, rectangle.toPath());
     const card2 = tpl.addCard({ title: "difference reverse", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.05, pan: [-100, 50], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(path, { type: ViewElementType.None, ...lightStrokeFill("red") }));
@@ -102,10 +102,10 @@ const description = bo.describe(path, rectangle.toPath());
     const card2 = tpl.addCard({ title: "exclusion", className: "col-6" });
     const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.05, pan: [-100, 50], yAxisPositiveOnBottom: false }));
 
-    view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+    view1.startResponsive(View.centerOrigin);
     view1.startInteractive();
 
-    view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+    view2.startResponsive(View.centerOrigin);
     view2.startInteractive();
 
     view1.add(new ViewElement(path, { type: ViewElementType.None, ...lightStrokeFill("red") }));

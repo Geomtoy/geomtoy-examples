@@ -9,7 +9,7 @@ tpl.addSection("constructor");
 {
     const card = tpl.addCard({ aspectRatio: "1:1", className: "col-6" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     // prettier-ignore
@@ -38,7 +38,7 @@ const polygon = new Polygon([
 {
     const card = tpl.addCard({ aspectRatio: "1:1", className: "col-6" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     // prettier-ignore
@@ -70,7 +70,7 @@ tpl.addSection("fromSVGString");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const polygon = Polygon.fromSVGString("0,100 50,25 50,7 100,0", true);
@@ -90,7 +90,7 @@ tpl.addSection("fromPoints");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const points = Utility.range(0, 10).map(_ => Point.random([-100, -100, 200, 200]));
@@ -117,7 +117,7 @@ tpl.addSection("fromPointsConvexHull");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const points = Utility.range(0, 10).map(_ => Point.random([-100, -100, 200, 200]));

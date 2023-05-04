@@ -7,7 +7,7 @@ tpl.title("Rectangle keep aspect ratio fit ");
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", withPane: true });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const fitParams = new (new Dynamic().create({
@@ -22,16 +22,16 @@ tpl.title("Rectangle keep aspect ratio fit ");
     });
     const rectangle2 = new Rectangle().bind([rectangle, "any"], [fitParams, "any"], function (e1, e2) {
         const { fitWidth, fitHeight } = e2.target;
-        this.copyFrom(Rectangle.fromCenterPointEtc(e1.target.getCenterPoint(), fitWidth, fitHeight, e1.target.rotation));
+        this.copyFrom(Rectangle.fromCenterEtc(e1.target.getCenter(), fitWidth, fitHeight, e1.target.rotation));
     });
 
-    const centerPoint = new Point(0, 0)
+    const center = new Point(0, 0)
         .on("any", function () {
-            rectangle.copyFrom(Rectangle.fromCenterPointEtc(this, rectangle.width, rectangle.height, rectangle.rotation));
-            rectangle2.copyFrom(Rectangle.fromCenterPointEtc(this, rectangle2.width, rectangle2.height, rectangle2.rotation));
+            rectangle.copyFrom(Rectangle.fromCenterEtc(this, rectangle.width, rectangle.height, rectangle.rotation));
+            rectangle2.copyFrom(Rectangle.fromCenterEtc(this, rectangle2.width, rectangle2.height, rectangle2.rotation));
         })
         .bind([rectangle, "any"], function (e) {
-            this.copyFrom(e.target.getCenterPoint());
+            this.copyFrom(e.target.getCenter());
         });
 
     card.setDescription(
@@ -49,17 +49,18 @@ const rectangle = new Rectangle(0, 0, 10, 20).bind([fitParams, "any"], function 
 });
 const rectangle2 = new Rectangle().bind([rectangle, "any"], [fitParams, "any"], function (e1, e2) {
     const { fitWidth, fitHeight } = e2.target;
-    this.copyFrom(Rectangle.fromCenterPointEtc(e1.target.getCenterPoint(), fitWidth, fitHeight, e1.target.rotation));
+    this.copyFrom(Rectangle.fromCenterEtc(e1.target.getCenter(), fitWidth, fitHeight, e1.target.rotation));
 });
 
-const centerPoint = new Point(0, 0)
+const center = new Point(0, 0)
     .on("any", function () {
-        rectangle.copyFrom(Rectangle.fromCenterPointEtc(this, rectangle.width, rectangle.height, rectangle.rotation));
-        rectangle2.copyFrom(Rectangle.fromCenterPointEtc(this, rectangle2.width, rectangle2.height, rectangle2.rotation));
+        rectangle.copyFrom(Rectangle.fromCenterEtc(this, rectangle.width, rectangle.height, rectangle.rotation));
+        rectangle2.copyFrom(Rectangle.fromCenterEtc(this, rectangle2.width, rectangle2.height, rectangle2.rotation));
     })
     .bind([rectangle, "any"], function (e) {
-        this.copyFrom(e.target.getCenterPoint());
+        this.copyFrom(e.target.getCenter());
     });
+    
     `
     );
 
@@ -77,7 +78,7 @@ const centerPoint = new Point(0, 0)
     closestPointFolder.addMonitor(rectangle, "width");
     // #endregion
 
-    view.add(new ViewElement(centerPoint, { ...lightStrokeFill("brown") }));
+    view.add(new ViewElement(center, { ...lightStrokeFill("brown") }));
     view.add(new ViewElement(rectangle2, { type: ViewElementType.None, ...dashedLightStroke("gray") }));
     view.add(new ViewElement(rectangle, { type: ViewElementType.None, ...strokeOnly("brown") }));
 }

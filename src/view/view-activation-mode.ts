@@ -38,7 +38,7 @@ tpl.addSection("Try");
 {
     const card = tpl.addCard({ className: "col-6", aspectRatio: "2:1", rendererType: "canvas" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(rectangle1, { ...strokeFill("blueGray") }));
     view.add(new ViewElement(rectangle2, { ...strokeFill("blueGray") }));
@@ -50,7 +50,7 @@ tpl.addSection("Try");
 {
     const card = tpl.addCard({ className: "col-6", aspectRatio: "2:1", rendererType: "canvas" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(rectangle1, { ...strokeFill("blueGray") }));
     view.add(new ViewElement(rectangle2, { ...strokeFill("blueGray") }));
@@ -63,7 +63,7 @@ tpl.addSection("Try");
 {
     const card = tpl.addCard({ className: "col-6", aspectRatio: "2:1", rendererType: "canvas" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(rectangle1, { ...strokeFill("blueGray") }));
     view.add(new ViewElement(rectangle2, { ...strokeFill("blueGray") }));
@@ -76,7 +76,7 @@ tpl.addSection("Try");
 {
     const card = tpl.addCard({ className: "col-6", aspectRatio: "2:1", rendererType: "canvas" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(rectangle1, { ...strokeFill("blueGray") }));
     view.add(new ViewElement(rectangle2, { ...strokeFill("blueGray") }));

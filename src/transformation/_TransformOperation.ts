@@ -25,16 +25,16 @@ export class TransformOperation {
 
     private _preloadIconImages() {
         // preload the image
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconHUrl);
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconNeSwUrl);
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconNwSeUrl);
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconVUrl);
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconCUrl);
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconDotUrl);
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconNeUrl);
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconNwUrl);
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconSeUrl);
-        this.view.renderer.imageSourceManager.load(this._iconUrls.iconSwUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconHUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconNeSwUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconNwSeUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconVUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconCUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconDotUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconNeUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconNwUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconSeUrl);
+        this.view.renderer!.imageSourceManager.load(this._iconUrls.iconSwUrl);
     }
     private _iconSet1!: {
         scaleNw: ViewElement<Image>;

@@ -1,11 +1,13 @@
 import { Rectangle } from "@geomtoy/core";
-import { CanvasRenderer, Renderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
 import { strokeFill } from "../../assets/scripts/common";
 import tpl from "../../assets/templates/tpl-renderer";
 
 tpl.title("Renderer interface");
 
 tpl.addMarkdown(`
+The interface is an additional rendering of axes, grids and labels, depending on the display settings, to assist the view.
+
 The interface refers to the additional rendering of axes, grids and labels in renderers to assist the view.
 `);
 
@@ -47,7 +49,7 @@ tpl.addSubSection("Customize the color of the axis, grid and label");
     });
 
     const view = new View({}, canvasRenderer);
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(rectangle, { ...strokeFill("brown") }));
     card.setDescription(
@@ -73,7 +75,7 @@ tpl.addSubSection("Hide the secondary grid");
     });
 
     const view = new View({}, canvasRenderer);
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(rectangle, { ...strokeFill("brown") }));
     card.setDescription(
@@ -97,7 +99,7 @@ tpl.addSubSection("Hide the axis, grid and label");
     });
 
     const view = new View({}, canvasRenderer);
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
     view.add(new ViewElement(rectangle, { ...strokeFill("brown") }));
     card.setDescription(

@@ -8,7 +8,7 @@ tpl.title("Triangle");
 {
     const card = tpl.addCard({ aspectRatio: "1:1", className: "col-12", withPane: true, paneWidth: 320 });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const pointA = new Point(-25, -12);
@@ -43,17 +43,17 @@ tpl.title("Triangle");
         this.items[2].copyFrom(c);
     });
 
-    const incenterPoint = new Point().bind(triangleBind, function (e) {
-        this.copyFrom(e.target.isValid() ? e.target.getIncenterPoint() : null);
+    const incenter = new Point().bind(triangleBind, function (e) {
+        this.copyFrom(e.target.isValid() ? e.target.getIncenter() : null);
     });
     const inscribedCircle = new Circle().bind(triangleBind, function (e) {
         this.copyFrom(e.target.isValid() ? e.target.getInscribedCircle() : null);
     });
-    const centroidPoint = new Point().bind(triangleBind, function (e) {
-        this.copyFrom(e.target.isValid() ? e.target.getCentroidPoint() : null);
+    const centroid = new Point().bind(triangleBind, function (e) {
+        this.copyFrom(e.target.isValid() ? e.target.getCentroid() : null);
     });
-    const orthocenterPoint = new Point().bind(triangleBind, function (e) {
-        this.copyFrom(e.target.isValid() ? e.target.getOrthocenterPoint() : null);
+    const orthocenter = new Point().bind(triangleBind, function (e) {
+        this.copyFrom(e.target.isValid() ? e.target.getOrthocenter() : null);
     });
 
     const medialTriangle = new Triangle().bind(triangleBind, function (e) {
@@ -77,16 +77,16 @@ tpl.title("Triangle");
         this.items[1].copyFrom(b);
         this.items[2].copyFrom(c);
     });
-    const circumcenterPoint = new Point().bind(triangleBind, function (e) {
-        this.copyFrom(e.target.isValid() ? e.target.getCircumcenterPoint() : null);
+    const circumcenter = new Point().bind(triangleBind, function (e) {
+        this.copyFrom(e.target.isValid() ? e.target.getCircumcenter() : null);
     });
 
     const circumscribedCircle = new Circle().bind(triangleBind, function (e) {
         this.copyFrom(e.target.isValid() ? e.target.getCircumscribedCircle() : null);
     });
 
-    const escenterPoints = new SealedShapeArray([new Point(), new Point(), new Point()]).bind(triangleBind, function (e) {
-        const [a, b, c] = e.target.isValid() ? e.target.getEscenterPoints() : [null, null, null];
+    const escenters = new SealedShapeArray([new Point(), new Point(), new Point()]).bind(triangleBind, function (e) {
+        const [a, b, c] = e.target.isValid() ? e.target.getEscenters() : [null, null, null];
         this.items[0].copyFrom(a);
         this.items[1].copyFrom(b);
         this.items[2].copyFrom(c);
@@ -113,8 +113,8 @@ tpl.title("Triangle");
         this.copyFrom(e.target.isValid() ? e.target.getEulerLine() : null);
     });
 
-    const ninePointCenterPoint = new Point().bind(triangleBind, function (e) {
-        this.copyFrom(e.target.isValid() ? e.target.getNinePointCenterPoint() : null);
+    const ninePointCenter = new Point().bind(triangleBind, function (e) {
+        this.copyFrom(e.target.isValid() ? e.target.getNinePointCenter() : null);
     });
 
     const ninePointCircle = new Circle().bind(triangleBind, function (e) {
@@ -122,15 +122,15 @@ tpl.title("Triangle");
     });
 
     const optionElements = {
-        centroidPoint: new ViewElement(centroidPoint, { type: ViewElementType.None, ...thinStrokeFill("amber") }),
+        centroid: new ViewElement(centroid, { type: ViewElementType.None, ...thinStrokeFill("amber") }),
         medianSegments: new ViewElement(medianSegments, { type: ViewElementType.None, ...thinStrokeOnly("amber") }),
 
         angleBisectingSegments: new ViewElement(angleBisectingSegments, { type: ViewElementType.None, ...thinStrokeOnly("deepOrange") }),
-        incenterPoint: new ViewElement(incenterPoint, { type: ViewElementType.None, ...thinStrokeFill("deepOrange") }),
+        incenter: new ViewElement(incenter, { type: ViewElementType.None, ...thinStrokeFill("deepOrange") }),
         inscribedCircle: new ViewElement(inscribedCircle, { type: ViewElementType.None, ...thinStrokeOnly("deepOrange") }),
 
-        orthocenterPoint: new ViewElement(orthocenterPoint, { type: ViewElementType.None, ...thinStrokeFill("purple") }),
-        altitudeLinesL: new ViewElement(altitudeLines, { type: ViewElementType.None, ...thinStrokeOnly("purple") }),
+        orthocenter: new ViewElement(orthocenter, { type: ViewElementType.None, ...thinStrokeFill("purple") }),
+        altitudeLines: new ViewElement(altitudeLines, { type: ViewElementType.None, ...thinStrokeOnly("purple") }),
         orthicTriangle: new ViewElement(orthicTriangle, { type: ViewElementType.None, ...thinStrokeOnly("purple") }),
         polarCircle: new ViewElement(polarCircle, { type: ViewElementType.None, ...thinStrokeOnly("purple") }),
 
@@ -138,10 +138,10 @@ tpl.title("Triangle");
         antimedialTriangle: new ViewElement(antimedialTriangle, { type: ViewElementType.None, ...thinStrokeOnly("green") }),
 
         perpendicularlyBisectingLines: new ViewElement(perpendicularlyBisectingLines, { type: ViewElementType.None, ...thinStrokeOnly("teal") }),
-        circumcenterPoint: new ViewElement(circumcenterPoint, { type: ViewElementType.None, ...thinStrokeFill("teal") }),
+        circumcenter: new ViewElement(circumcenter, { type: ViewElementType.None, ...thinStrokeFill("teal") }),
         circumscribedCircle: new ViewElement(circumscribedCircle, { type: ViewElementType.None, ...thinStrokeOnly("teal") }),
 
-        escenterPoints: new ViewElement(escenterPoints, { type: ViewElementType.None, ...thinStrokeFill("pink") }),
+        escenters: new ViewElement(escenters, { type: ViewElementType.None, ...thinStrokeFill("pink") }),
         escribedCircles: new ViewElement(escribedCircles, { type: ViewElementType.None, ...thinStrokeOnly("pink") }),
 
         symmedianSegments: new ViewElement(symmedianSegments, { type: ViewElementType.None, ...thinStrokeOnly("indigo") }),
@@ -149,7 +149,7 @@ tpl.title("Triangle");
 
         eulerLine: new ViewElement(eulerLine, { type: ViewElementType.None, ...thinStrokeOnly("blue") }),
 
-        ninePointCenterPoint: new ViewElement(ninePointCenterPoint, { type: ViewElementType.None, ...thinStrokeFill("lime") }),
+        ninePointCenter: new ViewElement(ninePointCenter, { type: ViewElementType.None, ...thinStrokeFill("lime") }),
         ninePointCircle: new ViewElement(ninePointCircle, { type: ViewElementType.None, ...thinStrokeOnly("lime") })
     };
 

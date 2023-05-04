@@ -56,9 +56,9 @@ tpl.addSection("Example 1");
         const card2 = tpl.addCard({ title: "compound2", className: "col-6" });
         const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-        view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+        view1.startResponsive(View.centerOrigin);
         view1.startInteractive();
-        view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+        view2.startResponsive(View.centerOrigin);
         view2.startInteractive();
 
         card1.setDescription(
@@ -112,9 +112,9 @@ if they perform \`selfUnion\` boolean operation.
         const card2 = tpl.addCard({ title: "compound2-self union", className: "col-6" });
         const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-        view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+        view1.startResponsive(View.centerOrigin);
         view1.startInteractive();
-        view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+        view2.startResponsive(View.centerOrigin);
         view2.startInteractive();
 
         const selfUnion1 = bo.selfUnion(compound1);
@@ -165,9 +165,9 @@ tpl.addSection("Example 2");
         const card2 = tpl.addCard({ title: "path2 and polygon2", className: "col-6" });
         const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-        view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+        view1.startResponsive(View.centerOrigin);
         view1.startInteractive();
-        view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+        view2.startResponsive(View.centerOrigin);
         view2.startInteractive();
 
         card1.setDescription(
@@ -221,9 +221,9 @@ Think about what the result will be if the path and polygon perform \`intersecti
         const card2 = tpl.addCard({ title: "path2 and polygon2 intersection", className: "col-6" });
         const view2 = new View({}, new CanvasRenderer(card2.canvas!, {}, { density: 10, zoom: 0.2, yAxisPositiveOnBottom: false }));
 
-        view1.startResponsive((width, height) => (view1.renderer.display.origin = [width / 2, height / 2]));
+        view1.startResponsive(View.centerOrigin);
         view1.startInteractive();
-        view2.startResponsive((width, height) => (view2.renderer.display.origin = [width / 2, height / 2]));
+        view2.startResponsive(View.centerOrigin);
         view2.startInteractive();
 
         const intersection1 = bo.intersection(path1, polygon1);

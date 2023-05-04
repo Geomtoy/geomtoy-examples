@@ -7,7 +7,7 @@ tpl.title("Line segment bounding box");
 {
     const card = tpl.addCard({ className: "col-12", aspectRatio: "2:1" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, { density: 10, zoom: 1, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     const point1 = new Point([-20, 6]);

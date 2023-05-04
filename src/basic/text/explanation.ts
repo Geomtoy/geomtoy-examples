@@ -98,7 +98,7 @@ const imageUrl = "assets/img/emoji-icons-set-flat-design-free-vector.jpg";
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12", rendererType: "svg", withPane: true });
     const view = new View({}, new SVGRenderer(card.svg!, {}, { density: 1, zoom: 0.5, yAxisPositiveOnBottom: false }));
-    view.startResponsive((width, height) => (view.renderer.display.origin = [width / 2, height / 2]));
+    view.startResponsive(View.centerOrigin);
     view.startInteractive();
 
     // This is the original image, not cropped, but scaled to 240x240, `consistent` is false - follow the `zoom`.
