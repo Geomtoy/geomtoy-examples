@@ -1,8 +1,7 @@
 import { SVGRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import tpl from "../assets/templates/tpl-renderer";
-
 import { Line, LineSegment, Point, Text, Vector } from "@geomtoy/core";
-import { codeHtml, fillOnly, lightStrokeFill, mathFont, strokeFill, strokeFillTrans, strokeOnly } from "../assets/scripts/common";
+import { fillOnly, mathFont, strokeFill, strokeOnly } from "../assets/scripts/common";
 import { locateLabel } from "../assets/scripts/general-construction";
 
 tpl.addSection("Complex association between geometries");
