@@ -1,6 +1,6 @@
-import { Circle, Geomtoy, Line, LineSegment, Path, Point, Ray, RegularPolygon, Intersection, Triangle, Vector } from "@geomtoy/core";
+import { Circle, Geomtoy, Intersection, Line, LineSegment, Path, Point, Ray, RegularPolygon, Triangle, Vector } from "@geomtoy/core";
 import { Maths, Utility } from "@geomtoy/util";
-import { CanvasRenderer, Style, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, Style, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { newElement } from "./assets/scripts/common";
 import tpl from "./assets/templates/tpl-renderer";
 
@@ -176,10 +176,10 @@ function play() {
             // center, initCircle
             .then(async () => {
                 data.center = Point.origin();
-                view.add(new ViewElement(data.center, sketchStyle));
+                view.add(new ViewElement(data.center, { type: ViewElementType.None, ...sketchStyle }));
 
                 data.initCircle = new Circle(data.center, radius);
-                view.add(new ViewElement(data.initCircle, sketchDashStyle));
+                view.add(new ViewElement(data.initCircle, { type: ViewElementType.None, ...sketchDashStyle }));
 
                 await wait(100 * speed);
             })
@@ -205,33 +205,33 @@ function play() {
                 data.heptagonPEighthPoints = heptagonPEighth.getVertices();
                 data.heptagonNEighthPoints = heptagonNEighth.getVertices();
 
-                view.add(new ViewElement(heptagon, sketchColoredStyle(0)));
+                view.add(new ViewElement(heptagon, { type: ViewElementType.None, ...sketchColoredStyle(0) }));
                 await wait(100 * speed);
 
                 await Promise.all(
                     Utility.range(0, seven).map(async index => {
-                        view.add(new ViewElement(data.heptagonPoints[index], sketchStyle));
-                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(data.heptagonPoints[index], { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonPoints[index]), { type: ViewElementType.None, ...sketchDashStyle }));
                         await wait(50 * speed);
 
-                        view.add(new ViewElement(data.heptagonOffsetPoints[index], sketchStyle));
-                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonOffsetPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(data.heptagonOffsetPoints[index], { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonOffsetPoints[index]), { type: ViewElementType.None, ...sketchDashStyle }));
                         await wait(50 * speed);
 
-                        view.add(new ViewElement(data.heptagonPQuarterPoints[index], sketchStyle));
-                        view.add(new ViewElement(data.heptagonNQuarterPoints[index], sketchStyle));
+                        view.add(new ViewElement(data.heptagonPQuarterPoints[index], { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(data.heptagonNQuarterPoints[index], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(50 * speed);
 
-                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonPQuarterPoints[index]), sketchDashStyle));
-                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonNQuarterPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonPQuarterPoints[index]), { type: ViewElementType.None, ...sketchDashStyle }));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonNQuarterPoints[index]), { type: ViewElementType.None, ...sketchDashStyle }));
                         await wait(50 * speed);
 
-                        view.add(new ViewElement(data.heptagonPEighthPoints[index], sketchStyle));
-                        view.add(new ViewElement(data.heptagonNEighthPoints[index], sketchStyle));
+                        view.add(new ViewElement(data.heptagonPEighthPoints[index], { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(data.heptagonNEighthPoints[index], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(50 * speed);
 
-                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonPEighthPoints[index]), sketchDashStyle));
-                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonNEighthPoints[index]), sketchDashStyle));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonPEighthPoints[index]), { type: ViewElementType.None, ...sketchDashStyle }));
+                        view.add(new ViewElement(new LineSegment(data.center, data.heptagonNEighthPoints[index]), { type: ViewElementType.None, ...sketchDashStyle }));
                         await wait(50 * speed);
                     })
                 );
@@ -253,8 +253,8 @@ function play() {
                         const circle = triangle.getInscribedCircle();
                         data.heptagonC1.circles[index] = circle;
 
-                        view.add(new ViewElement(triangle, sketchDashStyle));
-                        view.add(new ViewElement(circle, sketchStyle));
+                        view.add(new ViewElement(triangle, { type: ViewElementType.None, ...sketchDashStyle }));
+                        view.add(new ViewElement(circle, { type: ViewElementType.None, ...sketchStyle }));
                         await wait(20 * speed);
 
                         const lD = Line.fromTwoPoints(Utility.nth(data.heptagonPoints, index)!, data.center)!;
@@ -262,7 +262,7 @@ function play() {
 
                         data.heptagonC1.intPoints[index] = ps.filter(p => !p.equalTo(Utility.nth(data.heptagonPoints, index)!))[0];
 
-                        view.add(new ViewElement(data.heptagonC1.intPoints[index], sketchStyle));
+                        view.add(new ViewElement(data.heptagonC1.intPoints[index], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(20 * speed);
                     })
                 );
@@ -284,15 +284,15 @@ function play() {
                         const circle = triangle.getInscribedCircle();
                         data.heptagonC2.circles[index] = circle;
 
-                        view.add(new ViewElement(triangle, sketchDashStyle));
-                        view.add(new ViewElement(circle, sketchStyle));
+                        view.add(new ViewElement(triangle, { type: ViewElementType.None, ...sketchDashStyle }));
+                        view.add(new ViewElement(circle, { type: ViewElementType.None, ...sketchStyle }));
                         await wait(20 * speed);
 
                         const lD = Line.fromTwoPoints(Utility.nth(data.heptagonPoints, index)!, data.center)!;
                         const ps = inter.intersect(lD, circle);
                         data.heptagonC2.intPoints[index] = ps.filter(p => !p.equalTo(Utility.nth(data.heptagonPoints, index)!))[0];
 
-                        view.add(new ViewElement(data.heptagonC2.intPoints[index], sketchStyle));
+                        view.add(new ViewElement(data.heptagonC2.intPoints[index], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(20 * speed);
                     })
                 );
@@ -316,15 +316,15 @@ function play() {
                         const circle = triangle.getInscribedCircle();
                         data.heptagonC3.circles[index] = circle;
 
-                        view.add(new ViewElement(triangle, sketchDashStyle));
-                        view.add(new ViewElement(circle, sketchStyle));
+                        view.add(new ViewElement(triangle, { type: ViewElementType.None, ...sketchDashStyle }));
+                        view.add(new ViewElement(circle, { type: ViewElementType.None, ...sketchStyle }));
                         await wait(20 * speed);
 
                         const lD = Line.fromTwoPoints(data.heptagonC2.intPoints[index], data.center)!;
                         const ps = inter.intersect(lD, circle);
                         data.heptagonC3.intPoints[index] = ps.filter(p => !p.equalTo(data.heptagonC2.intPoints[index]))[0];
 
-                        view.add(new ViewElement(data.heptagonC3.intPoints[index], sketchStyle));
+                        view.add(new ViewElement(data.heptagonC3.intPoints[index], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(20 * speed);
                     })
                 );
@@ -345,10 +345,10 @@ function play() {
                         data.heptagonC4.circles[index] = c;
                         data.heptagonC4.intPointLists[index] = ps;
 
-                        view.add(new ViewElement(p, sketchStyle));
-                        view.add(new ViewElement(c, sketchStyle));
-                        view.add(new ViewElement(ps[0], sketchStyle));
-                        view.add(new ViewElement(ps[1], sketchStyle));
+                        view.add(new ViewElement(p, { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(c, { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(ps[0], { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(ps[1], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(100 * speed);
                     })
                 );
@@ -369,7 +369,7 @@ function play() {
                         const c = new Circle(mp, r);
                         data.heptagonC5.circles[index] = c;
 
-                        view.add(new ViewElement(c, sketchStyle));
+                        view.add(new ViewElement(c, { type: ViewElementType.None, ...sketchStyle }));
                         await wait(100 * speed);
                     })
                 );
@@ -388,7 +388,7 @@ function play() {
                         const c = new Circle(mp, r);
                         data.heptagonC6.circles[index] = c;
 
-                        view.add(new ViewElement(c, sketchStyle));
+                        view.add(new ViewElement(c, { type: ViewElementType.None, ...sketchStyle }));
                         await wait(100 * speed);
                     })
                 );
@@ -415,7 +415,7 @@ function play() {
                         data.heptagonC7.intPoints[index] = ps2[0];
                         data.heptagonC7.circles[index] = c;
 
-                        view.add(new ViewElement(c, sketchStyle));
+                        view.add(new ViewElement(c, { type: ViewElementType.None, ...sketchStyle }));
                         await wait(100 * speed);
                     })
                 );
@@ -429,8 +429,8 @@ function play() {
                 data.innerBorderC1 = c1;
                 data.innerBorderC2 = c2;
 
-                view.add(new ViewElement(c1, sketchDashStyle));
-                view.add(new ViewElement(c2, sketchStyle));
+                view.add(new ViewElement(c1, { type: ViewElementType.None, ...sketchDashStyle }));
+                view.add(new ViewElement(c2, { type: ViewElementType.None, ...sketchStyle }));
                 await wait(100 * speed);
             })
             // outerBorderC1, outerBorderC2
@@ -442,8 +442,8 @@ function play() {
                 data.outerBorderC1 = c1;
                 data.outerBorderC2 = c2;
 
-                view.add(new ViewElement(c1, sketchStyle));
-                view.add(new ViewElement(c2, sketchStyle));
+                view.add(new ViewElement(c1, { type: ViewElementType.None, ...sketchStyle }));
+                view.add(new ViewElement(c2, { type: ViewElementType.None, ...sketchStyle }));
                 await wait(100 * speed);
             })
             // triangle
@@ -459,31 +459,31 @@ function play() {
                 };
 
                 const triangle = data.innerBorderC2.getInscribedRegularPolygon(three, Math.PI / 2);
-                view.add(new ViewElement(triangle, sketchColoredStyle(1)));
+                view.add(new ViewElement(triangle, { type: ViewElementType.None, ...sketchColoredStyle(1) }));
                 await wait(100 * speed);
 
                 data.trianglePoints = triangle.getVertices();
 
                 await Promise.all(
                     Utility.range(0, three).map(async index => {
-                        view.add(new ViewElement(data.trianglePoints[index], sketchStyle));
+                        view.add(new ViewElement(data.trianglePoints[index], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(50 * speed);
 
                         const l = Line.fromTwoPoints(data.trianglePoints[index], data.center)!;
                         const psWithIBC1 = inter.intersect(l, data.innerBorderC1);
                         Utility.sortBy(psWithIBC1, [p => p.getDistanceBetweenPoint(data.trianglePoints[index])]);
 
-                        view.add(new ViewElement(psWithIBC1[0], sketchStyle));
+                        view.add(new ViewElement(psWithIBC1[0], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(50 * speed);
 
                         const c = new Circle(new LineSegment(psWithIBC1[0], data.center).getMiddlePoint(), psWithIBC1[0].getDistanceBetweenPoint(data.center) / 2);
-                        view.add(new ViewElement(c, sketchStyle));
-                        view.add(new ViewElement(c.center, sketchStyle));
+                        view.add(new ViewElement(c, { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(c.center, { type: ViewElementType.None, ...sketchStyle }));
                         await wait(50 * speed);
 
                         const ps = inter.intersect(c, data.innerBorderC2);
-                        view.add(new ViewElement(ps[0], sketchStyle));
-                        view.add(new ViewElement(ps[1], sketchStyle));
+                        view.add(new ViewElement(ps[0], { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(ps[1], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(50 * speed);
 
                         data.triangleC1.circles[index] = c;
@@ -501,13 +501,13 @@ function play() {
                         Utility.sortBy(commonTangentCircles, [c => c.radius]);
                         const circle = commonTangentCircles[0];
                         data.triangleC2.circles[index] = circle;
-                        view.add(new ViewElement(circle, sketchStyle));
+                        view.add(new ViewElement(circle, { type: ViewElementType.None, ...sketchStyle }));
                         await wait(50 * speed);
 
                         const ray = Ray.fromTwoPoints(circle.center, Utility.nth(data.triangleC1.circles, index - 2)!.center)!;
                         data.triangleC2.tanPoints[index] = inter.intersect(ray, circle)[0];
 
-                        view.add(new ViewElement(data.triangleC2.tanPoints[index], sketchStyle));
+                        view.add(new ViewElement(data.triangleC2.tanPoints[index], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(50 * speed);
                     })
                 );
@@ -522,7 +522,7 @@ function play() {
 
                 const quadrilateral = new RegularPolygon(data.center, radius + data.gap * 2, four, Math.PI / 2);
 
-                view.add(new ViewElement(quadrilateral, sketchColoredStyle(2)));
+                view.add(new ViewElement(quadrilateral, { type: ViewElementType.None, ...sketchColoredStyle(2) }));
                 await wait(100);
 
                 const ls = quadrilateral.getSideLineSegments();
@@ -533,8 +533,8 @@ function play() {
                         Utility.sortBy(ps, [p => (new Vector(data.center, p).angle + 1.5 * Math.PI) % (2 * Math.PI)]);
                         data.quadrilateral.int1Points.push(...ps);
 
-                        view.add(new ViewElement(ps[0], sketchStyle));
-                        view.add(new ViewElement(ps[1], sketchStyle));
+                        view.add(new ViewElement(ps[0], { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(ps[1], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(100 * speed);
                     })
                 );
@@ -551,8 +551,8 @@ function play() {
                         const ps = inter.intersect(l, data.outerBorderC2);
                         Utility.sortBy(ps, [p => (new Vector(data.center, p).angle + 1.5 * Math.PI) % (2 * Math.PI)]);
 
-                        view.add(new ViewElement(ps[0], sketchStyle));
-                        view.add(new ViewElement(ps[1], sketchStyle));
+                        view.add(new ViewElement(ps[0], { type: ViewElementType.None, ...sketchStyle }));
+                        view.add(new ViewElement(ps[1], { type: ViewElementType.None, ...sketchStyle }));
                         await wait(50 * speed);
 
                         let indexLessThan0 = index < 0;
