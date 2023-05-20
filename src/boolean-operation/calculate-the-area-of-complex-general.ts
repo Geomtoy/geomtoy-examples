@@ -566,6 +566,12 @@ tpl.addSection("Example 9: Compound island");
             Polygon.vertex([-10,-10]),
             Polygon.vertex([10,-10]),
             Polygon.vertex([10,10])
+        ]),
+        new Polygon([
+            Polygon.vertex([-5,5]),
+            Polygon.vertex([-5,-5]),
+            Polygon.vertex([5,-5]),
+            Polygon.vertex([5,5])
         ])
     ])
     origCompound.fillRule = "nonzero";
@@ -608,6 +614,12 @@ const origCompound = new Compound([
         Polygon.vertex([-10,-10]),
         Polygon.vertex([10,-10]),
         Polygon.vertex([10,10])
+    ]),
+    new Polygon([
+        Polygon.vertex([-5,5]),
+        Polygon.vertex([-5,-5]),
+        Polygon.vertex([5,-5]),
+        Polygon.vertex([5,5])
     ])
 ])
 origCompound.fillRule = "nonzero";

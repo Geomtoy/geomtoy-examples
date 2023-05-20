@@ -24,14 +24,14 @@ tpl.title("Circle bounding box");
     card.setDescription(
         "code",
         ` 
-const point1 = new Point([-20, 6]);
-const point2 = new Point([0, 15]);
+const restParams = new (new Dynamic().create({ radius: 10 }))();
 
-const lineSegment = new LineSegment().bind([point1, "any"], [point2, "any"], function (e1, e2) {
-    this.copyFrom(new LineSegment(e1.target, e2.target));
+const center = new Point(10, 0);
+const circle = new Circle().bind([center, "any"], [restParams, "any"], function (e1, e2) {
+    this.copyFrom(new Circle(e1.target, e2.target.radius));
 });
 
-const boundingBoxRectangle = new Rectangle().bind([lineSegment, "any"], function (e) {
+const boundingBoxRectangle = new Rectangle().bind([circle, "any"], function (e) {
     this.copyFrom(e.target.isValid() ? new Rectangle(...e.target.getBoundingBox()) : null);
 });
     `

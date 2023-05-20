@@ -29,7 +29,7 @@ const triangle = new Triangle([-2, 0], [2, 0], [0, 2 * Maths.sqrt(3)]);
 const circle1 = new Circle([-2, 0], 2).toPath().reverse();
 const circle2 = new Circle([2, 0], 2).toPath().reverse();
 const circle3 = new Circle([0, 2 * Maths.sqrt(3)], 2).toPath().reverse();
-const triangleCenter = triangle.getCentroidPoint();
+const triangleCenter = triangle.getCentroid();
 const dist = triangleCenter.getDistanceBetweenPoint([0, 2 + 2 * Maths.sqrt(3)]);
 const outerCircle = new Circle(triangleCenter, dist).toPath();
 

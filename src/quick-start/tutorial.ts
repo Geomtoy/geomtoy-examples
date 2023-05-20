@@ -1,5 +1,5 @@
 import { Circle, Line, Point, SealedGeometryArray } from "@geomtoy/core";
-import { CanvasRenderer, View, ViewElement } from "@geomtoy/view";
+import { CanvasRenderer, View, ViewElement, ViewElementType } from "@geomtoy/view";
 import { tagToEntity } from "../assets/scripts/common";
 import tpl from "../assets/templates/tpl-renderer";
 
@@ -111,11 +111,16 @@ const pointB = new Geomtoy.Point(50, 200, "cross");
 const pointC = new Geomtoy.Point(250, 120, "cross");
 const pointD = new Geomtoy.Point(400, 300, "plus");
 
+// Wrap our geometries in view elements and style them.
 view.add(new Geomtoy.ViewElement(pointA, { style: { stroke: "red" } }));
 view.add(new Geomtoy.ViewElement(pointB, { style: { stroke: "red" } }));
 view.add(new Geomtoy.ViewElement(pointC, { style: { stroke: "red" } }));
 view.add(new Geomtoy.ViewElement(pointD, { style: { stroke: "blue" } }));
 `);
+tpl.addMarkdown(`
+By default, these points can be moved, but moving them now does nothing.
+`);
+
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, {}));
@@ -143,10 +148,10 @@ const lines = new Geomtoy.SealedGeometryArray([new Geomtoy.Line(), new Geomtoy.L
     this.items[0].copyFrom(lp1?.[0] ?? null);
     this.items[1].copyFrom(lp2?.[0] ?? null);
 });
+// Wrap our geometries in view elements and style them.
 view.add(new Geomtoy.ViewElement(circle, { style: { stroke: "red", noFill: true } }));
 view.add(new Geomtoy.ViewElement(lines, { style: { stroke: "blue" } }));
 `);
-
 {
     const card = tpl.addCard({ aspectRatio: "2:1", className: "col-12" });
     const view = new View({}, new CanvasRenderer(card.canvas!, {}, {}));
@@ -171,9 +176,12 @@ view.add(new Geomtoy.ViewElement(lines, { style: { stroke: "blue" } }));
     view.add(new ViewElement(pointB, { style: { stroke: "red" } }));
     view.add(new ViewElement(pointC, { style: { stroke: "red" } }));
     view.add(new ViewElement(pointD, { style: { stroke: "blue" } }));
-    view.add(new ViewElement(circle, { style: { stroke: "red", noFill: true } }));
-    view.add(new ViewElement(lines, { style: { stroke: "blue" } }));
+    view.add(new ViewElement(circle, { type: ViewElementType.None, style: { stroke: "red", noFill: true } }));
+    view.add(new ViewElement(lines, { type: ViewElementType.None, style: { stroke: "blue" } }));
 }
+tpl.addMarkdown(`
+As we move the three red points(A, B,C), the red circle will change, causing the two blue lines to change, and as we move the blue point(D), the two blue lines will change as well.
+`);
 
 tpl.addSection("Final code");
 tpl.addCode(
@@ -214,8 +222,8 @@ tpl.addCode(
         view.add(new Geomtoy.ViewElement(pointB, { style: { stroke: "red" } }));
         view.add(new Geomtoy.ViewElement(pointC, { style: { stroke: "red" } }));
         view.add(new Geomtoy.ViewElement(pointD, { style: { stroke: "blue" } }));
-        view.add(new Geomtoy.ViewElement(circle, { style: { stroke: "red", noFill: true } }));
-        view.add(new Geomtoy.ViewElement(lines, { style: { stroke: "blue" } }));
+        view.add(new Geomtoy.ViewElement(circle, { type: Geomtoy.ViewElementType.None, style: { stroke: "red", noFill: true } }));
+        view.add(new Geomtoy.ViewElement(lines, { type: Geomtoy.ViewElementType.None, style: { stroke: "blue" } }));
 
     </script> 
 </body>
