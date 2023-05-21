@@ -55,6 +55,6 @@
         "rollup-plugin-serve": "^1.1.0",
         "rollup-plugin-terser": "^7.0.2",
         "symlink-dir": "^5.1.1",
-        "typescript": "^4.5.4"
+        "typescript": "^4.8.4"
     }
 }
