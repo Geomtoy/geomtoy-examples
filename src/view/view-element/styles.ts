@@ -79,17 +79,40 @@ tpl.addSubSection(`stroke`, true);
 tpl.addMarkdown(`The stroke color.`);
 
 tpl.addSubSection(`strokeWidth`, true);
-tpl.addMarkdown(`The stroke width.`);
+tpl.addMarkdown(`The stroke width.
+This is somewhat similar to the [SVG stroke-width attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-width).
+`);
 
 tpl.addSubSection(`strokeDash`, true);
+tpl.addMarkdown(`The pattern of dashes used to paint the stroke;
+This is somewhat similar to the [SVG stroke-dasharray attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+`);
+
 tpl.addSubSection(`strokeDashOffset`, true);
+tpl.addMarkdown(`The offset of dashes;
+This is somewhat similar to the [SVG stroke-dashoffset attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset).
+`);
+
 tpl.addSubSection(`strokeLineJoin`, true);
+tpl.addMarkdown(`
+The shape to be used to stroke at the corners.
+This is somewhat similar to the [SVG stroke-linejoin attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linejoin).
+`);
 tpl.addCode(`
 export type StrokeLineJoinType = "bevel" | "miter" | "round";
 `);
 
 tpl.addSubSection(`strokeMiterLimit`, true);
+tpl.addMarkdown(`
+The limit on the ratio of the miter length to the stroke width used to draw a miter join.
+This is somewhat similar to the [SVG stroke-miterlimit attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-miterlimit).
+`);
+
 tpl.addSubSection(`strokeLineCap`, true);
+tpl.addMarkdown(`
+The shape to be used to stroke at the ends.
+This is somewhat similar to the [SVG stroke-linecap attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linecap).
+`);
 tpl.addCode(`
 export type StrokeLineCapType = "butt" | "round" | "square";
 `);
